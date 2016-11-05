@@ -47,7 +47,7 @@ Hi ha **2 lliuraments** a fer:
 1. *Lliurament d'equip*: El **_codi font de l'aplicació_** juntament amb l'**apk** que ha de ser **lliurat pel
 membre de la parella que fa el bloc de tasques A**.
 ◦ Aquest lliurament ha de ser únic per equip de pràctiques i el nom del fitxer a lliurar ha de
-ser *<id-equip>P<num>.tar.gz*. Per exemple si l'equip és And119 i els ha tocat la pràctica 1
+ser *[id-equip]P[num].tar.gz*. Per exemple si l'equip és And119 i els ha tocat la pràctica 1
 (de pel·lícules), el nom del fitxer ha de ser **And119P1.tar.gz**
 2. *Lliurament individual*: Un **breu informe** que ha de ser lliurat per cada estudiant de forma
 **individual**.
@@ -58,7 +58,7 @@ la tasca.
  - Breu comentari (màxim una pàgina) valorant l'experiència de treball en equip amb
 el vostre company de pràctica. A més podeu descriure les diverses problemàtiques
 amb que us heu trobat.
-- El nom del fitxer a lliurar ha de ser *<id-equip>P<num><A/B>.tar.gz*. Per exemple si l'equip
+- El nom del fitxer a lliurar ha de ser *[id-equip]P[num][A/B].tar.gz*. Per exemple si l'equip
 és And119, els ha tocat la pràctica 1 (de pel·lícules) i a l'estudiant li ha tocat fer el bloc B de
 tasques, el nom del fitxer ha de ser **And035P2B.tar.gz**
 
@@ -78,7 +78,7 @@ L'avaluació de la pràctica es farà **de manera individual** tenint en compte 
 L’avaluació té en compte la usabilitat i correctesa de l’aplicació, així com l'existència de tot allò que és
 necessari i sempre ha d'estar en qualsevol aplicació (com ara el *nom* o la *icona*).
 
-### Enunciats de la Pràctica a realitzar
+### Enunciat de la Pràctica a realitzar
 
 #### P1 - Administració de pel·lícules
 
@@ -105,7 +105,7 @@ principal ha de ser una vista amb la llista de títols de les pel·lícules orde
 participa un determinat actor/actriu.
 - Procediment per modificar la nota que ha rebut a les crítiques.
 
-Bloc de tasques comuns:
+**Bloc de tasques comuns**:
 - Fer un *help* de l'aplicació.
 - Fer un *about*.
 - Fer que l'aplicació sigui consistent tal i com s'explica a l'assignatura.
