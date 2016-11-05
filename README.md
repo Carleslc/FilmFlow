@@ -44,23 +44,30 @@ moment per fer el lliurament, car **NO S'ACCEPTARAN LLIURAMENTS FORA DE TERMINI 
 no siguin les assignades implicarà la no avaluació d'aquesta pràctica**.
 
 Hi ha **2 lliuraments** a fer:
+
 1. *Lliurament d'equip*: El **_codi font de l'aplicació_** juntament amb l'**apk** que ha de ser **lliurat pel
 membre de la parella que fa el bloc de tasques A**.
-◦ Aquest lliurament ha de ser únic per equip de pràctiques i el nom del fitxer a lliurar ha de
+
+ - Aquest lliurament ha de ser únic per equip de pràctiques i el nom del fitxer a lliurar ha de
 ser *[id-equip]P[num].tar.gz*. Per exemple si l'equip és And119 i els ha tocat la pràctica 1
 (de pel·lícules), el nom del fitxer ha de ser **And119P1.tar.gz**
+
 2. *Lliurament individual*: Un **breu informe** que ha de ser lliurat per cada estudiant de forma
 **individual**.
-- Aquest informe ha d'incloure:
- - Una breu explicació de cadascuna de les 3 tasques implementades per l'estudiant
+
+ Aquest informe ha d'incloure:
+
+  - Una breu explicació de cadascuna de les 3 tasques implementades per l'estudiant
 (màxim una pàgina per tasca). Cal que expliqueu breument la interacció usada en
 la tasca.
- - Breu comentari (màxim una pàgina) valorant l'experiència de treball en equip amb
+
+  - Breu comentari (màxim una pàgina) valorant l'experiència de treball en equip amb
 el vostre company de pràctica. A més podeu descriure les diverses problemàtiques
 amb que us heu trobat.
-- El nom del fitxer a lliurar ha de ser *[id-equip]P[num][A/B].tar.gz*. Per exemple si l'equip
+
+ El nom del fitxer a lliurar ha de ser *[id-equip]P[num][A/B].tar.gz*. Per exemple si l'equip
 és And119, els ha tocat la pràctica 1 (de pel·lícules) i a l'estudiant li ha tocat fer el bloc B de
-tasques, el nom del fitxer ha de ser **And035P2B.tar.gz**
+tasques, el nom del fitxer ha de ser **And119P1B.tar.gz**
 
 **Qualsevol incompliment d'aquestes normes d'entrega suposarà una significativa penalització en la nota
 final de la pràctica**.
