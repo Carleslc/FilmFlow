@@ -2,12 +2,15 @@ package com.and119_idi.myfilmdatabase;
 
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
 import java.util.List;
 import java.util.Random;
+
+import static android.R.attr.value;
 
 public class MainActivity extends ListActivity {
     private FilmData filmData;
@@ -50,6 +53,9 @@ public class MainActivity extends ListActivity {
                     adapter.remove(film);
                 }
                 break;
+            case R.id.moviesFragment:
+                Intent myIntent = new Intent(MainActivity.this, TestingMoviesFragmentActivity.class);
+                MainActivity.this.startActivity(myIntent);
         }
         adapter.notifyDataSetChanged();
     }

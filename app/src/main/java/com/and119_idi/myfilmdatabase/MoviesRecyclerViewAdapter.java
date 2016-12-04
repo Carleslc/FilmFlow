@@ -31,24 +31,26 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MoviesRecycl
 
         //Conseguimos los datos para meterlos al view holder
 
-        customViewHolder.textView.setText(film.getTitle());
+        customViewHolder.titulo.setText(film.getTitle());
+        customViewHolder.director.setText(film.getDirector());
+        customViewHolder.actor.setText(film.getProtagonist());
+        customViewHolder.country.setText(film.getCountry());
+        customViewHolder.rate.setText(String.valueOf(film.getCritics_rate()));
+        customViewHolder.year.setText(String.valueOf(film.getYear()));
 
-        //Aqui creamos y implementamos un OnClickListener. En el onClick() usamos nuestro propio interface OnItemClickListener
-        //(que hemos seteado a esta clase con una implementación desde MoviesFragment)
-        //llamando a onItemClickListener.onItemClick(film).
-
-        //La fiesta de los listeners
 
 
+/*
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemClickListener.onItemClick(film);
             }
         };
-
+*/
         //Ahora ,al pulsar el titulo de la peli, pasan cosas.
-        customViewHolder.textView.setOnClickListener(listener);
+        //Mejor a la propia cardview
+        //customViewHolder.titulo.setOnClickListener(listener);
     }
 
     @Override
@@ -75,12 +77,31 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MoviesRecycl
         this.onItemClickListener = onItemClickListener;
     }
 
-    class CustomViewHolder extends RecyclerView.ViewHolder {
-        protected TextView textView;
+    class CustomViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
+        protected TextView titulo;
+        protected TextView director;
+        protected TextView actor;
+        protected TextView country;
+        protected TextView rate;
+        protected TextView year;
 
-        public CustomViewHolder(View view) {
-            super(view);
-            this.textView = (TextView) view.findViewById(R.id.title);
+
+        public CustomViewHolder(View v) {
+            super(v);
+            this.titulo = (TextView) v.findViewById(R.id.title);
+            this.director = (TextView) v.findViewById(R.id.director);
+            this.actor = (TextView) v.findViewById(R.id.actor);
+            this.country = (TextView) v.findViewById(R.id.country);
+            this.rate = (TextView) v.findViewById(R.id.mark);
+            this.year = (TextView) v.findViewById(R.id.year);
+        }
+
+        //implementamos  OnClickListener. En el onClick() usamos nuestro propio interface OnItemClickListener
+        //(que hemos seteado a esta clase con una implementación desde MoviesFragment)
+        //llamando a onItemClickListener.onItemClick(film).
+        @Override
+        public void onClick(View view) {
+            onItemClickListener.onItemClick(moviesList.get(getAdapterPosition()));
         }
     }
 

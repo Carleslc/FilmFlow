@@ -49,15 +49,27 @@ public class MoviesFragment extends Fragment {
     //Creamos una AsyncTask para usar la base de datos
     public class dbTask extends AsyncTask<String, Void, Integer> {
 
+        private FilmData filmData;
         @Override
         protected void onPreExecute() {
             progressBar.setVisibility(View.VISIBLE);
+            filmData = new FilmData(getContext());
+            filmData.open();
+
         }
 
         @Override
         protected Integer doInBackground(String... params) {
-            Integer result = 0;
-            return result; //"Failed to fetch data";
+
+            try {
+                moviesList = filmData.getAllFilms();
+            }
+            catch (Exception e) {
+                return 0;
+            }
+            if (moviesList == null) return 0;
+            else return 1;
+
         }
 
         @Override

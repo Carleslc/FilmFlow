@@ -7,6 +7,7 @@ package com.and119_idi.myfilmdatabase;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,8 +23,15 @@ public class FilmData {
     private MySQLiteHelper dbHelper;
 
     // Here we only select Title and Director, must select the appropriate columns
-    private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
-            MySQLiteHelper.COLUMN_TITLE, MySQLiteHelper.COLUMN_DIRECTOR};
+    private String[] allColumns = {
+            MySQLiteHelper.COLUMN_ID,
+            MySQLiteHelper.COLUMN_TITLE,
+            MySQLiteHelper.COLUMN_COUNTRY,
+            MySQLiteHelper.COLUMN_YEAR_RELEASE,
+            MySQLiteHelper.COLUMN_DIRECTOR,
+            MySQLiteHelper.COLUMN_PROTAGONIST,
+            MySQLiteHelper.COLUMN_CRITICS_RATE
+    };
 
     public FilmData(Context context) {
         dbHelper = new MySQLiteHelper(context);
@@ -103,7 +111,11 @@ public class FilmData {
         Film film = new Film();
         film.setId(cursor.getLong(0));
         film.setTitle(cursor.getString(1));
-        film.setDirector(cursor.getString(2));
+        film.setCountry(cursor.getString(2));
+        film.setYear(cursor.getInt(3));
+        film.setDirector(cursor.getString(4));
+        film.setProtagonist(cursor.getString(5));
+        film.setCritics_rate(cursor.getInt(6));
         return film;
     }
 }
