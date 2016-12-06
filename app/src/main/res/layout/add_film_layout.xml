@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addfilmlay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f1f1f1"
+    android:padding="12dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a new Film"
+        android:id="@+id/text"
+        android:layout_marginBottom="30dp"
+        style="@android:style/TextAppearance.DeviceDefault.DialogWindowTitle"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/title"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/title_hint"
+        android:layout_below="@+id/text"
+        android:layout_height="wrap_content"
+        android:gravity="left"/>
+
+    <android.support.v7.widget.AppCompatAutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/country"
+        android:hint="@string/country_hint"
+        android:ems="8"
+        android:layout_below="@+id/title"
+        android:layout_height="wrap_content"
+        android:gravity="left"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:id="@+id/year"
+        android:ems="8"
+        android:inputType="date"
+        android:hint="@string/year_hint"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/country" />
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/director"
+        android:inputType="date"
+        android:hint="@string/director_hint"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/year" />
+    <EditText
+        android:layout_width="match_parent"
+        android:id="@+id/actor"
+        android:inputType="date"
+        android:hint="@string/actor_hint"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/director"
+        android:layout_marginBottom="30dp"/>
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_height="50dp"
+        android:layout_below="@id/actor"
+        android:src="@drawable/ic_key_right"
+        android:background="@android:color/transparent"/>
+
+
+
+</RelativeLayout>

@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:id="@+id/group"
@@ -28,6 +29,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="moviesFragment"
+            android:onClick="onClick"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/AddActivity"
             android:onClick="onClick"
             android:layout_weight="1" />
 

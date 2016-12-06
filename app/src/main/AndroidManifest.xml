@@ -16,7 +16,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TestingMoviesFragmentActivity"></activity>
+        <activity android:name=".TestingMoviesFragmentActivity"
+           >
+        </activity>
+
+        <activity android:name=".AddFilmActivity"
+            android:theme="@style/CustomDialogStyle">
+        </activity>
     </application>
 
 </manifest>

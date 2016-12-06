@@ -6,10 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     cardview:cardCornerRadius="@dimen/corner_radius_cards"
-    cardview:paddingEnd="@dimen/padding"
-    cardview:paddingStart="@dimen/padding"
+    cardview:paddingEnd="@dimen/cardview_padding"
+    cardview:paddingStart="@dimen/cardview_padding"
     cardview:cardBackgroundColor="@color/cardview_background_color"
-    cardview:cardElevation="@dimen/cardview_custom_elevation"
+    cardview:cardElevation="@dimen/cardview_elevation"
     cardview:cardUseCompatPadding="true">
     <RelativeLayout
         android:layout_width="wrap_content"

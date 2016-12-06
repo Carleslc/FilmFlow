@@ -4,7 +4,9 @@ package com.and119_idi.myfilmdatabase;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 
 import java.util.List;
@@ -56,6 +58,11 @@ public class MainActivity extends ListActivity {
             case R.id.moviesFragment:
                 Intent myIntent = new Intent(MainActivity.this, TestingMoviesFragmentActivity.class);
                 MainActivity.this.startActivity(myIntent);
+                break;
+            case R.id.AddActivity:
+                Intent myIntent2 = new Intent(MainActivity.this, AddFilmActivity.class);
+                MainActivity.this.startActivity(myIntent2);
+                break;
         }
         adapter.notifyDataSetChanged();
     }
@@ -71,5 +78,7 @@ public class MainActivity extends ListActivity {
         filmData.close();
         super.onPause();
     }
+
+
 
 }
