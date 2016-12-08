@@ -5,6 +5,7 @@
     <string name="year_hint">Year</string>
     <string name="director_hint">Director</string>
     <string name="actor_hint">Actor</string>
+    <string name="description_hint">Description</string>
 
 
     <string-array name="countries_array">

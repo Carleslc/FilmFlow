@@ -23,6 +23,9 @@
         <activity android:name=".AddFilmActivity"
             android:theme="@style/CustomDialogStyle">
         </activity>
+        <activity android:name=".AddFilmActivityNext"
+            android:theme="@style/CustomDialogStyle">
+        </activity>
     </application>
 
 </manifest>

@@ -1,10 +1,12 @@
 package com.and119_idi.myfilmdatabase;
 
+import java.io.Serializable;
+
 /**
  * Film
  * Created by pr_idi on 10/11/16.
  */
-public class Film {
+public class Film implements Serializable {
 
     // Basic film data manipulation class
     // Contains basic information on the film
@@ -13,6 +15,7 @@ public class Film {
     private String title;
     private String director;
     private String country;
+    private String description;
     private int year;
     private String protagonist;
     private int critics_rate;
@@ -79,5 +82,13 @@ public class Film {
     @Override
     public String toString() {
         return String.format("%s - %s", title, director);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
