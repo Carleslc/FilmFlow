@@ -57,15 +57,10 @@ public class AddFilmActivity extends DialogActivity {
 
     }
 
-    protected boolean isEmpty(EditText etText) {
-        if (etText.getText().toString().trim().length() > 0)
-            return false;
 
-        return true;
-    }
 
     @Override
-    protected boolean checkBeforeClosing() {
+    protected boolean checkBeforeFinish() {
 
         Boolean ret = true;
         if (isEmpty(titleEditText)) {
@@ -96,6 +91,10 @@ public class AddFilmActivity extends DialogActivity {
 
     }
 
+    @Override
+    public void showDialog(View view) {
+        super.showDialog(view);
+    }
 
     private void createFilm() {
         newFilm = new Film();
@@ -108,7 +107,7 @@ public class AddFilmActivity extends DialogActivity {
 
     public void continueAdding(View view) {
 
-        if (checkBeforeClosing()) {
+        if (checkBeforeFinish()) {
             createFilm();
             Bundle bundle = new Bundle();
             bundle.putSerializable("newFilm", newFilm);

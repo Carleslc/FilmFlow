@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by albert on 9/12/16.
  */
 
-//Praise Cristina profesora de AS.
 
 public abstract class DialogActivity extends Activity {
     protected  AlertDialog alertDialog;
@@ -54,7 +56,18 @@ public abstract class DialogActivity extends Activity {
         Log.d("Finished activity","EXITING WITH CONFIRMATION");
     }
 
-    protected abstract boolean checkBeforeClosing();
+    protected void showDialog(View view) {
+        alertDialog.show();
+    }
+
+    protected boolean isEmpty(TextView text) {
+        if (text.getText().toString().trim().length() > 0)
+            return false;
+
+        return true;
+    }
+
+    protected abstract boolean checkBeforeFinish();
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

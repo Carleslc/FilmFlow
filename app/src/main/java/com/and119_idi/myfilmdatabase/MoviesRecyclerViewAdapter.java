@@ -38,19 +38,6 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MoviesRecycl
         customViewHolder.rate.setText(String.valueOf(film.getCritics_rate()));
         customViewHolder.year.setText(String.valueOf(film.getYear()));
 
-
-
-/*
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemClickListener.onItemClick(film);
-            }
-        };
-*/
-        //Ahora ,al pulsar el titulo de la peli, pasan cosas.
-        //Mejor a la propia cardview
-        //customViewHolder.titulo.setOnClickListener(listener);
     }
 
     @Override

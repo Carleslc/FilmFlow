@@ -55,6 +55,7 @@
         <ImageButton
             android:id="@+id/next"
             android:layout_width="50dp"
+            android:onClick="commitFilm"
             android:layout_alignParentEnd="true"
             android:layout_height="50dp"
             android:layout_below="@id/ratingBar"

@@ -90,6 +90,9 @@ public class FilmData {
                 + " = " + id, null);
     }
 
+    public void addFilm(Film film) {
+    }
+
     public List<Film> getAllFilms() {
         List<Film> comments = new ArrayList<>();
 
