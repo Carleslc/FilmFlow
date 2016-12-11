@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase;
+package com.and119_idi.myfilmdatabase.view;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.TextView;
 
 /**

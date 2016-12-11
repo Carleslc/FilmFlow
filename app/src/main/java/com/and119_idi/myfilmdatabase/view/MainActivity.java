@@ -1,18 +1,18 @@
-package com.and119_idi.myfilmdatabase;
+package com.and119_idi.myfilmdatabase.view;
 
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+
+import com.and119_idi.myfilmdatabase.model.FilmData;
+import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.myfilmdatabase.model.Film;
 
 import java.util.List;
 import java.util.Random;
-
-import static android.R.attr.value;
 
 public class MainActivity extends ListActivity {
     private FilmData filmData;

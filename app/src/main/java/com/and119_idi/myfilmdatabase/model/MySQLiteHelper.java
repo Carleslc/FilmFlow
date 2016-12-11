@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase;
+package com.and119_idi.myfilmdatabase.model;
 
 /**
  * MySQLiteHelper

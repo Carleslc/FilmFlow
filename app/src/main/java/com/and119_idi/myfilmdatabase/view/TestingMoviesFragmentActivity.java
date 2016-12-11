@@ -1,9 +1,11 @@
-package com.and119_idi.myfilmdatabase;
+package com.and119_idi.myfilmdatabase.view;
 
-import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+
+import com.and119_idi.myfilmdatabase.R;
 
 /**
  * Created by albert on 4/12/16.

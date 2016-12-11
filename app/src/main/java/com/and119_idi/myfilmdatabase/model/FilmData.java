@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase;
+package com.and119_idi.myfilmdatabase.model;
 
 /**
  * FilmData
@@ -7,7 +7,6 @@ package com.and119_idi.myfilmdatabase;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;

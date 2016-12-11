@@ -1,6 +1,5 @@
-package com.and119_idi.myfilmdatabase;
+package com.and119_idi.myfilmdatabase.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+
+import com.and119_idi.myfilmdatabase.model.FilmData;
+import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.myfilmdatabase.model.Film;
 
 /**
  * Created by albert on 8/12/16.
