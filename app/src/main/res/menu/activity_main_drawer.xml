@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by Carlos Lázaro Costa on 11/12/2016. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/main_section" android:checkableBehavior="single"
+        android:menuCategory="container">
+        <item
+            android:id="@+id/nav_movies_main"
+            android:icon="@drawable/ic_movie_black_24dp"
+            android:title="Movies (by title)"/>
+        <item
+            android:id="@+id/nav_movies_year"
+            android:icon="@drawable/ic_movie_black_24dp"
+            android:title="Movies (by year)"/>
+    </group>
+
+</menu>

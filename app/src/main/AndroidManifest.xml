@@ -8,22 +8,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity">
+        <activity
+            android:name=".view.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.TestingMoviesFragmentActivity"
-           >
-        </activity>
-
-        <activity android:name=".view.AddFilmActivity"
+        <activity
+            android:name=".view.AddFilmActivity"
             android:theme="@style/CustomDialogStyle">
         </activity>
-        <activity android:name=".view.AddFilmActivityNext"
+        <activity
+            android:name=".view.AddFilmActivityNext"
             android:theme="@style/CustomDialogStyle">
         </activity>
     </application>
