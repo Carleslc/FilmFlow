@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.myfilmdatabase.controller;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.controller.OnItemClickListener;
 import com.and119_idi.myfilmdatabase.model.Film;
 
 import java.util.List;

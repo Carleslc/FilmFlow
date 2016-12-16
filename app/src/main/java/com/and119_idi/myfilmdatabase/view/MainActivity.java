@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_films_button);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,12 +41,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
         mNavigationView = (NavigationView)
                 findViewById(R.id.navigation_drawer);
         mNavigationView.setNavigationItemSelectedListener(this);
@@ -57,8 +49,19 @@ public class MainActivity extends AppCompatActivity
                 findViewById(R.id.navigation_drawer_footer);
         mFooterNavigationView.setNavigationItemSelectedListener(this);
 
-        mCurrentSelectedItem = mNavigationView.getMenu().findItem(R.id.nav_movies_main);
-        mCurrentSelectedItem.setChecked(true);
+        int navMoviesMainId = R.id.nav_movies_main;
+        mCurrentSelectedItem = mNavigationView.getMenu().findItem(navMoviesMainId);
+        mNavigationView.setCheckedItem(navMoviesMainId);
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle(mCurrentSelectedItem.getTitle());
+        setSupportActionBar(mToolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @Override
@@ -94,11 +97,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void checkItem(MenuItem item) {
-        mCurrentSelectedItem.setChecked(false);
-        int itemId = item.getItemId();
-        mNavigationView.setCheckedItem(itemId);
-        mFooterNavigationView.setCheckedItem(itemId);
-        mCurrentSelectedItem = item;
+        if (!mCurrentSelectedItem.equals(item)) {
+            mCurrentSelectedItem.setChecked(false);
+            int itemId = item.getItemId();
+            mNavigationView.setCheckedItem(itemId);
+            mFooterNavigationView.setCheckedItem(itemId);
+            mCurrentSelectedItem = item;
+        }
     }
 
     private void setFragment(Fragment fragment) {

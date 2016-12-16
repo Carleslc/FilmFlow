@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-
-import com.and119_idi.myfilmdatabase.model.FilmData;
 import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.myfilmdatabase.controller.MoviesRecyclerViewAdapter;
 import com.and119_idi.myfilmdatabase.controller.OnItemClickListener;
 import com.and119_idi.myfilmdatabase.model.Film;
+import com.and119_idi.myfilmdatabase.model.FilmData;
 
 import java.util.List;
 
