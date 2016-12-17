@@ -53,13 +53,7 @@ public class MoviesRecyclerViewAdapter
         final Film film = moviesList.get(i);
 
         //Conseguimos los datos para meterlos al view holder
-
-        viewHolder.getTitle().setText(film.getTitle());
-        viewHolder.getDirector().setText(film.getDirector());
-        viewHolder.getActor().setText(film.getProtagonist());
-        viewHolder.getCountry().setText(film.getCountry());
-        viewHolder.getRate().setText(String.valueOf(film.getCritics_rate()));
-        viewHolder.getYear().setText(String.valueOf(film.getYear()));
+        viewHolder.bindTo(film);
     }
 
     @Override
@@ -104,28 +98,13 @@ public class MoviesRecyclerViewAdapter
             onItemClickListener.onItemClick(moviesList.get(getAdapterPosition()));
         }
 
-        TextView getTitle() {
-            return title;
-        }
-
-        TextView getDirector() {
-            return director;
-        }
-
-        TextView getActor() {
-            return actor;
-        }
-
-        TextView getCountry() {
-            return country;
-        }
-
-        TextView getRate() {
-            return rate;
-        }
-
-        TextView getYear() {
-            return year;
+        void bindTo(Film film) {
+            title.setText(film.getTitle());
+            director.setText(film.getDirector());
+            actor.setText(film.getProtagonist());
+            country.setText(film.getCountry());
+            rate.setText(String.valueOf(film.getCritics_rate()));
+            year.setText(String.valueOf(film.getYear()));
         }
     }
 

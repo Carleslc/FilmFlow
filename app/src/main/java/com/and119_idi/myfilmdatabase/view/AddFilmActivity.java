@@ -11,11 +11,9 @@ import android.widget.EditText;
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
 
-
 /**
  * Created by albert on 6/12/16.
  */
-
 public class AddFilmActivity extends DialogActivity {
 
     private EditText titleEditText;
@@ -36,7 +34,7 @@ public class AddFilmActivity extends DialogActivity {
     }
 
     private void init() {
-        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.country);
+        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.country); // FIXME
         titleEditText = (EditText) findViewById(R.id.title);
         countryEditText = (EditText) findViewById(R.id.country);
         yearEditText = (EditText) findViewById(R.id.year);
@@ -45,19 +43,17 @@ public class AddFilmActivity extends DialogActivity {
 
         
         String[] countries = getResources().getStringArray(R.array.countries_array);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,countries);
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, countries);
         autoCompleteTextView.setAdapter(adapter);
 
         initAlertDialog();
-
     }
-
-
 
     @Override
     protected boolean checkBeforeFinish() {
+        boolean ret = true;
 
-        Boolean ret = true;
         if (isEmpty(titleEditText)) {
             titleEditText.setError("Enter a title");
             ret = false;
@@ -82,8 +78,6 @@ public class AddFilmActivity extends DialogActivity {
         }
 
         return ret;
-
-
     }
 
     @Override
@@ -101,7 +95,6 @@ public class AddFilmActivity extends DialogActivity {
     }
 
     public void continueAdding(View view) {
-
         if (checkBeforeFinish()) {
             createFilm();
             Bundle bundle = new Bundle();
@@ -113,7 +106,5 @@ public class AddFilmActivity extends DialogActivity {
             fi();
         }
     }
-
-
 
 }

@@ -1,6 +1,7 @@
 package com.and119_idi.myfilmdatabase.view;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -11,11 +12,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.myfilmdatabase.model.FilmData;
 
 /**
  * Created by Carlos Lázaro Costa on 11/12/2016.
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, AddFilmActivity.class));
             }
         });
+
+        new InsertFilmsTask().execute();
 
         mNavigationView = (NavigationView)
                 findViewById(R.id.navigation_drawer);
@@ -121,5 +126,28 @@ public class MainActivity extends AppCompatActivity
     // TODO: Remove this when whole class is already implemented
     private void warnNotImplementedYet() {
         Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
+    }
+
+    // TODO: Remove this when AddFilmActivity is already completed
+    public class InsertFilmsTask extends AsyncTask<Void, Void, Boolean> {
+
+        private FilmData filmData;
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            try {
+                filmData = new FilmData(MainActivity.this);
+                filmData.open();
+                if (filmData.getAllFilms().isEmpty()) {
+                    for (int i = 0; i < 10; ++i)
+                        filmData.createFilm("Titulo " + i, "Director " + i);
+                }
+                return true;
+            } catch (Exception e) {
+                Log.e(MainActivity.class.getSimpleName(), "Error inserting test films", e);
+                return false;
+            }
+        }
+
     }
 }

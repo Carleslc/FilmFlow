@@ -31,7 +31,8 @@ public class MoviesFragment extends MainMoviesFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View ret = inflater.inflate(R.layout.fragment_movies, container, false);
 
         mRecyclerView = (RecyclerView) ret.findViewById(R.id.recycler_view);
@@ -71,7 +72,8 @@ public class MoviesFragment extends MainMoviesFragment {
             if (succeed) {
                 adapter = new MoviesRecyclerViewAdapter(moviesList);
 
-                //Aqui usamos AS fuertemente y le pasamos la implementación que queremos al RecyclerViewAdapter
+                // Aqui usamos AS fuertemente y le pasamos la implementación que
+                // queremos al RecyclerViewAdapter
                 adapter.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(Film film) {

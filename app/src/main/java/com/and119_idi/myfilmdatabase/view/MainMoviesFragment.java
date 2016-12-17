@@ -87,4 +87,5 @@ public class MainMoviesFragment extends Fragment {
             progressBar.setVisibility(View.GONE);
         }
     }
+
 }

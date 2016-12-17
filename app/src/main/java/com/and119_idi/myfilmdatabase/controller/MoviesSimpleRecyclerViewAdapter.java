@@ -48,7 +48,7 @@ public class MoviesSimpleRecyclerViewAdapter
         final Film film = moviesList.get(i);
 
         //Conseguimos los datos para meterlos al view holder
-        viewHolder.getTitle().setText(film.getTitle());
+        viewHolder.bindTo(film);
     }
 
     @Override
@@ -80,8 +80,8 @@ public class MoviesSimpleRecyclerViewAdapter
             onItemClickListener.onItemClick(moviesList.get(getAdapterPosition()));
         }
 
-        TextView getTitle() {
-            return title;
+        void bindTo(Film film) {
+            title.setText(film.getTitle());
         }
     }
 
