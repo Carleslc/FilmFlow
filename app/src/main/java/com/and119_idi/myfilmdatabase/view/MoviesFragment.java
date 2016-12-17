@@ -3,7 +3,6 @@ package com.and119_idi.myfilmdatabase.view;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,66 +22,54 @@ import java.util.List;
 /**
  * Created by albert on 29/11/16.
  */
-
-public class MoviesFragment extends Fragment {
+public class MoviesFragment extends MainMoviesFragment {
 
     private List<Film> moviesList;
     private RecyclerView mRecyclerView;
     private MoviesRecyclerViewAdapter adapter;
     private ProgressBar progressBar;
 
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View ret = inflater.inflate(R.layout.moviesfraglayout,container,false);
+        View ret = inflater.inflate(R.layout.fragment_movies, container, false);
 
         mRecyclerView = (RecyclerView) ret.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         progressBar = (ProgressBar) ret.findViewById(R.id.progress_bar);
 
-        new dbTask().execute();
+        new FetchFilmsTask().execute();
 
         return ret;
     }
 
     //Creamos una AsyncTask para usar la base de datos
-    public class dbTask extends AsyncTask<String, Void, Integer> {
+    public class FetchFilmsTask extends AsyncTask<Void, Void, Boolean> {
 
         private FilmData filmData;
+
         @Override
         protected void onPreExecute() {
             progressBar.setVisibility(View.VISIBLE);
-            filmData = new FilmData(getContext());
-            filmData.open();
-
         }
 
         @Override
-        protected Integer doInBackground(String... params) {
-
+        protected Boolean doInBackground(Void... params) {
             try {
+                filmData = new FilmData(getContext());
+                filmData.open();
                 moviesList = filmData.getAllFilms();
+                return true;
             }
             catch (Exception e) {
-                return 0;
+                return false;
             }
-            if (moviesList == null) return 0;
-            else return 1;
-
         }
 
         @Override
-        protected void onPostExecute(Integer result) {
-            progressBar.setVisibility(View.GONE);
-
-            if (result == 1) {
-                adapter = new MoviesRecyclerViewAdapter(getContext(), moviesList);
+        protected void onPostExecute(Boolean succeed) {
+            if (succeed) {
+                adapter = new MoviesRecyclerViewAdapter(moviesList);
 
                 //Aqui usamos AS fuertemente y le pasamos la implementación que queremos al RecyclerViewAdapter
                 adapter.setOnItemClickListener(new OnItemClickListener() {
@@ -97,6 +84,7 @@ public class MoviesFragment extends Fragment {
             } else {
                 Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
             }
+            progressBar.setVisibility(View.GONE);
         }
     }
 }

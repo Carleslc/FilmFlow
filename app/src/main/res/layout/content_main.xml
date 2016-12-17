@@ -12,10 +12,11 @@
     tools:showIn="@layout/app_bar_main">
 
     <!-- Main contents as fragment -->
-    <fragment android:name="com.and119_idi.myfilmdatabase.view.MainMoviesFragment"
-              tools:layout="@layout/fragment_main_movies"
-              android:id="@+id/main_fragment_placeholder"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"/>
+    <fragment
+        android:id="@+id/main_fragment_placeholder"
+        android:name="com.and119_idi.myfilmdatabase.view.MainMoviesFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_movies"/>
 
 </RelativeLayout>

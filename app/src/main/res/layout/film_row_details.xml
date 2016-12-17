@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    cardview:cardCornerRadius="@dimen/corner_radius_cards"
-    cardview:paddingEnd="@dimen/cardview_padding"
-    cardview:paddingStart="@dimen/cardview_padding"
     cardview:cardBackgroundColor="@color/cardview_background_color"
+    cardview:cardCornerRadius="@dimen/corner_radius_cards"
     cardview:cardElevation="@dimen/cardview_elevation"
-    cardview:cardUseCompatPadding="true">
+    cardview:cardUseCompatPadding="true"
+    cardview:paddingEnd="@dimen/cardview_padding"
+    cardview:paddingStart="@dimen/cardview_padding">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -19,56 +19,55 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:padding="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="#444"
+            android:layout_marginStart="12dp"
             android:ellipsize="end"
             android:maxEms="12"
-            android:maxLines="1"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="ssssssssssssssssssssssssssssssss" />
+            android:padding="8dp"
+            android:text="ssssssssssssssssssssssssssssssss"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="#444"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="1"
             android:layout_below="@+id/title"
-            android:orientation="horizontal">
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:rowCount="1">
 
 
             <RelativeLayout
-                android:layout_gravity="right|bottom"
-                android:layout_row="0"
-                android:layout_column="1">
+                android:layout_column="1"
+                android:layout_gravity="end|bottom"
+                android:layout_row="0">
 
                 <ImageView
                     android:id="@+id/starIcon"
-                    android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-                    android:src="@drawable/ic_star_grande"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/mark"
                     android:adjustViewBounds="false"
-                    android:layout_toEndOf="@+id/mark" />
+                    android:src="@drawable/ic_star_grande"/>
                 <TextView
                     android:id="@+id/mark"
-                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="8"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textColor="#444"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
-                    android:text="8"
                     tools:text="8" />
             </RelativeLayout>
 
 
             <RelativeLayout
-                android:layout_gravity="left"
-                android:layout_row="0"
-                android:layout_column="0">
+                android:layout_column="0"
+                android:layout_gravity="start"
+                android:layout_row="0">
 
 
                 <TextView
@@ -77,51 +76,50 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:padding="8dp"
+                    android:text="test"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textColor="#444"
-                    android:textSize="15dp"
-                    android:textStyle="italic|bold"
-                    android:text="test" />
-                />
-
+                    android:textSize="15sp"
+                    android:textStyle="italic|bold"/>
 
                 <TextView
                     android:id="@+id/director"
-                    android:layout_below="@+id/year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/year"
                     android:layout_marginStart="12dp"
                     android:padding="8dp"
+                    android:text="test"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textColor="#444"
-                    android:textSize="15dp"
-                    android:textStyle="italic|bold"
-                    android:text="test" />
+                    android:textSize="15sp"
+                    android:textStyle="italic|bold"/>
+
                 <TextView
                     android:id="@+id/actor"
-                    android:layout_below="@+id/director"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/director"
                     android:layout_marginStart="12dp"
                     android:padding="10dp"
+                    android:text="test"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textColor="#444"
-                    android:textSize="15dp"
-                    android:textStyle="italic|bold"
-                    android:text="test" />
+                    android:textSize="15sp"
+                    android:textStyle="italic|bold"/>
 
                 <TextView
                     android:id="@+id/country"
-                    android:layout_below="@+id/actor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/actor"
                     android:layout_marginStart="12dp"
                     android:padding="10dp"
+                    android:text="test"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textColor="#444"
-                    android:textSize="15dp"
-                    android:textStyle="italic|bold"
-                    android:text="test" />
+                    android:textSize="15sp"
+                    android:textStyle="italic|bold"/>
 
             </RelativeLayout>
 

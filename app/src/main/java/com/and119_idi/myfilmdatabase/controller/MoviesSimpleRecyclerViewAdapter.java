@@ -15,29 +15,24 @@ import com.and119_idi.myfilmdatabase.model.Film;
 import java.util.List;
 
 /**
- * Created by albert on 29/11/16.
+ * Created by Carlos Lázaro Costa on 16/12/16.
  */
-public class MoviesRecyclerViewAdapter
-        extends RecyclerView.Adapter<MoviesRecyclerViewAdapter.MovieViewHolder> {
+public class MoviesSimpleRecyclerViewAdapter
+        extends RecyclerView.Adapter<MoviesSimpleRecyclerViewAdapter.MovieViewHolder> {
 
     private SortedList<Film> moviesList;
     private OnItemClickListener onItemClickListener;
 
-    public MoviesRecyclerViewAdapter(@NonNull List<Film> moviesList) {
+    public MoviesSimpleRecyclerViewAdapter(@NonNull List<Film> moviesList) {
         this.moviesList = new SortedList<>(Film.class, new SortedListAdapterCallback<Film>(this) {
             @Override
             public int compare(Film f1, Film f2) {
-                return Integer.compare(f1.getYear(), f2.getYear());
+                return f1.getTitle().compareToIgnoreCase(f2.getTitle());
             }
 
             @Override
             public boolean areContentsTheSame(Film f1, Film f2) {
-                return f1.getTitle().equals(f2.getTitle())
-                        && f1.getYear() == f2.getYear()
-                        && f1.getDirector().equals(f2.getDirector())
-                        && f1.getProtagonist().equals(f2.getProtagonist())
-                        && f1.getCountry().equals(f2.getCountry())
-                        && f1.getCritics_rate() == f2.getCritics_rate();
+                return f1.getTitle().equals(f2.getTitle());
             }
 
             @Override
@@ -53,13 +48,7 @@ public class MoviesRecyclerViewAdapter
         final Film film = moviesList.get(i);
 
         //Conseguimos los datos para meterlos al view holder
-
         viewHolder.getTitle().setText(film.getTitle());
-        viewHolder.getDirector().setText(film.getDirector());
-        viewHolder.getActor().setText(film.getProtagonist());
-        viewHolder.getCountry().setText(film.getCountry());
-        viewHolder.getRate().setText(String.valueOf(film.getCritics_rate()));
-        viewHolder.getYear().setText(String.valueOf(film.getYear()));
     }
 
     @Override
@@ -69,7 +58,7 @@ public class MoviesRecyclerViewAdapter
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.film_row_details, null);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.film_row_simple, null);
         return new MovieViewHolder(view);
     }
 
@@ -80,25 +69,12 @@ public class MoviesRecyclerViewAdapter
     class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView title;
-        private TextView director;
-        private TextView actor;
-        private TextView country;
-        private TextView rate;
-        private TextView year;
 
         MovieViewHolder(View v) {
             super(v);
             title = (TextView) v.findViewById(R.id.title);
-            director = (TextView) v.findViewById(R.id.director);
-            actor = (TextView) v.findViewById(R.id.actor);
-            country = (TextView) v.findViewById(R.id.country);
-            rate = (TextView) v.findViewById(R.id.mark);
-            year = (TextView) v.findViewById(R.id.year);
         }
 
-        //implementamos  OnClickListener. En el onClick() usamos nuestro propio interface OnItemClickListener
-        //(que hemos seteado a esta clase con una implementación desde MoviesFragment)
-        //llamando a onItemClickListener.onItemClick(film).
         @Override
         public void onClick(View view) {
             onItemClickListener.onItemClick(moviesList.get(getAdapterPosition()));
@@ -106,26 +82,6 @@ public class MoviesRecyclerViewAdapter
 
         TextView getTitle() {
             return title;
-        }
-
-        TextView getDirector() {
-            return director;
-        }
-
-        TextView getActor() {
-            return actor;
-        }
-
-        TextView getCountry() {
-            return country;
-        }
-
-        TextView getRate() {
-            return rate;
-        }
-
-        TextView getYear() {
-            return year;
         }
     }
 
