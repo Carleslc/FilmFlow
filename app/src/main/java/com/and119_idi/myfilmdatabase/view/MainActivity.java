@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity
     private NavigationView mNavigationView, mFooterNavigationView;
 
     private MenuItem mCurrentSelectedItem;
+    private Fragment currentFragment;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +71,16 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        //Don't really know if a fragment was being set when we had <fragment> instead of <FrameLayout>
+        //When orientation changes, activity is destroyed and recreated. But fragments no, or yes, idk.
+        if (savedInstanceState == null) {
+            setFragment(new MainMoviesFragment());
+        }
+        else setFragment(getSupportFragmentManager().getFragment(savedInstanceState,"currentFragment"));
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -112,10 +125,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setFragment(Fragment fragment) {
+        currentFragment = fragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_placeholder, fragment)
                 .commit();
+    }
+
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        getSupportFragmentManager().putFragment(outState, "currentFragment", currentFragment);
+        super.onSaveInstanceState(outState);
     }
 
     // TODO: Remove this listener and test buttons

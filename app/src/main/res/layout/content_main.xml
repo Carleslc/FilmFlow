@@ -12,7 +12,8 @@
     tools:showIn="@layout/app_bar_main">
 
     <!-- Main contents as fragment -->
-    <fragment
+    <!--We need a FrameLayout in order to swap fragments at runtime (orientation changes) Stackoverflow source-->
+    <FrameLayout
         android:id="@+id/main_fragment_placeholder"
         android:name="com.and119_idi.myfilmdatabase.view.MainMoviesFragment"
         android:layout_width="match_parent"
