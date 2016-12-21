@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 public abstract class DialogActivity extends Activity {
     protected  AlertDialog alertDialog;
+    protected  boolean unsavedData;
 
 
     @Override
@@ -49,7 +50,6 @@ public abstract class DialogActivity extends Activity {
                     }
                 });
     }
-
     protected void fi() {
         this.finish();
         Log.d("Finished activity","EXITING WITH CONFIRMATION");
@@ -66,13 +66,15 @@ public abstract class DialogActivity extends Activity {
         return true;
     }
 
-    protected abstract boolean checkBeforeFinish();
+    protected abstract boolean checkData(boolean showErrors);
+
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
         if (MotionEvent.ACTION_OUTSIDE == event.getAction()) {
-            alertDialog.show();
+            alertAndFinish();
             return true;
         }
 
@@ -81,7 +83,12 @@ public abstract class DialogActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        alertDialog.show();
+        alertAndFinish();
+    }
+
+    protected void alertAndFinish() {
+        if (unsavedData) alertDialog.show();
+        else fi();
     }
 
 

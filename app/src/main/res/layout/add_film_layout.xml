@@ -70,19 +70,19 @@
         <ImageButton
             android:id="@+id/next"
             android:onClick="continueAdding"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/actor"
-            android:src="@drawable/ic_key_right"
+            android:src="@drawable/ic_arrow"
             android:background="@android:color/transparent"/>
 
         <ImageButton
             android:id="@+id/cancel"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:onClick="showDialog"
-            android:src="@drawable/ic_close"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cancel"
             android:background="@android:color/transparent"
             android:layout_below="@+id/actor"
             android:layout_alignParentStart="true" />

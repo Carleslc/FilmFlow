@@ -3,9 +3,11 @@ package com.and119_idi.myfilmdatabase.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 
 import com.and119_idi.myfilmdatabase.model.FilmData;
@@ -21,6 +23,7 @@ public class AddFilmActivityNext extends DialogActivity {
     private RatingBar ratingBar;
     private Film newFilm;
     private FilmData filmData;
+    private ImageButton cancel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,17 +36,35 @@ public class AddFilmActivityNext extends DialogActivity {
     private void init() {
         descriptionEditText = (EditText) findViewById(R.id.description);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        cancel = (ImageButton) findViewById(R.id.cancel);
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertAndFinish();
+            }
+        });
+
         filmData = new FilmData(this);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         newFilm = (Film) bundle.getSerializable("newFilm");
+
+        unsavedData = true;
     }
 
     public void commitFilm(View view) {
-        if (checkBeforeFinish()) {
+        if (checkData(true)) {
             completeFilm();
+            filmData.open();
             filmData.addFilm(newFilm);
+            filmData.close();
+            alertDialog.setMessage("Film added!");
+            alertDialog.show();
+            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.INVISIBLE);
+            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText("OK");
+
         }
 
     }
@@ -55,11 +76,11 @@ public class AddFilmActivityNext extends DialogActivity {
     }
 
     @Override
-    protected boolean checkBeforeFinish() {
+    protected boolean checkData(boolean showErrors) {
         Boolean ret = true;
 
         if (isEmpty(descriptionEditText)) {
-            descriptionEditText.setError("Enter a description");
+            if (showErrors)descriptionEditText.setError("Enter a description");
             ret = false;
         }
 

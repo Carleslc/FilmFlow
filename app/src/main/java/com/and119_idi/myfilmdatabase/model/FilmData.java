@@ -90,6 +90,20 @@ public class FilmData {
     }
 
     public void addFilm(Film film) {
+
+        ContentValues values = new ContentValues();
+
+
+        values.put(MySQLiteHelper.COLUMN_TITLE, film.getTitle());
+        values.put(MySQLiteHelper.COLUMN_DIRECTOR, film.getDirector());
+        values.put(MySQLiteHelper.COLUMN_COUNTRY, film.getCountry());
+        values.put(MySQLiteHelper.COLUMN_YEAR_RELEASE, film.getYear());
+        values.put(MySQLiteHelper.COLUMN_PROTAGONIST, film.getProtagonist());
+        values.put(MySQLiteHelper.COLUMN_CRITICS_RATE, film.getCritics_rate());
+
+        // Actual insertion of the data using the values variable
+        long insertId = database.insert(MySQLiteHelper.TABLE_FILMS, null,
+                values);
     }
 
     public List<Film> getAllFilms() {
