@@ -254,4 +254,12 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="abouttext">"Aplicació amb motiu de l'assignatura Interacció i disseny d'interficies (IDI)\n\nDesenvolupada per:\n\n"
+        <b>Carlos Lázaro Costa</b> \n
+        <u>lazaro.costa.carles@gmail.com</u> \n\n
+        <b>Albert López Alcácer</b>\n
+        <u>alcacer.la.1001@gmail.com</u>
+    </string>
+
 </resources>

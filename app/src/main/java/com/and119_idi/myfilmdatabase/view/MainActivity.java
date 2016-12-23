@@ -7,13 +7,13 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -99,19 +99,24 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_movies_main) {
             setFragment(new MainMoviesFragment());
+            drawerActions(item);
         } else if (id == R.id.nav_movies_year) {
             setFragment(new MoviesFragment());
+            drawerActions(item);
         } else if (id == R.id.nav_help) {
             warnNotImplementedYet();
         } else if (id == R.id.nav_about) {
-            warnNotImplementedYet();
+            startActivity(new Intent(MainActivity.this, AboutActivity.class));
         }
+        
+        return true;
+    }
+    
+    private void drawerActions(MenuItem item) {
         mToolbar.setTitle(item.getTitle());
         checkItem(item);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     private void checkItem(MenuItem item) {
@@ -171,5 +176,10 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            filmData.close();
+            super.onPostExecute(aBoolean);
+        }
     }
 }

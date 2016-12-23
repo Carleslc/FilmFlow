@@ -34,7 +34,6 @@ public class AddFilmActivity extends DialogActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_film_layout);
-        setFinishOnTouchOutside(false);
         init();
     }
 
