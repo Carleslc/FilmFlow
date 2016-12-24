@@ -71,6 +71,10 @@ public class MoviesRecyclerViewAdapter
         this.onItemClickListener = onItemClickListener;
     }
 
+    public SortedList getList() {
+        return moviesList;
+    }
+
     class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView title;

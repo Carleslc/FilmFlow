@@ -3,6 +3,7 @@ package com.and119_idi.myfilmdatabase.view;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.controller.MoviesRecyclerViewAdapter;
+import com.and119_idi.myfilmdatabase.controller.MoviesSimpleRecyclerViewAdapter;
 import com.and119_idi.myfilmdatabase.controller.OnItemClickListener;
 import com.and119_idi.myfilmdatabase.model.Film;
 import com.and119_idi.myfilmdatabase.model.FilmData;
@@ -24,10 +26,9 @@ import java.util.List;
  */
 public class MoviesFragment extends MainMoviesFragment {
 
-    private List<Film> moviesList;
     private RecyclerView mRecyclerView;
     private MoviesRecyclerViewAdapter adapter;
-    private ProgressBar progressBar;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Nullable
     @Override
@@ -37,56 +38,70 @@ public class MoviesFragment extends MainMoviesFragment {
 
         mRecyclerView = (RecyclerView) ret.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        progressBar = (ProgressBar) ret.findViewById(R.id.progress_bar);
 
-        new FetchFilmsTask().execute();
+        mSwipeRefreshLayout = (SwipeRefreshLayout) ret.findViewById(R.id.swipeRefreshLayout);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFilms();
+            }
+        });
+
+        getFilms();
 
         return ret;
     }
 
-    //Creamos una AsyncTask para usar la base de datos
-    public class FetchFilmsTask extends AsyncTask<Void, Void, Boolean> {
+    private void getFilms() {
+        new MoviesFragment.FetchFilmsTask().execute();
+    }
+
+
+    public class FetchFilmsTask extends AsyncTask<Void, Void, List<Film> > {
 
         private FilmData filmData;
+        private List<Film> moviesList;
+
+
 
         @Override
-        protected void onPreExecute() {
-            progressBar.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
+        protected List<Film> doInBackground(Void... params) {
             try {
+
                 filmData = new FilmData(getContext());
                 filmData.open();
                 moviesList = filmData.getAllFilms();
-                return true;
-            }
-            catch (Exception e) {
-                return false;
+                filmData.close();
+                return moviesList;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                return null;
             }
         }
 
         @Override
-        protected void onPostExecute(Boolean succeed) {
-            if (succeed) {
-                adapter = new MoviesRecyclerViewAdapter(moviesList);
+        protected void onPostExecute(List<Film> moviesList) {
 
-                // Aqui usamos AS fuertemente y le pasamos la implementación que
-                // queremos al RecyclerViewAdapter
+            if (adapter == null) {
+                adapter = new MoviesRecyclerViewAdapter(moviesList);
                 adapter.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(Film film) {
-                        //Cosas
                         Toast.makeText(getContext(), film.getTitle(), Toast.LENGTH_LONG).show();
                     }
                 });
-
                 mRecyclerView.setAdapter(adapter);
-            } else {
-                Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
             }
-            progressBar.setVisibility(View.GONE);
+            else {
+                adapter.getList().clear();
+                adapter.getList().addAll(moviesList);
+                adapter.notifyDataSetChanged();
+            }
+
+            mSwipeRefreshLayout.setRefreshing(false);
         }
     }
+
 }

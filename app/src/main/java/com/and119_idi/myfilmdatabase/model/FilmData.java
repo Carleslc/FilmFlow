@@ -123,6 +123,12 @@ public class FilmData {
         return comments;
     }
 
+    //TODO: remove this method
+    public void deleteAllFilms() {
+        List<Film> filmList = getAllFilms();
+        for (Film f: filmList) deleteFilm(f);
+    }
+
     private Film cursorToFilm(Cursor cursor) {
         Film film = new Film();
         film.setId(cursor.getLong(0));

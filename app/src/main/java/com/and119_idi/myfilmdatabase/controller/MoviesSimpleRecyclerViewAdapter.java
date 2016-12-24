@@ -24,6 +24,8 @@ public class MoviesSimpleRecyclerViewAdapter
     private OnItemClickListener onItemClickListener;
 
     public MoviesSimpleRecyclerViewAdapter(@NonNull List<Film> moviesList) {
+
+        //The reference is lost, so list cant be updated outside :(
         this.moviesList = new SortedList<>(Film.class, new SortedListAdapterCallback<Film>(this) {
             @Override
             public int compare(Film f1, Film f2) {
@@ -64,6 +66,10 @@ public class MoviesSimpleRecyclerViewAdapter
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
+    }
+
+    public SortedList getList() {
+        return moviesList;
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
