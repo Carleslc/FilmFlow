@@ -104,7 +104,8 @@ public class MainActivity extends AppCompatActivity
             setFragment(new MoviesFragment());
             drawerActions(item);
         } else if (id == R.id.nav_help) {
-            warnNotImplementedYet();
+            setFragment(new HelpFragment());
+            drawerActions(item);
         } else if (id == R.id.nav_about) {
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
         }
