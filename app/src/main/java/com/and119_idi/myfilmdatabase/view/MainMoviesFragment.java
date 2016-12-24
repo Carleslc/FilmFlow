@@ -3,6 +3,7 @@ package com.and119_idi.myfilmdatabase.view;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,6 +43,13 @@ public class MainMoviesFragment extends Fragment {
         new FetchFilmsTask().execute();
 
         return ret;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        FloatingActionButton activityfab = (FloatingActionButton) getActivity().findViewById(R.id.add_films_button);
+        activityfab.show();
+        super.onActivityCreated(savedInstanceState);
     }
 
     //Creamos una AsyncTask para usar la base de datos

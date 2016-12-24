@@ -14,8 +14,9 @@
 
         <TextView
             android:id="@+id/show_films"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:paddingLeft="25dp"
             android:textAppearance="@android:style/TextAppearance.DialogWindowTitle"
@@ -36,8 +37,9 @@
         <TextView
             android:id="@+id/add_film"
             android:layout_below="@+id/divider1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:foreground="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:paddingLeft="25dp"
             android:textAppearance="@android:style/TextAppearance.DialogWindowTitle"
@@ -55,7 +57,8 @@
         <TextView
             android:id="@+id/delete_film"
             android:layout_below="@+id/divider2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:foreground="?android:attr/selectableItemBackground"
             android:layout_height="50dp"
             android:gravity="center_vertical"
             android:paddingStart="25dp"
