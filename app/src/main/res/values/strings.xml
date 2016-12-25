@@ -247,11 +247,13 @@
 
     <string name="abouttext">"Aplicació amb motiu de l'assignatura Interacció i Disseny d'Interficies (IDI)\n\nDesenvolupada per:\n\n"
         <b>Carlos Lázaro Costa</b> \n
-        <u>carlos.lazaro.costa@est.fib.upc.edu</u> \n\n
+        <l>carlos.lazaro.costa@est.fib.upc.edu</l> \n\n
         <b>Albert López Alcácer</b>\n
-        <u>albert.lopez.alcacer@est.fib.upc.edu</u>
+        <l>albert.lopez.alcacer@est.fib.upc.edu</l>
     </string>
 
+    <string name="mail_carlos">carlos.lazaro.costa@est.fib.upc.edu</string>
+    <string name="mail_albert">albert.lopez.alcacer@est.fib.upc.edu</string>
     <string name="app_name">MyFilmDatabase</string>
     <string name="country_hint">Country</string>
     <string name="title_hint">Title</string>
@@ -264,13 +266,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="show_films_section">Show films</string>
-    <string name="show_films_help"><b>Show films sorted by title</b>\nTo show all films you only need to open the application. When you open the application the first view shows you all films sorted by their title.\n\nIf you are on other view, open the navigation menu and select \"Movies (by title)\".\n\n<b>Show films sorted by year</b>\nNot written yet.</string>
+    <string name="show_films_help"><b>Show films sorted by title</b>\nTo show all films you only need to open the application. When you open the application the first view shows you all films sorted by their title.\n\nIf you are on other view, open the navigation menu and select \"Movies (by title)\".\n\n<b>Show films sorted by year</b>\nTo show all films sorted by year, and show different details of these, you only need to open the application. Once opened, you need to open the navigation drawer or application menu and select \"Movies (by year)\" option </string>
 
     <string name="delete_film_section">Delete film</string>
     <string name="delete_film_help">Not written yet.</string>
 
     <string name="add_film_section">Add film</string>
-    <string name="add_film_help">Not written yet.</string>
+    <string name="add_film_help">In order to add a new film, you need to use the round button shown in both the sorted by title and by year films list.\n\nA form will be shown, asking for the different film details. Once you have introduced \"Title\", \"Country\" (with autocompletion feature), \"Year\", \"Director\" and \"Actor\", you will be able to press the \"next\" button.\n\nFinally, you will be asked for a description about the film and a rate (selectable stars), and then be able to press the \"done\" button.</string>
 
     <string name="change_rating_section">Change film rating</string>
     <string name="change_rating_help">Not written yet.</string>
