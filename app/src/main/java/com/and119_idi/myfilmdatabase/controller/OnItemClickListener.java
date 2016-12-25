@@ -8,7 +8,6 @@ import com.and119_idi.myfilmdatabase.model.Film;
  * Interface para poder poner un listener a las pelis en el recyclerview
  * Será implementado desde MoviesFragment y pasado al RecyclerViewAdapter
  */
-
 public interface OnItemClickListener {
     void onItemClick(Film item);
 }
