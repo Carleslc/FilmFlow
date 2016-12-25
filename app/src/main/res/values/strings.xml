@@ -266,7 +266,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="show_films_section">Show films</string>
-    <string name="show_films_help"><b>Show films sorted by title</b>\nTo show all films you only need to open the application. When you open the application the first view shows you all films sorted by their title.\n\nIf you are on other view, open the navigation menu and select \"Movies (by title)\".\n\n<b>Show films sorted by year</b>\nTo show all films sorted by year, and show different details of these, you only need to open the application. Once opened, you need to open the navigation drawer or application menu and select \"Movies (by year)\" option </string>
+
+    <string name="show_films_help"><b>Show films sorted by title</b>\nTo show all films you only need to open the application. When you open the application the first view shows you all films sorted by their title. You can scroll up and down.\n\nIf you are on other view, open the navigation menu and select \"Movies (by title)\".\n\n<b>Show films sorted by year</b>\nTo show all films sorted by year, and show different details of these, you only need to open the application. Once opened, you need to open the navigation drawer or application menu and select \"Movies (by year)\" option </string>
+
+
 
     <string name="delete_film_section">Delete film</string>
     <string name="delete_film_help">Not written yet.</string>

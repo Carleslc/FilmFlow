@@ -89,7 +89,7 @@ public class MainMoviesFragment extends Fragment {
                 adapter.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(Film film) {
-                        Toast.makeText(getContext(), film.getTitle(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), film.getTitle(), Toast.LENGTH_SHORT).show();
                     }
                 });
                 mRecyclerView.setAdapter(adapter);
