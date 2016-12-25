@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
             setFragment(new MainMoviesFragment());
             drawerActions(item);
         } else if (id == R.id.nav_movies_year) {
-            setFragment(new MoviesFragment());
+            setFragment(new DetailedMoviesFragment());
             drawerActions(item);
         } else if (id == R.id.nav_help) {
             setFragment(new HelpFragment());

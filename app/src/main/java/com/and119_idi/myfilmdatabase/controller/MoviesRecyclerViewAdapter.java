@@ -2,13 +2,11 @@ package com.and119_idi.myfilmdatabase.controller;
 
 import android.support.annotation.NonNull;
 import android.support.v7.util.SortedList;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
@@ -16,45 +14,41 @@ import com.and119_idi.myfilmdatabase.model.Film;
 import java.util.List;
 
 /**
- * Created by albert on 29/11/16.
+ * Created by Carlos Lázaro Costa on 16/12/16.
  */
-public class MoviesRecyclerViewAdapter
-        extends RecyclerView.Adapter<MoviesRecyclerViewAdapter.MovieViewHolder> {
+public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
-    private SortedList<Film> moviesList;
-    private OnItemClickListener onItemClickListener;
+    SortedList<Film> moviesList;
+    OnItemClickListener onItemClickListener;
 
     public MoviesRecyclerViewAdapter(@NonNull List<Film> moviesList) {
-        this.moviesList = new SortedList<>(Film.class, new SortedListAdapterCallback<Film>(this) {
+        //FIXME The reference is lost, so list cant be updated outside :(
+        this.moviesList = new SortedList<>(Film.class, getSortCallback());
+        for (Film f : moviesList) this.moviesList.add(f);
+    }
+
+    protected SortedList.Callback<Film> getSortCallback() {
+        return new SortedListAdapterCallback<Film>(this) {
             @Override
             public int compare(Film f1, Film f2) {
-                return Integer.compare(f1.getYear(), f2.getYear());
+                return f1.getTitle().compareToIgnoreCase(f2.getTitle());
             }
 
             @Override
             public boolean areContentsTheSame(Film f1, Film f2) {
-                return f1.getTitle().equals(f2.getTitle())
-                        && f1.getYear() == f2.getYear()
-                        && f1.getDirector().equals(f2.getDirector())
-                        && f1.getProtagonist().equals(f2.getProtagonist())
-                        && f1.getCountry().equals(f2.getCountry())
-                        && f1.getCritics_rate() == f2.getCritics_rate();
+                return f1.getTitle().equals(f2.getTitle());
             }
 
             @Override
             public boolean areItemsTheSame(Film f1, Film f2) {
                 return f1.getId() == f2.getId();
             }
-        });
-        for (Film f : moviesList) this.moviesList.add(f);
+        };
     }
 
     @Override
     public void onBindViewHolder(MovieViewHolder viewHolder, int i) {
-        final Film film = moviesList.get(i);
-
-        //Conseguimos los datos para meterlos al view holder
-        viewHolder.bindTo(film);
+        viewHolder.bindTo(moviesList.get(i));
     }
 
     @Override
@@ -64,53 +58,16 @@ public class MoviesRecyclerViewAdapter
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.film_row_details, null);
-        return new MovieViewHolder(view);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.film_row_simple, null);
+        return new MovieViewHolder(view, moviesList, onItemClickListener);
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
-    public SortedList getList() {
+    public SortedList<Film> getFilmList() {
         return moviesList;
-    }
-
-    class MovieViewHolder extends RecyclerView.ViewHolder {
-
-        private CardView card;
-        private TextView title;
-        private TextView director;
-        private TextView actor;
-        private TextView country;
-        private TextView rate;
-        private TextView year;
-
-        MovieViewHolder(View v) {
-            super(v);
-            card = (CardView) v.findViewById(R.id.card);
-            card.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClickListener.onItemClick(moviesList.get(getAdapterPosition()));
-                }
-            });
-            title = (TextView) v.findViewById(R.id.title);
-            director = (TextView) v.findViewById(R.id.director);
-            actor = (TextView) v.findViewById(R.id.actor);
-            country = (TextView) v.findViewById(R.id.country);
-            rate = (TextView) v.findViewById(R.id.mark);
-            year = (TextView) v.findViewById(R.id.year);
-        }
-
-        void bindTo(Film film) {
-            title.setText(film.getTitle());
-            director.setText(film.getDirector());
-            actor.setText(film.getProtagonist());
-            country.setText(film.getCountry());
-            rate.setText(String.valueOf(film.getCritics_rate()));
-            year.setText(String.valueOf(film.getYear()));
-        }
     }
 
 }
