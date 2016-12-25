@@ -2,6 +2,7 @@ package com.and119_idi.myfilmdatabase.controller;
 
 import android.support.annotation.NonNull;
 import android.support.v7.util.SortedList;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.view.LayoutInflater;
@@ -72,18 +73,21 @@ public class MoviesSimpleRecyclerViewAdapter
         return moviesList;
     }
 
-    class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MovieViewHolder extends RecyclerView.ViewHolder {
 
+        private CardView card;
         private TextView title;
 
         MovieViewHolder(View v) {
             super(v);
+            card = (CardView) v.findViewById(R.id.card);
+            card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(moviesList.get(getAdapterPosition()));
+                }
+            });
             title = (TextView) v.findViewById(R.id.title);
-        }
-
-        @Override
-        public void onClick(View view) {
-            onItemClickListener.onItemClick(moviesList.get(getAdapterPosition()));
         }
 
         void bindTo(Film film) {
