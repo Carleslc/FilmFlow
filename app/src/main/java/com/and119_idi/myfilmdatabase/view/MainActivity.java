@@ -13,10 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.FilmData;
@@ -144,16 +142,6 @@ public class MainActivity extends AppCompatActivity
     protected void onSaveInstanceState(Bundle outState) {
         getSupportFragmentManager().putFragment(outState, "currentFragment", currentFragment);
         super.onSaveInstanceState(outState);
-    }
-
-    // TODO: Remove this listener and test buttons
-    public void onDeleteButtonClick(View view) {
-        warnNotImplementedYet();
-    }
-
-    // TODO: Remove this when whole class is already implemented
-    private void warnNotImplementedYet() {
-        Toast.makeText(this, "Not implemented yet", Toast.LENGTH_SHORT).show();
     }
 
     // TODO: Remove this when AddFilmActivity is already completed

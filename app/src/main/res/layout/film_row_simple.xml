@@ -22,7 +22,6 @@
         android:padding="8dp"
         android:text="ssssssssssssssssssssssssssssssss"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:textColor="#444"
         android:textSize="20sp"
         android:textStyle="bold"/>
 

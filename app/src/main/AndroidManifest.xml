@@ -19,15 +19,15 @@
         </activity>
         <activity
             android:name=".view.AddFilmActivity"
-            android:theme="@style/CustomDialogStyle">
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
         </activity>
         <activity
             android:name=".view.AddFilmActivityNext"
-            android:theme="@style/CustomDialogStyle">
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
         </activity>
         <activity
             android:name=".view.AboutActivity"
-            android:theme="@style/CustomDialogStyle">
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
         </activity>
     </application>
 

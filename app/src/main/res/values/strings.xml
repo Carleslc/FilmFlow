@@ -245,11 +245,11 @@
         <item>Zimbabwe</item>
     </string-array>
 
-    <string name="abouttext">"Aplicació amb motiu de l'assignatura Interacció i disseny d'interficies (IDI)\n\nDesenvolupada per:\n\n"
+    <string name="abouttext">"Aplicació amb motiu de l'assignatura Interacció i Disseny d'Interficies (IDI)\n\nDesenvolupada per:\n\n"
         <b>Carlos Lázaro Costa</b> \n
-        <u>lazaro.costa.carles@gmail.com</u> \n\n
+        <u>carlos.lazaro.costa@est.fib.upc.edu</u> \n\n
         <b>Albert López Alcácer</b>\n
-        <u>alcacer.la.1001@gmail.com</u>
+        <u>albert.lopez.alcacer@est.fib.upc.edu</u>
     </string>
 
     <string name="app_name">MyFilmDatabase</string>
@@ -259,11 +259,23 @@
     <string name="director_hint">Director</string>
     <string name="actor_hint">Actor</string>
     <string name="description_hint">Description</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="show_films_about">Show films</string>
-    <string name="delete_film_about">Delete films</string>
-    <string name="add_film_about">Add film</string>
 
+    <string name="show_films_section">Show films</string>
+    <string name="show_films_help"><b>Show films sorted by title</b>\nTo show all films you only need to open the application. When you open the application the first view shows you all films sorted by their title.\n\nIf you are on other view, open the navigation menu and select \"Movies (by title)\".\n\n<b>Show films sorted by year</b>\nNot written yet.</string>
+
+    <string name="delete_film_section">Delete film</string>
+    <string name="delete_film_help">Not written yet.</string>
+
+    <string name="add_film_section">Add film</string>
+    <string name="add_film_help">Not written yet.</string>
+
+    <string name="change_rating_section">Change film rating</string>
+    <string name="change_rating_help">Not written yet.</string>
+
+    <string name="search_film_by_actor_section">Search film by actor</string>
+    <string name="search_film_by_actor_help">Not written yet.</string>
 
 </resources>

@@ -25,7 +25,6 @@
             android:padding="8dp"
             android:text="ssssssssssssssssssssssssssssssss"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            android:textColor="#444"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
@@ -57,7 +56,6 @@
                     android:layout_centerVertical="true"
                     android:text="8"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textColor="#444"
                     android:textSize="25sp"
                     android:textStyle="bold"
                     tools:text="8" />
@@ -78,7 +76,6 @@
                     android:padding="8dp"
                     android:text="test"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textColor="#444"
                     android:textSize="15sp"
                     android:textStyle="italic|bold"/>
 
@@ -91,7 +88,6 @@
                     android:padding="8dp"
                     android:text="test"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textColor="#444"
                     android:textSize="15sp"
                     android:textStyle="italic|bold"/>
 
@@ -104,7 +100,6 @@
                     android:padding="10dp"
                     android:text="test"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textColor="#444"
                     android:textSize="15sp"
                     android:textStyle="italic|bold"/>
 
@@ -117,7 +112,6 @@
                     android:padding="10dp"
                     android:text="test"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textColor="#444"
                     android:textSize="15sp"
                     android:textStyle="italic|bold"/>
 
