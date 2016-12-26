@@ -34,7 +34,7 @@ class DetailedMovieViewHolder extends MovieViewHolder {
         director.setText(film.getDirector());
         actor.setText(film.getProtagonist());
         country.setText(film.getCountry());
-        rate.setText(String.valueOf(film.getCritics_rate()));
+        rate.setText(String.valueOf(film.getCriticsRate()));
         year.setText(String.valueOf(film.getYear()));
     }
 }

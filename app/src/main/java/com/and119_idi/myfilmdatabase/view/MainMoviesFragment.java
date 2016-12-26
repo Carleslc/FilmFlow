@@ -93,7 +93,10 @@ public class MainMoviesFragment extends Fragment {
                 adapter.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(Film film) {
-                        startActivity(new Intent(getContext(), DetailsActivity.class));
+                        startActivity(
+                                new Intent(getContext(), DetailsActivity.class)
+                                        .putExtra("film", film)
+                        );
                     }
                 });
                 mRecyclerView.setAdapter(adapter);

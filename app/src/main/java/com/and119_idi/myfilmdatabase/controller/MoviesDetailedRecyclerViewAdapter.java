@@ -30,7 +30,7 @@ public class MoviesDetailedRecyclerViewAdapter extends MoviesRecyclerViewAdapter
                         && f1.getDirector().equals(f2.getDirector())
                         && f1.getProtagonist().equals(f2.getProtagonist())
                         && f1.getCountry().equals(f2.getCountry())
-                        && f1.getCritics_rate() == f2.getCritics_rate();
+                        && f1.getCriticsRate() == f2.getCriticsRate();
             }
 
             @Override

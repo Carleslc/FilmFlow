@@ -93,13 +93,12 @@ public class FilmData {
 
         ContentValues values = new ContentValues();
 
-
         values.put(MySQLiteHelper.COLUMN_TITLE, film.getTitle());
         values.put(MySQLiteHelper.COLUMN_DIRECTOR, film.getDirector());
         values.put(MySQLiteHelper.COLUMN_COUNTRY, film.getCountry());
         values.put(MySQLiteHelper.COLUMN_YEAR_RELEASE, film.getYear());
         values.put(MySQLiteHelper.COLUMN_PROTAGONIST, film.getProtagonist());
-        values.put(MySQLiteHelper.COLUMN_CRITICS_RATE, film.getCritics_rate());
+        values.put(MySQLiteHelper.COLUMN_CRITICS_RATE, film.getCriticsRate());
 
         // Actual insertion of the data using the values variable
         long insertId = database.insert(MySQLiteHelper.TABLE_FILMS, null,
@@ -130,14 +129,14 @@ public class FilmData {
     }
 
     private Film cursorToFilm(Cursor cursor) {
-        Film film = new Film();
+        Film film = new Film(
+                cursor.getString(1),
+                cursor.getString(4),
+                cursor.getString(2),
+                cursor.getInt(3),
+                cursor.getString(5));
         film.setId(cursor.getLong(0));
-        film.setTitle(cursor.getString(1));
-        film.setCountry(cursor.getString(2));
-        film.setYear(cursor.getInt(3));
-        film.setDirector(cursor.getString(4));
-        film.setProtagonist(cursor.getString(5));
-        film.setCritics_rate(cursor.getInt(6));
+        film.setCriticsRate(cursor.getInt(6));
         return film;
     }
 }

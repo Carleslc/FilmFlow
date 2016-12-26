@@ -1,9 +1,11 @@
 package com.and119_idi.myfilmdatabase.model;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import java.io.Serializable;
 
 /**
- * Film
  * Created by pr_idi on 10/11/16.
  */
 public class Film implements Serializable {
@@ -11,84 +13,97 @@ public class Film implements Serializable {
     // Basic film data manipulation class
     // Contains basic information on the film
 
-    private long id;
-    private String title;
-    private String director;
-    private String country;
-    private String description;
-    private int year;
-    private String protagonist;
-    private int critics_rate;
+    private long mId;
+    private String mTitle;
+    private String mDirector;
+    private String mCountry;
+    private String mDescription;
+    private int mYear;
+    private String mProtagonist;
+    private int mCriticsRate; // from 0 to 10
 
-    private String comment;
+    public Film(@NonNull String title, @NonNull String director,
+                @NonNull String country, int year,
+                @NonNull String protagonist) {
+        mTitle = title;
+        mDirector = director;
+        mCountry = country;
+        mYear = year;
+        mProtagonist = protagonist;
+        mCriticsRate = 10;
+    }
 
     public long getId() {
-        return id;
+        return mId;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.mId = id;
     }
 
+    @NonNull
     public String getTitle() {
-        return title;
+        return mTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(@NonNull String title) {
+        this.mTitle = title;
     }
 
+    @NonNull
     public String getDirector() {
-        return director;
+        return mDirector;
     }
 
-    public void setDirector(String director) {
-        this.director = director;
+    public void setDirector(@NonNull String director) {
+        this.mDirector = director;
     }
 
+    @NonNull
     public String getCountry() {
-        return country;
+        return mCountry;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(@NonNull String country) {
+        this.mCountry = country;
     }
 
     public int getYear() {
-        return year;
+        return mYear;
     }
 
     public void setYear(int year) {
-        this.year = year;
+        this.mYear = year;
     }
 
+    @NonNull
     public String getProtagonist() {
-        return protagonist;
+        return mProtagonist;
     }
 
-    public void setProtagonist(String protagonist) {
-        this.protagonist = protagonist;
+    public void setProtagonist(@NonNull String protagonist) {
+        this.mProtagonist = protagonist;
     }
 
-    public int getCritics_rate() {
-        return critics_rate;
+    public int getCriticsRate() {
+        return mCriticsRate;
     }
 
-    public void setCritics_rate(int critics_rate) {
-        this.critics_rate = critics_rate;
+    public void setCriticsRate(int criticsRate) {
+        this.mCriticsRate = criticsRate;
     }
 
-    // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
-        return String.format("%s - %s", title, director);
+        return String.format("%s - %s", mTitle, mDirector);
     }
 
+    @Nullable
     public String getDescription() {
-        return description;
+        return mDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(@NonNull String description) {
+        this.mDescription = description;
     }
 }

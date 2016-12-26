@@ -109,12 +109,13 @@ public class AddFilmActivity extends CheckableDialogActivity {
     }
 
     private void createFilm() {
-        newFilm = new Film();
-        newFilm.setTitle(titleEditText.getText().toString());
-        newFilm.setCountry(autoCompleteTextView.getText().toString());
-        newFilm.setYear(Integer.valueOf(yearEditText.getText().toString()));
-        newFilm.setDirector(directorEditText.getText().toString());
-        newFilm.setProtagonist(actorEditText.getText().toString());
+        newFilm = new Film(
+                titleEditText.getText().toString(),
+                directorEditText.getText().toString(),
+                autoCompleteTextView.getText().toString(),
+                Integer.valueOf(yearEditText.getText().toString()),
+                actorEditText.getText().toString()
+        );
     }
 
     public void continueAdding(View view) {

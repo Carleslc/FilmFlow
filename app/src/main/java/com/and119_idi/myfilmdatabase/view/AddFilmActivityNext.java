@@ -67,13 +67,13 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
 
     private void completeFilm() {
         newFilm.setDescription(descriptionEditText.getText().toString());
-        newFilm.setCritics_rate(Math.round(ratingBar.getRating()));
-        Log.d("Rating",String.valueOf(newFilm.getCritics_rate()));
+        newFilm.setCriticsRate(Math.round(ratingBar.getRating() * 2));
+        Log.d("Rating", String.valueOf(newFilm.getCriticsRate()));
     }
 
     @Override
     protected boolean checkData(boolean showErrors) {
-        Boolean ret = true;
+        boolean ret = true;
 
         if (isEmpty(descriptionEditText)) {
             if (showErrors)descriptionEditText.setError("Enter a description");
