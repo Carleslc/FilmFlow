@@ -1,27 +1,26 @@
 package com.and119_idi.myfilmdatabase.model;
 
-/**
- * FilmData
- * Created by pr_idi on 10/11/16.
- */
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilmData {
+/**
+ * Created by pr_idi on 10/11/16.
+ */
+public class FilmData implements Closeable {
 
     // Database fields
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
 
-    // Here we only select Title and Director, must select the appropriate columns
     private String[] allColumns = {
             MySQLiteHelper.COLUMN_ID,
             MySQLiteHelper.COLUMN_TITLE,
@@ -38,6 +37,7 @@ public class FilmData {
 
     public void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
+        dbHelper.checkVersion(database);
     }
 
     public void close() {
@@ -60,8 +60,7 @@ public class FilmData {
         values.put(MySQLiteHelper.COLUMN_CRITICS_RATE, 5);
 
         // Actual insertion of the data using the values variable
-        long insertId = database.insert(MySQLiteHelper.TABLE_FILMS, null,
-                values);
+        long insertId = database.insert(MySQLiteHelper.TABLE_FILMS, null, values);
 
         // Main activity calls this procedure to create a new film
         // and uses the result to update the listview.
@@ -70,8 +69,7 @@ public class FilmData {
         // to feed the view.
 
         Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS,
-                allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
-                null, null, null);
+                allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
         cursor.moveToFirst();
         Film newFilm = cursorToFilm(cursor);
 
@@ -89,8 +87,7 @@ public class FilmData {
                 + " = " + id, null);
     }
 
-    public void addFilm(Film film) {
-
+    private ContentValues filmToValues(@NonNull Film film) {
         ContentValues values = new ContentValues();
 
         values.put(MySQLiteHelper.COLUMN_TITLE, film.getTitle());
@@ -99,27 +96,46 @@ public class FilmData {
         values.put(MySQLiteHelper.COLUMN_YEAR_RELEASE, film.getYear());
         values.put(MySQLiteHelper.COLUMN_PROTAGONIST, film.getProtagonist());
         values.put(MySQLiteHelper.COLUMN_CRITICS_RATE, film.getCriticsRate());
+        values.put(MySQLiteHelper.COLUMN_DESCRIPTION, film.getDescription());
 
-        // Actual insertion of the data using the values variable
-        long insertId = database.insert(MySQLiteHelper.TABLE_FILMS, null,
-                values);
+        return values;
+    }
+
+    public boolean exists(@NonNull Film film) {
+        return database.query(MySQLiteHelper.TABLE_FILMS, allColumns,
+                MySQLiteHelper.COLUMN_ID + " = " + film.getId(), null, null, null, null)
+                .getCount() > 0;
+    }
+
+    public void addFilm(@NonNull Film film) {
+        if (exists(film)) updateFilm(film);
+        else insertNewFilm(film);
+    }
+
+    private void insertNewFilm(@NonNull Film film) {
+        database.insert(MySQLiteHelper.TABLE_FILMS, null, filmToValues(film));
+    }
+
+    private void updateFilm(@NonNull Film film) {
+        database.update(MySQLiteHelper.TABLE_FILMS, filmToValues(film),
+                MySQLiteHelper.COLUMN_ID + " = " + film.getId(), null);
     }
 
     public List<Film> getAllFilms() {
-        List<Film> comments = new ArrayList<>();
+        List<Film> films = new ArrayList<>();
 
         Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            Film comment = cursorToFilm(cursor);
-            comments.add(comment);
+            Film film = cursorToFilm(cursor);
+            films.add(film);
             cursor.moveToNext();
         }
         // make sure to close the cursor
         cursor.close();
-        return comments;
+        return films;
     }
 
     //TODO: remove this method
@@ -139,4 +155,5 @@ public class FilmData {
         film.setCriticsRate(cursor.getInt(6));
         return film;
     }
+
 }

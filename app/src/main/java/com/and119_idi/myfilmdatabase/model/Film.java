@@ -103,7 +103,7 @@ public class Film implements Serializable {
         return mDescription;
     }
 
-    public void setDescription(@NonNull String description) {
+    public void setDescription(@Nullable String description) {
         this.mDescription = description;
     }
 }

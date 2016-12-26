@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,43 +67,45 @@ public class MainMoviesFragment extends Fragment {
         return new MoviesRecyclerViewAdapter();
     }
 
-    private class FetchFilmsTask extends AsyncTask<Void, Void, List<Film>> {
+    private class FetchFilmsTask extends AsyncTask<Void, Void, Boolean> {
 
         private FilmData filmData;
         private List<Film> moviesList;
 
         @Override
-        protected List<Film> doInBackground(Void... params) {
+        protected Boolean doInBackground(Void... params) {
             try {
                 filmData = new FilmData(getContext());
                 filmData.open();
                 moviesList = filmData.getAllFilms();
                 filmData.close();
-                return moviesList;
+                return true;
             } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
-                return null;
+                Log.e("MainMoviesFragment", "Failed to fetch data", e);
+                return false;
             }
         }
 
         @Override
-        protected void onPostExecute(List<Film> moviesList) {
-            if (adapter == null) {
-                adapter = getMoviesRecyclerViewAdapter();
-                adapter.setOnItemClickListener(new OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Film film) {
-                        startActivity(
-                                new Intent(getContext(), DetailsActivity.class)
-                                        .putExtra("film", film)
-                        );
-                    }
-                });
-                mRecyclerView.setAdapter(adapter);
+        protected void onPostExecute(Boolean success) {
+            if (!success) {
+                Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+            } else {
+                if (adapter == null) {
+                    adapter = getMoviesRecyclerViewAdapter();
+                    adapter.setOnItemClickListener(new OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Film film) {
+                            startActivity(
+                                    new Intent(getContext(), DetailsActivity.class)
+                                            .putExtra("film", film)
+                            );
+                        }
+                    });
+                    mRecyclerView.setAdapter(adapter);
+                }
+                adapter.setFilms(moviesList);
             }
-            adapter.setFilms(moviesList);
-
             mSwipeRefreshLayout.setRefreshing(false);
         }
     }

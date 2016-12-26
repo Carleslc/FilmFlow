@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
+import com.and119_idi.myfilmdatabase.model.FilmData;
 
 /**
  * Created by Carlos Lázaro Costa on 26/12/16.
@@ -33,6 +34,11 @@ public class DetailsActivity extends DialogActivity {
 
     protected void fi() {
         mFilm.setCriticsRate(Math.round(mRatingBar.getRating() * 2));
+        FilmData filmData = new FilmData(DetailsActivity.this);
+        filmData.open();
+        filmData.addFilm(mFilm);
+        filmData.close();
+        super.fi();
     }
 
 }
