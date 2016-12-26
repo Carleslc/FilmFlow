@@ -11,4 +11,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="divider_height">1dp</dimen>
     <dimen name="margin_startend_divider">5dp</dimen>
+    <dimen name="view_margin">15dp</dimen>
 </resources>
