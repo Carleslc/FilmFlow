@@ -52,7 +52,6 @@ public abstract class DialogActivity extends Activity {
     }
     protected void fi() {
         this.finish();
-        Log.d("Finished activity","EXITING WITH CONFIRMATION");
     }
 
     protected void showDialog(View view) {

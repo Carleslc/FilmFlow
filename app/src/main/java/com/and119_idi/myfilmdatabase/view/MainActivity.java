@@ -1,7 +1,6 @@
 package com.and119_idi.myfilmdatabase.view;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -12,12 +11,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.model.FilmData;
 
 /**
  * Created by Carlos Lázaro Costa on 11/12/2016.
@@ -30,6 +27,7 @@ public class MainActivity extends AppCompatActivity
 
     private MenuItem mCurrentSelectedItem;
     private Fragment currentFragment;
+    private int currentItemId;
 
 
 
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        new InsertFilmsTask().execute();
 
         mNavigationView = (NavigationView)
                 findViewById(R.id.navigation_drawer);
@@ -56,12 +53,8 @@ public class MainActivity extends AppCompatActivity
                 findViewById(R.id.navigation_drawer_footer);
         mFooterNavigationView.setNavigationItemSelectedListener(this);
 
-        int navMoviesMainId = R.id.nav_movies_main;
-        mCurrentSelectedItem = mNavigationView.getMenu().findItem(navMoviesMainId);
-        mNavigationView.setCheckedItem(navMoviesMainId);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mToolbar.setTitle(mCurrentSelectedItem.getTitle());
         setSupportActionBar(mToolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -70,12 +63,20 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        //Don't really know if a fragment was being set when we had <fragment> instead of <FrameLayout>
-        //When orientation changes, activity is destroyed and recreated. But fragments no, or yes, idk.
+
+
         if (savedInstanceState == null) {
+            currentItemId = R.id.nav_movies_main;
+            mCurrentSelectedItem = mNavigationView.getMenu().findItem(currentItemId);
             setFragment(new MainMoviesFragment());
         }
-        else setFragment(getSupportFragmentManager().getFragment(savedInstanceState,"currentFragment"));
+        else {//// FIXME: 26/12/16
+            mCurrentSelectedItem = mNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
+            if (mCurrentSelectedItem == null) mCurrentSelectedItem = mFooterNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
+            setFragment(getSupportFragmentManager().getFragment(savedInstanceState,"currentFragment"));
+        }
+
+        drawerActions(mCurrentSelectedItem);
     }
 
 
@@ -93,39 +94,43 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        currentItemId = item.getItemId();
 
-        if (id == R.id.nav_movies_main) {
+        if (currentItemId == R.id.nav_movies_main) {
             setFragment(new MainMoviesFragment());
             drawerActions(item);
-        } else if (id == R.id.nav_movies_year) {
+        } else if (currentItemId == R.id.nav_movies_year) {
             setFragment(new DetailedMoviesFragment());
             drawerActions(item);
-        } else if (id == R.id.nav_help) {
+        } else if (currentItemId == R.id.nav_help) {
             setFragment(new HelpFragment());
             drawerActions(item);
-        } else if (id == R.id.nav_about) {
+        } else if (currentItemId == R.id.nav_about) {
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
+            updateToolbar(item);
+            // FIXME: 26/12/16 Esto esta cutre xD (Aqui queremos que se guarde el titulo pero no que se cierre el drawer)
         }
         
         return true;
     }
     
+    private void updateToolbar(MenuItem item) {
+        currentItemId = item.getItemId();
+        getSupportActionBar().setTitle(item.getTitle());
+    }
     private void drawerActions(MenuItem item) {
-        mToolbar.setTitle(item.getTitle());
+        updateToolbar(item);
         checkItem(item);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
 
     private void checkItem(MenuItem item) {
-        if (!mCurrentSelectedItem.equals(item)) {
-            mCurrentSelectedItem.setChecked(false);
-            int itemId = item.getItemId();
-            mNavigationView.setCheckedItem(itemId);
-            mFooterNavigationView.setCheckedItem(itemId);
-            mCurrentSelectedItem = item;
-        }
+
+        int itemId = item.getItemId();
+        mNavigationView.setCheckedItem(itemId);
+        mFooterNavigationView.setCheckedItem(itemId);
+
     }
 
     private void setFragment(Fragment fragment) {
@@ -137,38 +142,11 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt("currentItemId",currentItemId);
         getSupportFragmentManager().putFragment(outState, "currentFragment", currentFragment);
         super.onSaveInstanceState(outState);
     }
 
-    // TODO: Remove this when AddFilmActivity is already completed
-    public class InsertFilmsTask extends AsyncTask<Void, Void, Boolean> {
-
-        private FilmData filmData;
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                filmData = new FilmData(MainActivity.this);
-                filmData.open();
-                if (filmData.getAllFilms().isEmpty()) {
-                    for (int i = 0; i < 10; ++i)
-                        filmData.createFilm("Titulo " + i, "Director " + i);
-                }
-                return true;
-            } catch (Exception e) {
-                Log.e(MainActivity.class.getSimpleName(), "Error inserting test films", e);
-                return false;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-            filmData.close();
-            super.onPostExecute(aBoolean);
-        }
-    }
 }
