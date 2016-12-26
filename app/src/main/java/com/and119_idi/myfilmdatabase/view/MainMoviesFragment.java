@@ -1,5 +1,6 @@
 package com.and119_idi.myfilmdatabase.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -92,7 +93,7 @@ public class MainMoviesFragment extends Fragment {
                 adapter.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(Film film) {
-                        Toast.makeText(getContext(), film.getTitle(), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getContext(), DetailsActivity.class));
                     }
                 });
                 mRecyclerView.setAdapter(adapter);

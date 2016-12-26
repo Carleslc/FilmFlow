@@ -6,7 +6,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp">
@@ -45,8 +45,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:paddingTop="5dp"
-                android:text="@string/abouttext"
-                />
+                android:text="@string/abouttext"/>
 
         </android.support.v7.widget.CardView>
 

@@ -10,7 +10,6 @@
         android:id="@+id/addfilmlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f1f1f1"
         android:padding="12dp">
 
         <TextView
@@ -24,7 +23,7 @@
         <View
             android:id="@+id/add_film_title_divider"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_below="@+id/add_film_title"
             android:layout_marginBottom="@dimen/view_margin"
             android:background="?android:attr/listDivider"/>
@@ -95,7 +94,6 @@
             android:background="@android:color/transparent"
             android:paddingTop="10dp"
             android:src="@drawable/ic_cancel"/>
-
 
     </RelativeLayout>
 </ScrollView>

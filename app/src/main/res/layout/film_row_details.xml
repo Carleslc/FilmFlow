@@ -50,6 +50,7 @@
                     android:layout_toEndOf="@+id/mark"
                     android:adjustViewBounds="false"
                     android:src="@drawable/ic_star_grande"/>
+
                 <TextView
                     android:id="@+id/mark"
                     android:layout_width="wrap_content"

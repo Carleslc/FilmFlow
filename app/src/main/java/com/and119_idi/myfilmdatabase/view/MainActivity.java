@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity
     private Fragment currentFragment;
     private int currentItemId;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +42,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
         mNavigationView = (NavigationView)
                 findViewById(R.id.navigation_drawer);
         mNavigationView.setNavigationItemSelectedListener(this);
@@ -52,7 +49,6 @@ public class MainActivity extends AppCompatActivity
         mFooterNavigationView = (NavigationView)
                 findViewById(R.id.navigation_drawer_footer);
         mFooterNavigationView.setNavigationItemSelectedListener(this);
-
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -62,8 +58,6 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
-
 
         if (savedInstanceState == null) {
             currentItemId = R.id.nav_movies_main;
@@ -140,7 +134,6 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.main_fragment_placeholder, fragment)
                 .commit();
     }
-
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
