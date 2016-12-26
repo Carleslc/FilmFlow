@@ -2,6 +2,7 @@ package com.and119_idi.myfilmdatabase.view;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -26,8 +27,8 @@ import java.util.List;
  */
 public class MainMoviesFragment extends Fragment {
 
-    protected RecyclerView mRecyclerView;
-    protected SwipeRefreshLayout mSwipeRefreshLayout;
+    private RecyclerView mRecyclerView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private MoviesRecyclerViewAdapter adapter;
 
     @Nullable
@@ -40,14 +41,14 @@ public class MainMoviesFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mSwipeRefreshLayout = (SwipeRefreshLayout) ret.findViewById(R.id.swipeRefreshLayout);
 
-        SwipeRefreshLayout.OnRefreshListener resfreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshFilms();
+                new FetchFilmsTask().execute();
             }
         };
-        mSwipeRefreshLayout.setOnRefreshListener(resfreshListener);
-        resfreshListener.onRefresh();
+        mSwipeRefreshLayout.setOnRefreshListener(refreshListener);
+        refreshListener.onRefresh();
 
         return ret;
     }
@@ -59,18 +60,15 @@ public class MainMoviesFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    protected void refreshFilms() {
-        new FetchFilmsTask().execute();
+    @NonNull
+    protected MoviesRecyclerViewAdapter getMoviesRecyclerViewAdapter() {
+        return new MoviesRecyclerViewAdapter();
     }
 
-    public class FetchFilmsTask extends AsyncTask<Void, Void, List<Film> > {
+    private class FetchFilmsTask extends AsyncTask<Void, Void, List<Film>> {
 
         private FilmData filmData;
         private List<Film> moviesList;
-
-        protected MoviesRecyclerViewAdapter getMoviesRecyclerViewAdapter() {
-            return new MoviesRecyclerViewAdapter();
-        }
 
         @Override
         protected List<Film> doInBackground(Void... params) {

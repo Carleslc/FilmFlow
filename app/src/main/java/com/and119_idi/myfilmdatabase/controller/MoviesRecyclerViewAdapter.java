@@ -1,9 +1,9 @@
 package com.and119_idi.myfilmdatabase.controller;
 
-import android.support.annotation.NonNull;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.util.SortedListAdapterCallback;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +11,33 @@ import android.view.ViewGroup;
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
 
+import java.lang.reflect.Constructor;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by Carlos Lázaro Costa on 16/12/16.
  */
 public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
-    SortedList<Film> moviesList;
-    OnItemClickListener onItemClickListener;
+    private SortedList<Film> mMoviesList;
+    private OnItemClickListener mOnItemClickListener;
+
+    private Class<? extends MovieViewHolder> mViewHolderClass;
+    private int mRowLayoutResource;
 
     public MoviesRecyclerViewAdapter() {
-        this.moviesList = new SortedList<>(Film.class, getSortCallback());
+        this(R.layout.film_row_simple, MovieViewHolder.class);
     }
 
-    MoviesRecyclerViewAdapter(@NonNull List<Film> moviesList) {
-        this();
-        setFilms(moviesList);
+    MoviesRecyclerViewAdapter(int rowLayoutResource,
+                              Class<? extends MovieViewHolder> viewHolderClass) {
+        mViewHolderClass = viewHolderClass;
+        mRowLayoutResource = rowLayoutResource;
+        mMoviesList = new SortedList<>(Film.class, getSortCallback());
+    }
+
+    private static View inflateFrom(ViewGroup viewGroup, int resource) {
+        return LayoutInflater.from(viewGroup.getContext()).inflate(resource, null);
     }
 
     protected SortedList.Callback<Film> getSortCallback() {
@@ -52,27 +61,36 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHol
 
     @Override
     public void onBindViewHolder(MovieViewHolder viewHolder, int i) {
-        viewHolder.bindTo(moviesList.get(i));
+        viewHolder.bindTo(mMoviesList.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return moviesList.size();
+        return mMoviesList.size();
+    }
+
+    private MovieViewHolder getViewHolder(ViewGroup viewGroup, int resource, Class<? extends MovieViewHolder> viewHolderClass) {
+        try {
+            Constructor<? extends MovieViewHolder> viewHolderConstructor = viewHolderClass.getConstructor(View.class, SortedList.class, OnItemClickListener.class);
+            return viewHolderConstructor.newInstance(inflateFrom(viewGroup, resource), mMoviesList, mOnItemClickListener);
+        } catch (Exception e) {
+            Log.wtf(MoviesRecyclerViewAdapter.class.getSimpleName(), e);
+            return null;
+        }
     }
 
     @Override
     public MovieViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.film_row_simple, null);
-        return new MovieViewHolder(view, moviesList, onItemClickListener);
+        return getViewHolder(viewGroup, mRowLayoutResource, mViewHolderClass);
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+        this.mOnItemClickListener = onItemClickListener;
     }
 
     public void setFilms(Collection<Film> films) {
-        moviesList.clear();
-        moviesList.addAll(films);
+        mMoviesList.clear();
+        mMoviesList.addAll(films);
         notifyDataSetChanged();
     }
 

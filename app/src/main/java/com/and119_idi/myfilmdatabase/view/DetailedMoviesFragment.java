@@ -1,5 +1,7 @@
 package com.and119_idi.myfilmdatabase.view;
 
+import android.support.annotation.NonNull;
+
 import com.and119_idi.myfilmdatabase.controller.MoviesDetailedRecyclerViewAdapter;
 import com.and119_idi.myfilmdatabase.controller.MoviesRecyclerViewAdapter;
 
@@ -8,12 +10,10 @@ import com.and119_idi.myfilmdatabase.controller.MoviesRecyclerViewAdapter;
  */
 public class DetailedMoviesFragment extends MainMoviesFragment {
 
-    protected void refreshFilms() {
-        new FetchFilmsTask() {
-            protected MoviesRecyclerViewAdapter getMoviesRecyclerViewAdapter() {
-                return new MoviesDetailedRecyclerViewAdapter();
-            }
-        }.execute();
+    @Override
+    @NonNull
+    protected MoviesRecyclerViewAdapter getMoviesRecyclerViewAdapter() {
+        return new MoviesDetailedRecyclerViewAdapter();
     }
 
 }
