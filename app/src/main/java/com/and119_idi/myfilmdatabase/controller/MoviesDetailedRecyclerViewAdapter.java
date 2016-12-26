@@ -1,6 +1,5 @@
 package com.and119_idi.myfilmdatabase.controller;
 
-import android.support.annotation.NonNull;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.view.LayoutInflater;
@@ -11,16 +10,10 @@ import android.widget.TextView;
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
 
-import java.util.List;
-
 /**
  * Created by albert on 29/11/16.
  */
 public class MoviesDetailedRecyclerViewAdapter extends MoviesRecyclerViewAdapter {
-
-    public MoviesDetailedRecyclerViewAdapter(@NonNull List<Film> moviesList) {
-        super(moviesList);
-    }
 
     protected SortedList.Callback<Film> getSortCallback() {
         return new SortedListAdapterCallback<Film>(this) {

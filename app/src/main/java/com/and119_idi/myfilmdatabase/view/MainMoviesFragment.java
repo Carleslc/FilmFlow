@@ -68,8 +68,8 @@ public class MainMoviesFragment extends Fragment {
         private FilmData filmData;
         private List<Film> moviesList;
 
-        protected MoviesRecyclerViewAdapter getMoviesRecyclerViewAdapter(List<Film> moviesList) {
-            return new MoviesRecyclerViewAdapter(moviesList);
+        protected MoviesRecyclerViewAdapter getMoviesRecyclerViewAdapter() {
+            return new MoviesRecyclerViewAdapter();
         }
 
         @Override
@@ -90,7 +90,7 @@ public class MainMoviesFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Film> moviesList) {
             if (adapter == null) {
-                adapter = getMoviesRecyclerViewAdapter(moviesList);
+                adapter = getMoviesRecyclerViewAdapter();
                 adapter.setOnItemClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(Film film) {
@@ -99,11 +99,7 @@ public class MainMoviesFragment extends Fragment {
                 });
                 mRecyclerView.setAdapter(adapter);
             }
-            else {
-                adapter.getFilmList().clear();
-                adapter.getFilmList().addAll(moviesList);
-                adapter.notifyDataSetChanged();
-            }
+            adapter.setFilms(moviesList);
 
             mSwipeRefreshLayout.setRefreshing(false);
         }

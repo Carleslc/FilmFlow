@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -21,10 +22,13 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHol
     SortedList<Film> moviesList;
     OnItemClickListener onItemClickListener;
 
-    public MoviesRecyclerViewAdapter(@NonNull List<Film> moviesList) {
-        //FIXME The reference is lost, so list cant be updated outside :(
+    public MoviesRecyclerViewAdapter() {
         this.moviesList = new SortedList<>(Film.class, getSortCallback());
-        for (Film f : moviesList) this.moviesList.add(f);
+    }
+
+    MoviesRecyclerViewAdapter(@NonNull List<Film> moviesList) {
+        this();
+        setFilms(moviesList);
     }
 
     protected SortedList.Callback<Film> getSortCallback() {
@@ -66,8 +70,10 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHol
         this.onItemClickListener = onItemClickListener;
     }
 
-    public SortedList<Film> getFilmList() {
-        return moviesList;
+    public void setFilms(Collection<Film> films) {
+        moviesList.clear();
+        moviesList.addAll(films);
+        notifyDataSetChanged();
     }
 
 }
