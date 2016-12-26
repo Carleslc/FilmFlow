@@ -3,12 +3,12 @@ package com.and119_idi.myfilmdatabase.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
@@ -59,11 +59,9 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
             filmData.open();
             filmData.addFilm(newFilm);
             filmData.close();
-            alertDialog.setMessage("Film added!");
-            alertDialog.show();
-            alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setVisibility(View.INVISIBLE);
-            alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText("OK");
-
+            Toast.makeText(AddFilmActivityNext.this, "Film added!", Toast.LENGTH_LONG).show();
+            unsavedData = false;
+            fi();
         }
     }
 

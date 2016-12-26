@@ -126,7 +126,7 @@ public class AddFilmActivity extends CheckableDialogActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtras(bundle);
             startActivity(intent);
-            fi();
+            finish();
         }
     }
 
