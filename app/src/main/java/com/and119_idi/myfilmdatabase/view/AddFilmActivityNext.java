@@ -35,8 +35,8 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
     private void init() {
         descriptionEditText = (EditText) findViewById(R.id.description);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        cancel = (ImageButton) findViewById(R.id.cancel);
 
+        cancel = (ImageButton) findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

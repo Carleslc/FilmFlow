@@ -48,11 +48,6 @@ public abstract class CheckableDialogActivity extends DialogActivity {
         return text.getText().toString().trim().isEmpty();
     }
 
-    @Override
-    public void onBackPressed() {
-        fi();
-    }
-
     protected void fi() {
         if (unsavedData) alertDialog.show();
         else super.fi();

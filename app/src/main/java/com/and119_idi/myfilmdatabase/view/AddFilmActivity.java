@@ -24,7 +24,6 @@ public class AddFilmActivity extends CheckableDialogActivity {
     private EditText directorEditText;
     private EditText actorEditText;
     private Film newFilm;
-    private ImageButton cancel;
 
     private AutoCompleteTextView autoCompleteTextView;
     private TextWatcher filterTextWatcher = new TextWatcher() {
@@ -56,7 +55,7 @@ public class AddFilmActivity extends CheckableDialogActivity {
         yearEditText = (EditText) findViewById(R.id.year);
         directorEditText = (EditText) findViewById(R.id.director);
         actorEditText = (EditText) findViewById(R.id.actor);
-        cancel = (ImageButton) findViewById(R.id.cancel);
+        ImageButton cancel = (ImageButton) findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

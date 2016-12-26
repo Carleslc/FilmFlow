@@ -12,19 +12,27 @@ import com.and119_idi.myfilmdatabase.model.Film;
  */
 public class DetailsActivity extends DialogActivity {
 
+    private Film mFilm;
+    private RatingBar mRatingBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_layout);
 
-        Film film = (Film) getIntent().getExtras().getSerializable("film");
-        ((TextView) findViewById(R.id.details_film_title)).setText(film.getTitle());
-        ((TextView) findViewById(R.id.details_film_director)).setText(film.getDirector());
-        ((TextView) findViewById(R.id.details_film_actor)).setText(film.getProtagonist());
-        ((TextView) findViewById(R.id.details_film_year)).setText(String.valueOf(film.getYear()));
-        ((TextView) findViewById(R.id.details_film_country)).setText(film.getCountry());
-        ((TextView) findViewById(R.id.details_film_description)).setText(film.getDescription());
-        ((RatingBar) findViewById(R.id.details_rating_bar)).setRating(film.getCriticsRate() / 2f);
+        mFilm = (Film) getIntent().getExtras().getSerializable("film");
+        ((TextView) findViewById(R.id.details_film_title)).setText(mFilm.getTitle());
+        ((TextView) findViewById(R.id.details_film_director)).setText(mFilm.getDirector());
+        ((TextView) findViewById(R.id.details_film_actor)).setText(mFilm.getProtagonist());
+        ((TextView) findViewById(R.id.details_film_year)).setText(String.valueOf(mFilm.getYear()));
+        ((TextView) findViewById(R.id.details_film_country)).setText(mFilm.getCountry());
+        ((TextView) findViewById(R.id.details_film_description)).setText(mFilm.getDescription());
+        mRatingBar = (RatingBar) findViewById(R.id.details_rating_bar);
+        mRatingBar.setRating(mFilm.getCriticsRate() / 2f);
+    }
+
+    protected void fi() {
+        mFilm.setCriticsRate(Math.round(mRatingBar.getRating() * 2));
     }
 
 }
