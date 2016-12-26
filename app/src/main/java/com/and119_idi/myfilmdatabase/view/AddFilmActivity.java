@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
@@ -19,7 +17,7 @@ import com.and119_idi.myfilmdatabase.model.Film;
 /**
  * Created by albert on 6/12/16.
  */
-public class AddFilmActivity extends DialogActivity {
+public class AddFilmActivity extends CheckableDialogActivity {
 
     private EditText titleEditText;
     private EditText yearEditText;
@@ -29,6 +27,21 @@ public class AddFilmActivity extends DialogActivity {
     private ImageButton cancel;
 
     private AutoCompleteTextView autoCompleteTextView;
+    private TextWatcher filterTextWatcher = new TextWatcher() {
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            unsavedData = true;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +60,7 @@ public class AddFilmActivity extends DialogActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertAndFinish();
+                fi();
             }
         });
 
@@ -95,11 +108,6 @@ public class AddFilmActivity extends DialogActivity {
         return ret;
     }
 
-    @Override
-    public void showDialog(View view) {
-        super.showDialog(view);
-    }
-
     private void createFilm() {
         newFilm = new Film();
         newFilm.setTitle(titleEditText.getText().toString());
@@ -121,19 +129,5 @@ public class AddFilmActivity extends DialogActivity {
             fi();
         }
     }
-
-    private TextWatcher filterTextWatcher = new TextWatcher() {
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            unsavedData = true;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-        @Override
-        public void afterTextChanged(Editable s) {}
-    };
-
 
 }

@@ -12,7 +12,6 @@ import com.and119_idi.myfilmdatabase.R;
  */
 public class AboutActivity extends DialogActivity {
 
-    private ImageButton mMailButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +20,8 @@ public class AboutActivity extends DialogActivity {
     }
 
     private void initCoolStuff() {
-        mMailButton = (ImageButton) findViewById(R.id.contact);
-        mMailButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton mailButton = (ImageButton) findViewById(R.id.contact);
+        mailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -36,8 +35,4 @@ public class AboutActivity extends DialogActivity {
         });
     }
 
-    @Override
-    protected boolean checkData(boolean showErrors) {
-        return true;
-    }
 }

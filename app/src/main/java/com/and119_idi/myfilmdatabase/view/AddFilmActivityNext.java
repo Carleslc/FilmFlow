@@ -10,14 +10,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 
-import com.and119_idi.myfilmdatabase.model.FilmData;
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
+import com.and119_idi.myfilmdatabase.model.FilmData;
 
 /**
  * Created by albert on 8/12/16.
  */
-public class AddFilmActivityNext extends DialogActivity {
+public class AddFilmActivityNext extends CheckableDialogActivity {
 
     private EditText descriptionEditText;
     private RatingBar ratingBar;
@@ -40,7 +40,7 @@ public class AddFilmActivityNext extends DialogActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                alertAndFinish();
+                fi();
             }
         });
 
@@ -65,7 +65,6 @@ public class AddFilmActivityNext extends DialogActivity {
             alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setText("OK");
 
         }
-
     }
 
     private void completeFilm() {
