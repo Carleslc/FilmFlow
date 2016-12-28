@@ -22,6 +22,7 @@ import com.and119_idi.myfilmdatabase.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     private Toolbar mToolbar;
     private NavigationView mNavigationView, mFooterNavigationView;
 
@@ -33,14 +34,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_films_button);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddFilmActivity.class));
-            }
-        });
 
         mNavigationView = (NavigationView)
                 findViewById(R.id.navigation_drawer);
@@ -128,6 +121,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setFragment(Fragment fragment) {
+
         currentFragment = fragment;
         getSupportFragmentManager()
                 .beginTransaction()

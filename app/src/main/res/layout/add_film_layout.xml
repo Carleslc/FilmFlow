@@ -1,99 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/addfilmlay"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/add_film_title"
+        style="@android:style/TextAppearance.DeviceDefault.DialogWindowTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:text="@string/add_film_layout_title"/>
 
-        <TextView
-            android:id="@+id/add_film_title"
-            style="@android:style/TextAppearance.DeviceDefault.DialogWindowTitle"
+    <View
+        android:id="@+id/add_film_title_divider"
+        android:layout_below="@id/add_film_title"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"/>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_film_title_divider"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/addfilmlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/view_margin"
-            android:text="Add a new Film"/>
+            android:padding="12dp">
 
-        <View
-            android:id="@+id/add_film_title_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/add_film_title"
-            android:layout_marginBottom="@dimen/view_margin"
-            android:background="?android:attr/listDivider"/>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/add_film_title_divider"
-            android:layout_marginBottom="@dimen/view_margin"
-            android:gravity="start"
-            android:hint="@string/title_hint"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/view_margin"
+                android:gravity="start"
+                android:hint="@string/title_hint"/>
 
-        <android.support.v7.widget.AppCompatAutoCompleteTextView
-            android:id="@+id/country"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
-            android:layout_marginBottom="@dimen/view_margin"
-            android:ems="8"
-            android:gravity="start"
-            android:hint="@string/country_hint"/>
+            <android.support.v7.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginBottom="@dimen/view_margin"
+                android:ems="8"
+                android:gravity="start"
+                android:hint="@string/country_hint"/>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/country"
-            android:layout_marginBottom="@dimen/view_margin"
-            android:ems="8"
-            android:hint="@string/year_hint"
-            android:inputType="date"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/country"
+                android:layout_marginBottom="@dimen/view_margin"
+                android:ems="8"
+                android:hint="@string/year_hint"
+                android:inputType="date"/>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/director"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/year"
-            android:layout_marginBottom="@dimen/view_margin"
-            android:hint="@string/director_hint"
-            android:inputType="text"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/year"
+                android:layout_marginBottom="@dimen/view_margin"
+                android:hint="@string/director_hint"
+                android:inputType="text"/>
 
-        <android.support.design.widget.TextInputEditText
-            android:id="@+id/actor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/director"
-            android:layout_marginBottom="@dimen/view_margin"
-            android:hint="@string/actor_hint"
-            android:inputType="text"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/actor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/director"
+                android:layout_marginBottom="@dimen/view_margin"
+                android:hint="@string/actor_hint"
+                android:inputType="text"/>
 
-        <ImageButton
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/actor"
-            android:background="@android:color/transparent"
-            android:onClick="continueAdding"
-            android:src="@drawable/ic_arrow"/>
+            <ImageButton
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/actor"
+                android:background="@android:color/transparent"
+                android:onClick="continueAdding"
+                android:src="@drawable/ic_arrow"/>
 
-        <ImageButton
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/actor"
-            android:background="@android:color/transparent"
-            android:paddingTop="10dp"
-            android:src="@drawable/ic_cancel"/>
+            <ImageButton
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/actor"
+                android:background="@android:color/transparent"
+                android:paddingTop="10dp"
+                android:src="@drawable/ic_cancel"/>
 
-    </RelativeLayout>
-</ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

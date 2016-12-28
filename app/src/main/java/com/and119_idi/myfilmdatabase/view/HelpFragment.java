@@ -28,10 +28,5 @@ public class HelpFragment extends Fragment {
         epView.setAdapter(new MyHelpListAdapter(getActivity()));
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        FloatingActionButton activity_fab = (FloatingActionButton) getActivity().findViewById(R.id.add_films_button);
-        activity_fab.hide();
-        super.onActivityCreated(savedInstanceState);
-    }
+
 }

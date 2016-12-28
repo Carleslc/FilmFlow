@@ -29,9 +29,13 @@ import java.util.List;
  */
 public class MainMoviesFragment extends Fragment {
 
+    private static final int DETAILS_ACTIVITY_RESULT_CODE = 1;
+    private static final int ADD_FILM_RESULT_CODE = 2;
+
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private MoviesRecyclerViewAdapter adapter;
+    private FloatingActionButton mFloatingActionButton;
 
     @Nullable
     @Override
@@ -42,23 +46,35 @@ public class MainMoviesFragment extends Fragment {
         mRecyclerView = (RecyclerView) ret.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mSwipeRefreshLayout = (SwipeRefreshLayout) ret.findViewById(R.id.swipeRefreshLayout);
-
-        SwipeRefreshLayout.OnRefreshListener refreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new FetchFilmsTask().execute();
-            }
-        };
-        mSwipeRefreshLayout.setOnRefreshListener(refreshListener);
-        refreshListener.onRefresh();
+        mFloatingActionButton = (FloatingActionButton) ret.findViewById(R.id.add_films_button);
+        initListeners();
+        new FetchFilmsTask().execute();
 
         return ret;
     }
 
+    private void initListeners() {
+
+        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(getContext(), AddFilmActivity.class),ADD_FILM_RESULT_CODE);
+            }
+        });
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new FetchFilmsTask().execute();
+            }
+        });
+
+    }
+
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        FloatingActionButton activity_fab = (FloatingActionButton) getActivity().findViewById(R.id.add_films_button);
-        activity_fab.show();
         super.onActivityCreated(savedInstanceState);
     }
 
@@ -66,6 +82,14 @@ public class MainMoviesFragment extends Fragment {
     protected MoviesRecyclerViewAdapter getMoviesRecyclerViewAdapter() {
         return new MoviesRecyclerViewAdapter();
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        new FetchFilmsTask().execute();
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
 
     private class FetchFilmsTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -96,9 +120,9 @@ public class MainMoviesFragment extends Fragment {
                     adapter.setOnItemClickListener(new OnItemClickListener() {
                         @Override
                         public void onItemClick(Film film) {
-                            startActivity(
+                            startActivityForResult(
                                     new Intent(getContext(), DetailsActivity.class)
-                                            .putExtra("film", film)
+                                            .putExtra("film", film),DETAILS_ACTIVITY_RESULT_CODE
                             );
                         }
                     });
@@ -109,5 +133,6 @@ public class MainMoviesFragment extends Fragment {
             mSwipeRefreshLayout.setRefreshing(false);
         }
     }
+
 
 }
