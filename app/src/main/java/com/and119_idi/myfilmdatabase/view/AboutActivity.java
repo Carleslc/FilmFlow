@@ -2,7 +2,6 @@ package com.and119_idi.myfilmdatabase.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
 import com.and119_idi.myfilmdatabase.R;
@@ -21,17 +20,14 @@ public class AboutActivity extends DialogActivity {
 
     private void initCoolStuff() {
         ImageButton mailButton = (ImageButton) findViewById(R.id.contact);
-        mailButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("plain/text");
-                intent.putExtra(Intent.EXTRA_SUBJECT, "2kg of your best marijuana please");
-                intent.putExtra(Intent.EXTRA_EMAIL,
-                        new String[] { getApplicationContext().getString(R.string.mail_albert),
-                                       getApplicationContext().getString(R.string.mail_carlos) });
-                startActivity(Intent.createChooser(intent, ""));
-            }
+        mailButton.setOnClickListener((v) -> {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("plain/text");
+            intent.putExtra(Intent.EXTRA_SUBJECT, "2kg of your best marijuana please");
+            intent.putExtra(Intent.EXTRA_EMAIL,
+                    new String[]{getApplicationContext().getString(R.string.mail_albert),
+                            getApplicationContext().getString(R.string.mail_carlos)});
+            startActivity(Intent.createChooser(intent, ""));
         });
     }
 

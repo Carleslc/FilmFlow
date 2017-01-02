@@ -56,12 +56,7 @@ public class AddFilmActivity extends CheckableDialogActivity {
         directorEditText = (EditText) findViewById(R.id.director);
         actorEditText = (EditText) findViewById(R.id.actor);
         ImageButton cancel = (ImageButton) findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fi();
-            }
-        });
+        cancel.setOnClickListener((v) -> fi());
 
         autoCompleteTextView.addTextChangedListener(filterTextWatcher);
         titleEditText.addTextChangedListener(filterTextWatcher);

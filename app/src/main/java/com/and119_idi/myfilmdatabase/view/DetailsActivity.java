@@ -1,12 +1,11 @@
 package com.and119_idi.myfilmdatabase.view;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
@@ -36,73 +35,50 @@ public class DetailsActivity extends DialogActivity {
         ((TextView) findViewById(R.id.details_film_actor)).setText(mFilm.getProtagonist());
         ((TextView) findViewById(R.id.details_film_year)).setText(String.valueOf(mFilm.getYear()));
         ((TextView) findViewById(R.id.details_film_country)).setText(mFilm.getCountry());
+        Toast.makeText(this, "Description: " + mFilm.getDescription(), Toast.LENGTH_LONG).show();
         ((TextView) findViewById(R.id.details_film_description)).setText(mFilm.getDescription());
-        (findViewById(R.id.details_delete_button)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alertDialog.show();
-            }
-        });
+        (findViewById(R.id.details_delete_button)).setOnClickListener((v) -> alertDialog.show());
 
         mRatingBar = (RatingBar) findViewById(R.id.details_rating_bar);
         mRatingBar.setRating(mFilm.getCriticsRate() / 2f);
     }
 
     private void initAlertDialog() {
-
         alertDialog = new AlertDialog.Builder(DetailsActivity.this).create();
         alertDialog.setTitle("Confirm");
         alertDialog.setMessage("Are you sure you want to delete the film? \nDeleted films can't be recovered");
         alertDialog.setCanceledOnTouchOutside(false);
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        deleteFilm();
-                        dialog.dismiss();
-                    }
-                });
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-    }
-
-    private void initInfoDialog() {
-        alertDialog =  new AlertDialog.Builder(DetailsActivity.this).create();
-        alertDialog.setTitle("Info");
-        alertDialog.setMessage("Film deleted!");
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ok",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        DetailsActivity.super.fi();
-                    }
-                });
-
-        alertDialog.show();
+                (dialog, which) -> {
+                    deleteFilm();
+                    dialog.dismiss();
+                }
+        );
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> dialog.dismiss());
     }
 
     private void deleteFilm() {
-        FilmData filmData = new FilmData(DetailsActivity.this);
-        filmData.open();
-        filmData.deleteFilm(mFilm);
-        filmData.close();
-        initInfoDialog();
+        performOnFilmData((filmData) -> filmData.deleteFilm(mFilm));
+        Toast.makeText(this, "Film deleted!", Toast.LENGTH_LONG).show();
     }
 
     protected void fi() {
         mFilm.setCriticsRate(Math.round(mRatingBar.getRating() * 2));
-        FilmData filmData = new FilmData(DetailsActivity.this);
-        filmData.open();
-        filmData.addFilm(mFilm);
-        filmData.close();
+        performOnFilmData((filmData) -> filmData.addFilm(mFilm));
         super.fi();
     }
 
+    private void performOnFilmData(FilmDataPerformer performer) {
+        FilmData filmData = new FilmData(DetailsActivity.this);
+        filmData.open();
+        performer.performOnFilmData(filmData);
+        filmData.close();
+    }
 
-
+    @FunctionalInterface
+    private interface FilmDataPerformer {
+        void performOnFilmData(@NonNull FilmData filmData);
+    }
 
 }

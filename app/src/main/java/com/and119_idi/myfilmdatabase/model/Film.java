@@ -55,34 +55,18 @@ public class Film implements Serializable {
         return mDirector;
     }
 
-    public void setDirector(@NonNull String director) {
-        this.mDirector = director;
-    }
-
     @NonNull
     public String getCountry() {
         return mCountry;
-    }
-
-    public void setCountry(@NonNull String country) {
-        this.mCountry = country;
     }
 
     public int getYear() {
         return mYear;
     }
 
-    public void setYear(int year) {
-        this.mYear = year;
-    }
-
     @NonNull
     public String getProtagonist() {
         return mProtagonist;
-    }
-
-    public void setProtagonist(@NonNull String protagonist) {
-        this.mProtagonist = protagonist;
     }
 
     public int getCriticsRate() {

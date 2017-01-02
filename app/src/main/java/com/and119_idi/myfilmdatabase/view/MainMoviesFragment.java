@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.controller.MoviesRecyclerViewAdapter;
-import com.and119_idi.myfilmdatabase.controller.OnItemClickListener;
 import com.and119_idi.myfilmdatabase.model.Film;
 import com.and119_idi.myfilmdatabase.model.FilmData;
 
@@ -28,6 +27,8 @@ import java.util.List;
  * Created by Carlos Lázaro Costa on 11/12/16.
  */
 public class MainMoviesFragment extends Fragment {
+
+    private static final String TAG = MainMoviesFragment.class.getSimpleName();
 
     private static final int DETAILS_ACTIVITY_RESULT_CODE = 1;
     private static final int ADD_FILM_RESULT_CODE = 2;
@@ -54,24 +55,11 @@ public class MainMoviesFragment extends Fragment {
     }
 
     private void initListeners() {
-
-        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivityForResult(new Intent(getContext(), AddFilmActivity.class),ADD_FILM_RESULT_CODE);
-            }
-        });
-
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                new FetchFilmsTask().execute();
-            }
-        });
-
+        mFloatingActionButton.setOnClickListener((v) ->
+                startActivityForResult(new Intent(getContext(), AddFilmActivity.class), ADD_FILM_RESULT_CODE)
+        );
+        mSwipeRefreshLayout.setOnRefreshListener(() -> new FetchFilmsTask().execute());
     }
-
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -89,8 +77,6 @@ public class MainMoviesFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-
-
     private class FetchFilmsTask extends AsyncTask<Void, Void, Boolean> {
 
         private FilmData filmData;
@@ -105,7 +91,7 @@ public class MainMoviesFragment extends Fragment {
                 filmData.close();
                 return true;
             } catch (Exception e) {
-                Log.e("MainMoviesFragment", "Failed to fetch data", e);
+                Log.e(TAG, "Failed to fetch data", e);
                 return false;
             }
         }
@@ -117,15 +103,16 @@ public class MainMoviesFragment extends Fragment {
             } else {
                 if (adapter == null) {
                     adapter = getMoviesRecyclerViewAdapter();
-                    adapter.setOnItemClickListener(new OnItemClickListener() {
-                        @Override
-                        public void onItemClick(Film film) {
+                    adapter.setOnItemClickListener((film) -> {
+                        Log.d(TAG, "Received film: " + film.getTitle()
+                                + " with description: " + film.getDescription());
                             startActivityForResult(
                                     new Intent(getContext(), DetailsActivity.class)
-                                            .putExtra("film", film),DETAILS_ACTIVITY_RESULT_CODE
+                                            .putExtra("film", film),
+                                    DETAILS_ACTIVITY_RESULT_CODE
                             );
                         }
-                    });
+                    );
                     mRecyclerView.setAdapter(adapter);
                 }
                 adapter.setFilms(moviesList);
@@ -133,6 +120,5 @@ public class MainMoviesFragment extends Fragment {
             mSwipeRefreshLayout.setRefreshing(false);
         }
     }
-
 
 }

@@ -62,7 +62,7 @@ class MySQLiteHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void checkVersion(SQLiteDatabase database) {
+    void checkVersion(SQLiteDatabase database) {
         int version = database.getVersion();
         if (version < DATABASE_VERSION) onUpgrade(database, version, DATABASE_VERSION);
         else if (version > DATABASE_VERSION) onDowngrade(database, version, DATABASE_VERSION);

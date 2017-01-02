@@ -3,7 +3,6 @@ package com.and119_idi.myfilmdatabase.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -12,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.and119_idi.myfilmdatabase.R;
 
@@ -22,11 +20,7 @@ import com.and119_idi.myfilmdatabase.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    private Toolbar mToolbar;
     private NavigationView mNavigationView, mFooterNavigationView;
-
-    private MenuItem mCurrentSelectedItem;
     private Fragment currentFragment;
     private int currentItemId;
 
@@ -43,30 +37,30 @@ public class MainActivity extends AppCompatActivity
                 findViewById(R.id.navigation_drawer_footer);
         mFooterNavigationView.setNavigationItemSelectedListener(this);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        MenuItem currentSelectedItem;
         if (savedInstanceState == null) {
             currentItemId = R.id.nav_movies_main;
-            mCurrentSelectedItem = mNavigationView.getMenu().findItem(currentItemId);
+            currentSelectedItem = mNavigationView.getMenu().findItem(currentItemId);
             setFragment(new MainMoviesFragment());
         }
         else {//// FIXME: 26/12/16
-            mCurrentSelectedItem = mNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
-            if (mCurrentSelectedItem == null) mCurrentSelectedItem = mFooterNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
+            currentSelectedItem = mNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
+            if (currentSelectedItem == null)
+                currentSelectedItem = mFooterNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
             setFragment(getSupportFragmentManager().getFragment(savedInstanceState,"currentFragment"));
         }
 
-        drawerActions(mCurrentSelectedItem);
+        drawerActions(currentSelectedItem);
     }
-
-
 
     @Override
     public void onBackPressed() {
@@ -105,6 +99,7 @@ public class MainActivity extends AppCompatActivity
         currentItemId = item.getItemId();
         getSupportActionBar().setTitle(item.getTitle());
     }
+
     private void drawerActions(MenuItem item) {
         updateToolbar(item);
         checkItem(item);
@@ -113,11 +108,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void checkItem(MenuItem item) {
-
         int itemId = item.getItemId();
         mNavigationView.setCheckedItem(itemId);
         mFooterNavigationView.setCheckedItem(itemId);
-
     }
 
     private void setFragment(Fragment fragment) {

@@ -1,6 +1,5 @@
 package com.and119_idi.myfilmdatabase.view;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.widget.TextView;
@@ -27,19 +26,13 @@ public abstract class CheckableDialogActivity extends DialogActivity {
         alertDialog.setCanceledOnTouchOutside(false);
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        unsavedData = false;
-                        fi();
-                    }
-                });
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                (dialog, which) -> {
+                    dialog.dismiss();
+                    unsavedData = false;
+                    fi();
+                }
+        );
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> dialog.dismiss());
     }
 
     protected abstract boolean checkData(boolean showErrors);

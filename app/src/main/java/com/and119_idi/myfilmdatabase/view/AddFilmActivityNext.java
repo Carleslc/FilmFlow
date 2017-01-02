@@ -67,6 +67,7 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
 
     private void completeFilm() {
         newFilm.setDescription(descriptionEditText.getText().toString());
+        Log.d("AddFilmActivityNext", "newFilm Set Description: " + newFilm.getDescription());
         newFilm.setCriticsRate(Math.round(ratingBar.getRating() * 2));
         Log.d("Rating", String.valueOf(newFilm.getCriticsRate()));
     }

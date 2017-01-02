@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class FilmData implements Closeable {
 
+    private static final String TAG = FilmData.class.getSimpleName();
+
     // Database fields
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
@@ -28,7 +30,8 @@ public class FilmData implements Closeable {
             MySQLiteHelper.COLUMN_YEAR_RELEASE,
             MySQLiteHelper.COLUMN_DIRECTOR,
             MySQLiteHelper.COLUMN_PROTAGONIST,
-            MySQLiteHelper.COLUMN_CRITICS_RATE
+            MySQLiteHelper.COLUMN_CRITICS_RATE,
+            MySQLiteHelper.COLUMN_DESCRIPTION
     };
 
     public FilmData(Context context) {
@@ -46,7 +49,7 @@ public class FilmData implements Closeable {
 
     public Film createFilm(String title, String director) {
         ContentValues values = new ContentValues();
-        Log.d("Creating", "Creating " + title + " " + director);
+        Log.d(TAG, "Creating " + title + " " + director);
 
         // Add data: Note that this method only provides title and director
         // Must modify the method to add the full data
@@ -82,7 +85,7 @@ public class FilmData implements Closeable {
 
     public void deleteFilm(Film film) {
         long id = film.getId();
-        System.out.println("Film deleted with id: " + id);
+        Log.d(TAG, "Film deleted with id: " + id);
         database.delete(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.COLUMN_ID
                 + " = " + id, null);
     }
@@ -101,7 +104,7 @@ public class FilmData implements Closeable {
         return values;
     }
 
-    public boolean exists(@NonNull Film film) {
+    private boolean exists(@NonNull Film film) {
         return database.query(MySQLiteHelper.TABLE_FILMS, allColumns,
                 MySQLiteHelper.COLUMN_ID + " = " + film.getId(), null, null, null, null)
                 .getCount() > 0;
@@ -138,12 +141,6 @@ public class FilmData implements Closeable {
         return films;
     }
 
-    //TODO: remove this method
-    public void deleteAllFilms() {
-        List<Film> filmList = getAllFilms();
-        for (Film f: filmList) deleteFilm(f);
-    }
-
     private Film cursorToFilm(Cursor cursor) {
         Film film = new Film(
                 cursor.getString(1),
@@ -153,6 +150,7 @@ public class FilmData implements Closeable {
                 cursor.getString(5));
         film.setId(cursor.getLong(0));
         film.setCriticsRate(cursor.getInt(6));
+        film.setDescription(cursor.getString(7));
         return film;
     }
 

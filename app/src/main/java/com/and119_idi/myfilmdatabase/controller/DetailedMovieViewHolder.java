@@ -13,11 +13,7 @@ import com.and119_idi.myfilmdatabase.model.Film;
  */
 class DetailedMovieViewHolder extends MovieViewHolder {
 
-    private TextView director;
-    private TextView actor;
-    private TextView country;
-    private TextView rate;
-    private TextView year;
+    private TextView director, actor, country, year, rate;
 
     public DetailedMovieViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
         super(v, moviesList, onItemClickListener);
