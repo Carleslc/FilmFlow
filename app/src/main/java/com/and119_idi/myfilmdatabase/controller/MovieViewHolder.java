@@ -17,7 +17,7 @@ class MovieViewHolder extends RecyclerView.ViewHolder {
 
     private TextView title;
 
-    MovieViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
+    public MovieViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
         super(v);
         CardView card = (CardView) v.findViewById(R.id.card);
         card.setOnClickListener((view) -> onItemClickListener.onItemClick(moviesList.get(getAdapterPosition())));
