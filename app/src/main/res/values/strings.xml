@@ -266,23 +266,21 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="show_films_section">Show films</string>
-
     <string name="show_films_help"><b>Show films sorted by title</b>\nTo show all films you only need to open the application. When you open the application the first view shows you all films sorted by their title. You can scroll up and down.\n\nIf you are on other view, open the navigation menu and select \"Movies (by title)\".\n\n<b>Show films sorted by year</b>\nTo show all films sorted by year, and show different details of these, you only need to open the application. Once opened, you need to open the navigation drawer or application menu and select \"Movies (by year)\" option </string>
 
-
-
     <string name="delete_film_section">Delete film</string>
-    <string name="delete_film_help">You can delete existing films. In order to do so you can go to \"Films\" (ordered by title or by date) and select a film. In the detailed fiew, a bin button will appear to delete that film.\nYou can also delete a film using...+info </string>
+    <string name="delete_film_help">In order to delete a film you need to go to \"Films\" (ordered by title or by date) and select the film you want to delete. In the detailed view, a bin button will appear to delete that film. Click and confirm to finish.</string>
 
     <string name="add_film_section">Add film</string>
     <string name="add_film_help">In order to add a new film, you need to use the round button shown in both the sorted by title and by year films list.\n\nA form will be shown, asking for the different film details. Once you have introduced \"Title\", \"Country\" (with autocompletion feature), \"Year\", \"Director\" and \"Actor\", you will be able to press the \"next\" button.\n\nFinally, you will be asked for a description about the film and a rate (selectable stars), and then be able to press the \"done\" button.</string>
 
     <string name="change_rating_section">Change film rating</string>
-    <string name="change_rating_help">Not written yet.</string>
+    <string name="change_rating_help">In order to change a film rating you need to go to \"Films\" (ordered by title or by date) and select a film. In the detailed view, you will be able to change the selectable stars to change the rating of that film. After that a popup will appear to confirm your change.</string>
 
     <string name="search_film_by_actor_section">Search film by actor</string>
     <string name="search_film_by_actor_help">Not written yet.</string>
+
     <string name="add_film_layout_title">Add a new Film</string>
-    <string name="and_your_rate_is">And your rate is...</string>
+    <string name="and_your_rate_is">And your rate is&#8230;</string>
 
 </resources>
