@@ -7,11 +7,15 @@
         <item
             android:id="@+id/nav_movies_main"
             android:icon="@drawable/ic_movie_black_24dp"
-            android:title="Films (by title)"/>
+            android:title="@string/films_by_title_nav"/>
         <item
             android:id="@+id/nav_movies_year"
             android:icon="@drawable/ic_movie_black_24dp"
-            android:title="Films (by year)"/>
+            android:title="@string/films_by_year_nav"/>
+        <item
+            android:id="@+id/menu_none"
+            android:title=""
+            android:visible="false"/>
     </group>
 
 </menu>

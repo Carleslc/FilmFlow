@@ -10,5 +10,9 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_info_black_24dp"
             android:title="About"/>
+        <item
+            android:id="@+id/menu_none_footer"
+            android:title=""
+            android:visible="false"/>
     </group>
 </menu>

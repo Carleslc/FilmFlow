@@ -282,5 +282,7 @@
 
     <string name="add_film_layout_title">Add a new Film</string>
     <string name="and_your_rate_is">And your rate is&#8230;</string>
+    <string name="films_by_title_nav">Films (by title)</string>
+    <string name="films_by_year_nav">Films (by year)</string>
 
 </resources>

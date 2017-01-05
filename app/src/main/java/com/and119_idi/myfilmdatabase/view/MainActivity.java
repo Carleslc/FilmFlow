@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
             currentSelectedItem = mNavigationView.getMenu().findItem(currentItemId);
             setFragment(new MainMoviesFragment());
         }
-        else {//// FIXME: 26/12/16
+        else {
             currentSelectedItem = mNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
             if (currentSelectedItem == null)
                 currentSelectedItem = mFooterNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
@@ -87,9 +87,8 @@ public class MainActivity extends AppCompatActivity
             setFragment(new HelpFragment());
             drawerActions(item);
         } else if (currentItemId == R.id.nav_about) {
+            uncheckItems();
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
-            updateToolbar(item);
-            // FIXME: 26/12/16 Esto esta cutre xD (Aqui queremos que se guarde el titulo pero no que se cierre el drawer)
         }
         
         return true;
@@ -107,8 +106,14 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    private void uncheckItems() {
+        mNavigationView.setCheckedItem(R.id.menu_none);
+        mFooterNavigationView.setCheckedItem(R.id.menu_none_footer);
+    }
+
     private void checkItem(MenuItem item) {
         int itemId = item.getItemId();
+        uncheckItems();
         mNavigationView.setCheckedItem(itemId);
         mFooterNavigationView.setCheckedItem(itemId);
     }
