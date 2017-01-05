@@ -3,6 +3,7 @@ package com.and119_idi.myfilmdatabase.view;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,8 +16,10 @@ import com.and119_idi.myfilmdatabase.model.FilmData;
  * Created by Carlos Lázaro Costa on 26/12/16.
  */
 
-//Habría que hacer algo con esos dialogs? No podia reusarlo ni ponerlo en DialogActivity...
+//TODO Habría que hacer algo con esos dialogs? No podia reusarlo ni ponerlo en DialogActivity...
 public class DetailsActivity extends DialogActivity {
+
+    private static final String TAG = DetailsActivity.class.getSimpleName();
 
     private Film mFilm;
     private RatingBar mRatingBar;
@@ -35,7 +38,6 @@ public class DetailsActivity extends DialogActivity {
         ((TextView) findViewById(R.id.details_film_actor)).setText(mFilm.getProtagonist());
         ((TextView) findViewById(R.id.details_film_year)).setText(String.valueOf(mFilm.getYear()));
         ((TextView) findViewById(R.id.details_film_country)).setText(mFilm.getCountry());
-        Toast.makeText(this, "Description: " + mFilm.getDescription(), Toast.LENGTH_LONG).show();
         ((TextView) findViewById(R.id.details_film_description)).setText(mFilm.getDescription());
         (findViewById(R.id.details_delete_button)).setOnClickListener((v) -> alertDialog.show());
 
@@ -52,20 +54,26 @@ public class DetailsActivity extends DialogActivity {
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
                 (dialog, which) -> {
                     deleteFilm();
-                    dialog.dismiss();
-                }
-        );
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> dialog.dismiss());
+                    Toast.makeText(DetailsActivity.this, "Film deleted!", Toast.LENGTH_LONG).show();
+                    DetailsActivity.super.fi();
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (d, w) -> DetailsActivity.super.fi());
     }
 
     private void deleteFilm() {
-        performOnFilmData((filmData) -> filmData.deleteFilm(mFilm));
-        Toast.makeText(this, "Film deleted!", Toast.LENGTH_LONG).show();
+        performOnFilmData((filmData) -> {
+            Log.d(TAG, "performOnFilmData callback: delete " + mFilm.getId());
+            filmData.deleteFilm(mFilm);
+        });
     }
 
     protected void fi() {
+        Log.d(TAG, "Overrided fi(): rating, addFilm, finish");
         mFilm.setCriticsRate(Math.round(mRatingBar.getRating() * 2));
-        performOnFilmData((filmData) -> filmData.addFilm(mFilm));
+        performOnFilmData((filmData) -> {
+            Log.d(TAG, "performOnFilmData callback: add " + mFilm.getId());
+            filmData.addFilm(mFilm);
+        });
         super.fi();
     }
 

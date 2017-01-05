@@ -23,7 +23,6 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
     private RatingBar ratingBar;
     private Film newFilm;
     private FilmData filmData;
-    private ImageButton cancel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,13 +35,8 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
         descriptionEditText = (EditText) findViewById(R.id.description);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
 
-        cancel = (ImageButton) findViewById(R.id.cancel);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fi();
-            }
-        });
+        ImageButton cancel = (ImageButton) findViewById(R.id.cancel);
+        cancel.setOnClickListener(v -> fi());
 
         filmData = new FilmData(this);
 
@@ -67,9 +61,9 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
 
     private void completeFilm() {
         newFilm.setDescription(descriptionEditText.getText().toString());
-        Log.d("AddFilmActivityNext", "newFilm Set Description: " + newFilm.getDescription());
         newFilm.setCriticsRate(Math.round(ratingBar.getRating() * 2));
-        Log.d("Rating", String.valueOf(newFilm.getCriticsRate()));
+        Log.d("AddFilmActivityNext", newFilm.getTitle() + " rate: "
+                + String.valueOf(newFilm.getCriticsRate()));
     }
 
     @Override

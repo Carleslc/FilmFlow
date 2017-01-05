@@ -104,7 +104,7 @@ public class MainMoviesFragment extends Fragment {
                 if (adapter == null) {
                     adapter = getMoviesRecyclerViewAdapter();
                     adapter.setOnItemClickListener((film) -> {
-                        Log.d(TAG, "Received film: " + film.getTitle()
+                        Log.d(TAG, "Received film ID-" + film.getId() + ": " + film.getTitle()
                                 + " with description: " + film.getDescription());
                             startActivityForResult(
                                     new Intent(getContext(), DetailsActivity.class)

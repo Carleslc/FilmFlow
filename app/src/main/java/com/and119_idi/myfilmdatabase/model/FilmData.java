@@ -85,9 +85,9 @@ public class FilmData implements Closeable {
 
     public void deleteFilm(Film film) {
         long id = film.getId();
-        Log.d(TAG, "Film deleted with id: " + id);
-        database.delete(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.COLUMN_ID
+        int rows = database.delete(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.COLUMN_ID
                 + " = " + id, null);
+        Log.d(TAG, "Film deleted with id: " + id + ((rows > 0) ? " (SUCCESS)" : "(FAIL)"));
     }
 
     private ContentValues filmToValues(@NonNull Film film) {
@@ -117,11 +117,15 @@ public class FilmData implements Closeable {
 
     private void insertNewFilm(@NonNull Film film) {
         database.insert(MySQLiteHelper.TABLE_FILMS, null, filmToValues(film));
+        Log.d(TAG, "insertNewFilm " + film.getTitle() + " ID-AUTOINCREMENT"
+                + " with description " + film.getDescription());
     }
 
     private void updateFilm(@NonNull Film film) {
         database.update(MySQLiteHelper.TABLE_FILMS, filmToValues(film),
                 MySQLiteHelper.COLUMN_ID + " = " + film.getId(), null);
+        Log.d(TAG, "updateFilm " + film.getTitle() + " ID-" + film.getId()
+                + " with description " + film.getDescription());
     }
 
     public List<Film> getAllFilms() {
