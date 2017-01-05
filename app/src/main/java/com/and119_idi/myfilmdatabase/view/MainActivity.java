@@ -9,8 +9,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
 
@@ -19,6 +22,8 @@ import com.and119_idi.myfilmdatabase.R;
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment currentFragment;
@@ -60,6 +65,32 @@ public class MainActivity extends AppCompatActivity
         }
 
         drawerActions(currentSelectedItem);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_search, menu);
+
+        MenuItem myActionMenuItem = menu.findItem(R.id.search_action);
+        SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setQueryHint("Search for an actor...");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+                if (!searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                myActionMenuItem.collapseActionView();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+        return true;
     }
 
     @Override

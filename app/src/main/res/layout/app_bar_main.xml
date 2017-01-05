@@ -24,9 +24,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!-- Button to add films -->
-
-
     <!-- Main contents below button -->
     <include layout="@layout/content_main"/>
 
