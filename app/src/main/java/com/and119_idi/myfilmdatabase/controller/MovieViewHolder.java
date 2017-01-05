@@ -17,6 +17,7 @@ class MovieViewHolder extends RecyclerView.ViewHolder {
 
     private TextView title;
 
+    /* IMPLEMENTATION NOTE: This constructor must be public (accessed with reflection) */
     public MovieViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
         super(v);
         CardView card = (CardView) v.findViewById(R.id.card);

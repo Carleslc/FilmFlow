@@ -20,7 +20,10 @@ public class Film implements Serializable {
     private String mDescription;
     private int mYear;
     private String mProtagonist;
-    private int mCriticsRate; // from 0 to 10
+    /**
+     * From 0 to 10
+     */
+    private int mCriticsRate;
 
     public Film(@NonNull String title, @NonNull String director,
                 @NonNull String country, int year,
@@ -69,10 +72,12 @@ public class Film implements Serializable {
         return mProtagonist;
     }
 
+    /** From 0 to 10 */
     public int getCriticsRate() {
         return mCriticsRate;
     }
 
+    /** From 0 to 10 */
     public void setCriticsRate(int criticsRate) {
         this.mCriticsRate = criticsRate;
     }

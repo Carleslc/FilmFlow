@@ -140,6 +140,27 @@
                 android:rating="10.0"
                 android:stepSize="0.5"/>
 
+            <TextView
+                android:id="@+id/details_rating_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/details_rating_bar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="@dimen/view_margin"
+                android:layout_marginRight="@dimen/view_margin"
+                android:text="Change stars to change the film rating"
+                android:textAlignment="center"
+                android:textStyle="italic"/>
+
+            <ImageButton
+                android:id="@+id/details_back_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/details_rating_bar"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_done"/>
+
         </RelativeLayout>
     </ScrollView>
 
