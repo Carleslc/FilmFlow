@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment currentFragment;
     private int currentItemId;
+    private MenuItem mSearchMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +72,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_search, menu);
 
-        MenuItem myActionMenuItem = menu.findItem(R.id.search_action);
-        SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        mSearchMenuItem = menu.findItem(R.id.search_action);
+        SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
         searchView.setQueryHint("Search for an actor...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity
                 if (!searchView.isIconified()) {
                     searchView.setIconified(true);
                 }
-                myActionMenuItem.collapseActionView();
+                mSearchMenuItem.collapseActionView();
                 return false;
             }
 
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity
                 return false;
             }
         });
+
         return true;
     }
 
@@ -109,12 +111,15 @@ public class MainActivity extends AppCompatActivity
         currentItemId = item.getItemId();
 
         if (currentItemId == R.id.nav_movies_main) {
+            mSearchMenuItem.setVisible(true);
             setFragment(new MainMoviesFragment());
             drawerActions(item);
         } else if (currentItemId == R.id.nav_movies_year) {
+            mSearchMenuItem.setVisible(true);
             setFragment(new DetailedMoviesFragment());
             drawerActions(item);
         } else if (currentItemId == R.id.nav_help) {
+            mSearchMenuItem.setVisible(false);
             setFragment(new HelpFragment());
             drawerActions(item);
         } else if (currentItemId == R.id.nav_about) {
