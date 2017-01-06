@@ -23,6 +23,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
         app:menu="@menu/activity_main_drawer">
 
         <!-- Nested Navigational Drawer View to show a footer section -->
@@ -31,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:overScrollMode="never"
             android:fitsSystemWindows="true"
             app:menu="@menu/activity_main_drawer_footer"/>
 

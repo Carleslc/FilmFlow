@@ -8,6 +8,7 @@
             android:title="Help"/>
         <item
             android:id="@+id/nav_about"
+            android:checkable="false"
             android:icon="@drawable/ic_info_black_24dp"
             android:title="About"/>
         <item
