@@ -23,7 +23,6 @@ public class AboutActivity extends DialogActivity {
         mailButton.setOnClickListener((v) -> {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("plain/text");
-            intent.putExtra(Intent.EXTRA_SUBJECT, "2kg of your best marijuana please");
             intent.putExtra(Intent.EXTRA_EMAIL,
                     new String[]{getApplicationContext().getString(R.string.mail_albert),
                             getApplicationContext().getString(R.string.mail_carlos)});

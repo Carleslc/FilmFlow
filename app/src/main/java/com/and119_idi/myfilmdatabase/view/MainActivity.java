@@ -1,6 +1,7 @@
 package com.and119_idi.myfilmdatabase.view;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,12 +29,15 @@ public class MainActivity extends AppCompatActivity
     private Fragment currentFragment;
     private int currentItemId;
     private MenuItem mSearchMenuItem;
+    private DrawerLayout mDrawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
 
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView)
                 findViewById(R.id.navigation_drawer);
         mNavigationView.setNavigationItemSelectedListener(this);
@@ -41,14 +45,14 @@ public class MainActivity extends AppCompatActivity
         mFooterNavigationView = (NavigationView)
                 findViewById(R.id.navigation_drawer_footer);
         mFooterNavigationView.setNavigationItemSelectedListener(this);
+        mFooterNavigationView.setElevation(0);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
         MenuItem currentSelectedItem;
@@ -121,6 +125,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
@@ -148,7 +154,7 @@ public class MainActivity extends AppCompatActivity
 
         return true;
     }
-    
+
     private void updateToolbar(MenuItem item) {
         currentItemId = item.getItemId();
         getSupportActionBar().setTitle(item.getTitle());
@@ -157,8 +163,7 @@ public class MainActivity extends AppCompatActivity
     private void drawerActions(MenuItem item) {
         updateToolbar(item);
         checkItem(item);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
     }
 
     private void uncheckItems() {
@@ -178,7 +183,7 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_placeholder, fragment)
-                .commit();
+                .commitAllowingStateLoss();
     }
 
     @Override

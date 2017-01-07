@@ -254,7 +254,7 @@
 
     <string name="mail_carlos">carlos.lazaro.costa@est.fib.upc.edu</string>
     <string name="mail_albert">albert.lopez.alcacer@est.fib.upc.edu</string>
-    <string name="app_name">MyFilmDatabase</string>
+    <string name="app_name">FilmFlow</string>
     <string name="country_hint">Country</string>
     <string name="title_hint">Title</string>
     <string name="year_hint">Year</string>
@@ -284,5 +284,6 @@
     <string name="and_your_rate_is">And your rate is&#8230;</string>
     <string name="films_by_title_nav">Films (by title)</string>
     <string name="films_by_year_nav">Films (by year)</string>
+    <string name="slogan">Manage your films easily</string>
 
 </resources>
