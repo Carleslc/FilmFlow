@@ -9,10 +9,10 @@ import com.and119_idi.myfilmdatabase.model.Film;
 /**
  * Created by albert on 29/11/16.
  */
-public class MoviesDetailedRecyclerViewAdapter extends MoviesRecyclerViewAdapter {
+public class FilmsDetailedRecyclerViewAdapter extends FilmsRecyclerViewAdapter {
 
-    public MoviesDetailedRecyclerViewAdapter() {
-        super(R.layout.film_row_details, DetailedMovieViewHolder.class);
+    public FilmsDetailedRecyclerViewAdapter() {
+        super(R.layout.film_row_details, DetailedFilmViewHolder.class);
     }
 
     @Override

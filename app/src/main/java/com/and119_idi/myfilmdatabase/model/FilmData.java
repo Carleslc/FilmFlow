@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.io.Closeable;
@@ -128,11 +129,15 @@ public class FilmData implements Closeable {
                 + " with description " + film.getDescription());
     }
 
-    public List<Film> getAllFilms() {
+    public List<Film> getAllFilms(@Nullable String actorFilter) {
         List<Film> films = new ArrayList<>();
 
+        if (actorFilter != null) {
+            actorFilter = MySQLiteHelper.COLUMN_PROTAGONIST + " LIKE '%" + actorFilter + "%'";
+        }
+
         Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS,
-                allColumns, null, null, null, null, null);
+                allColumns, actorFilter, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {

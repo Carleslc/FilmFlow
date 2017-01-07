@@ -11,11 +11,11 @@ import com.and119_idi.myfilmdatabase.model.Film;
 /**
  * Created by albert on 29/11/16.
  */
-class DetailedMovieViewHolder extends MovieViewHolder {
+class DetailedFilmViewHolder extends FilmViewHolder {
 
     private TextView director, actor, country, year, rate;
 
-    public DetailedMovieViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
+    public DetailedFilmViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
         super(v, moviesList, onItemClickListener);
         director = (TextView) v.findViewById(R.id.director);
         actor = (TextView) v.findViewById(R.id.actor);

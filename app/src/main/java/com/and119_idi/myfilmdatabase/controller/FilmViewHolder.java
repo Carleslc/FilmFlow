@@ -13,12 +13,12 @@ import com.and119_idi.myfilmdatabase.model.Film;
 /**
  * Created by Carlos Lázaro Costa on 16/12/16.
  */
-class MovieViewHolder extends RecyclerView.ViewHolder {
+class FilmViewHolder extends RecyclerView.ViewHolder {
 
     private TextView title;
 
     /* IMPLEMENTATION NOTE: This constructor must be public (accessed with reflection) */
-    public MovieViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
+    public FilmViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
         super(v);
         CardView card = (CardView) v.findViewById(R.id.card);
         card.setOnClickListener((view) -> onItemClickListener.onItemClick(moviesList.get(getAdapterPosition())));

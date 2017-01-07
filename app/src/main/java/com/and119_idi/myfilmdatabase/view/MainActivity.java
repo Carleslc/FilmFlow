@@ -3,6 +3,7 @@ package com.and119_idi.myfilmdatabase.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -22,8 +23,6 @@ import com.and119_idi.myfilmdatabase.R;
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
 
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment currentFragment;
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             currentItemId = R.id.nav_movies_main;
             currentSelectedItem = mNavigationView.getMenu().findItem(currentItemId);
-            setFragment(new MainMoviesFragment());
+            setFragment(new MainFilmsFragment());
         }
         else {
             currentSelectedItem = mNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
@@ -78,21 +77,38 @@ public class MainActivity extends AppCompatActivity
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
-                if (!searchView.isIconified()) {
-                    searchView.setIconified(true);
-                }
-                mSearchMenuItem.collapseActionView();
+                setActorFilter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
+                if (s.isEmpty()) setActorFilter(null);
                 return false;
             }
         });
 
         return true;
+    }
+
+    private void setActorFilter(@Nullable String actor) {
+        MainFilmsFragment moviesFragment = (MainFilmsFragment) currentFragment;
+        MainFilmsFragment.OnRefreshFilmsListener onRefreshListener = null;
+        if (actor != null) {
+            onRefreshListener = (filmsFound) -> {
+                String filmsMessage;
+                if (filmsFound == 0) {
+                    filmsMessage = "No film was found";
+                } else {
+                    filmsMessage = "Found " + filmsFound + " films";
+                }
+                Toast.makeText(MainActivity.this,
+                        filmsMessage + " with actor " + actor.trim() + ".",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            };
+        }
+        moviesFragment.refreshFilmsWithActorFilter(actor, onRefreshListener);
     }
 
     @Override
@@ -112,21 +128,24 @@ public class MainActivity extends AppCompatActivity
 
         if (currentItemId == R.id.nav_movies_main) {
             mSearchMenuItem.setVisible(true);
-            setFragment(new MainMoviesFragment());
+            mSearchMenuItem.collapseActionView();
+            setFragment(new MainFilmsFragment());
             drawerActions(item);
         } else if (currentItemId == R.id.nav_movies_year) {
             mSearchMenuItem.setVisible(true);
-            setFragment(new DetailedMoviesFragment());
+            mSearchMenuItem.collapseActionView();
+            setFragment(new DetailedFilmsFragment());
             drawerActions(item);
         } else if (currentItemId == R.id.nav_help) {
             mSearchMenuItem.setVisible(false);
+            mSearchMenuItem.collapseActionView();
             setFragment(new HelpFragment());
             drawerActions(item);
         } else if (currentItemId == R.id.nav_about) {
             uncheckItems();
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
         }
-        
+
         return true;
     }
     
@@ -155,7 +174,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setFragment(Fragment fragment) {
-
         currentFragment = fragment;
         getSupportFragmentManager()
                 .beginTransaction()

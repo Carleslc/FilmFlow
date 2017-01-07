@@ -17,20 +17,20 @@ import java.util.Collection;
 /**
  * Created by Carlos Lázaro Costa on 16/12/16.
  */
-public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHolder> {
+public class FilmsRecyclerViewAdapter extends RecyclerView.Adapter<FilmViewHolder> {
 
     private SortedList<Film> mMoviesList;
     private OnItemClickListener mOnItemClickListener;
 
-    private Class<? extends MovieViewHolder> mViewHolderClass;
+    private Class<? extends FilmViewHolder> mViewHolderClass;
     private int mRowLayoutResource;
 
-    public MoviesRecyclerViewAdapter() {
-        this(R.layout.film_row_simple, MovieViewHolder.class);
+    public FilmsRecyclerViewAdapter() {
+        this(R.layout.film_row_simple, FilmViewHolder.class);
     }
 
-    MoviesRecyclerViewAdapter(int rowLayoutResource,
-                              Class<? extends MovieViewHolder> viewHolderClass) {
+    FilmsRecyclerViewAdapter(int rowLayoutResource,
+                             Class<? extends FilmViewHolder> viewHolderClass) {
         mViewHolderClass = viewHolderClass;
         mRowLayoutResource = rowLayoutResource;
         mMoviesList = new SortedList<>(Film.class, getSortCallback());
@@ -60,7 +60,7 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHol
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder viewHolder, int i) {
+    public void onBindViewHolder(FilmViewHolder viewHolder, int i) {
         viewHolder.bindTo(mMoviesList.get(i));
     }
 
@@ -69,18 +69,18 @@ public class MoviesRecyclerViewAdapter extends RecyclerView.Adapter<MovieViewHol
         return mMoviesList.size();
     }
 
-    private MovieViewHolder getViewHolder(ViewGroup viewGroup, int resource, Class<? extends MovieViewHolder> viewHolderClass) {
+    private FilmViewHolder getViewHolder(ViewGroup viewGroup, int resource, Class<? extends FilmViewHolder> viewHolderClass) {
         try {
-            Constructor<? extends MovieViewHolder> viewHolderConstructor = viewHolderClass.getConstructor(View.class, SortedList.class, OnItemClickListener.class);
+            Constructor<? extends FilmViewHolder> viewHolderConstructor = viewHolderClass.getConstructor(View.class, SortedList.class, OnItemClickListener.class);
             return viewHolderConstructor.newInstance(inflateFrom(viewGroup, resource), mMoviesList, mOnItemClickListener);
         } catch (Exception e) {
-            Log.wtf(MoviesRecyclerViewAdapter.class.getSimpleName(), e);
+            Log.wtf(FilmsRecyclerViewAdapter.class.getSimpleName(), e);
             return null;
         }
     }
 
     @Override
-    public MovieViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public FilmViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return getViewHolder(viewGroup, mRowLayoutResource, mViewHolderClass);
     }
 
