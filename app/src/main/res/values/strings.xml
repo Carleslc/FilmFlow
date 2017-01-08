@@ -277,7 +277,7 @@
     <string name="change_rating_help">In order to change a film rating you need to go to \"Films\" (ordered by title or by date) and select a film. In the detailed view, you will be able to change the selectable stars to change the rating of that film. After that a popup will appear to confirm your change.</string>
 
     <string name="search_film_by_actor_section">Search film by actor</string>
-    <string name="search_film_by_actor_help">In order to search all films with an actor you need to go to \"Films\" (ordered by title or by date) and click on the search icon at the top right corner.\nAfterwards, introduce the actor you want to search for and confirm on your keyboard.\nThen the filter applies showing you all films having an actor containing the text you have searched.\n\nThe search does not take care of text case.\n\nNote that if you add a film with the filter activated this film only will appear on the list if matches with the search.\n\nYou can remove the search filter to show all films again closing the search bar or moving to another view via the navigation menu.\n</string>
+    <string name="search_film_by_actor_help">In order to search all films with an actor you need to go to \"Films\" (ordered by title or by date) and click on the search icon at the top right corner.\nAfterwards, introduce the actor you want to search for and confirm on your keyboard.\nThen the filter applies showing you all films having an actor containing the text you have searched.\n\nThe search does not take care of text case.\n\nNote that if you add a new film with the filter activated this film only will appear on the list if matches with the search.\n\nYou can remove the search filter to show all films again closing the search bar or moving to another view via the navigation menu.\n</string>
 
     <string name="add_film_layout_title">Add a new Film</string>
     <string name="and_your_rate_is">And your rate is&#8230;</string>
@@ -316,9 +316,9 @@
     <string name="bundle_film_id" translatable="false">film</string>
     <string name="film_added">Film added!</string>
     <string name="confirm">Confirm</string>
-    <string name="cancel_warning">"Are you sure you want to cancel?\nIntroduced information will be lost."</string>
+    <string name="cancel_warning">"Are you sure you want to cancel?\n\nIntroduced information will be lost."</string>
     <string name="film_deleted">Film deleted!</string>
-    <string name="delete_warning">"Are you sure you want to delete the film?\nDeleted films can't be recovered."</string>
+    <string name="delete_warning">"Are you sure you want to delete the film?\n\nDeleted films can't be recovered."</string>
     <string name="to_separator">" to "</string>
     <string name="change_rating_from">"Do you want to change the film rating from "</string>
     <string name="bundle_current_item_id" translatable="false">currentItemId</string>
