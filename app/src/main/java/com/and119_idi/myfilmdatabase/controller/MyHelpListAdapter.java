@@ -1,5 +1,6 @@
 package com.and119_idi.myfilmdatabase.controller;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.and119_idi.myfilmdatabase.R;
 /**
  * Created by Carlos Lázaro Costa on 25/12/16.
  */
+@SuppressLint("InflateParams")
 public class MyHelpListAdapter extends BaseExpandableListAdapter {
 
     private Activity mContext;

@@ -2,7 +2,6 @@ package com.and119_idi.myfilmdatabase.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +26,4 @@ public class HelpFragment extends Fragment {
         ExpandableListView epView = (ExpandableListView) view.findViewById(R.id.help_sections);
         epView.setAdapter(new MyHelpListAdapter(getActivity()));
     }
-
-
 }

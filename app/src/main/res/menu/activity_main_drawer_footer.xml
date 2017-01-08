@@ -5,12 +5,12 @@
         <item
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_help_black_24dp"
-            android:title="Help"/>
+            android:title="@string/help_nav"/>
         <item
             android:id="@+id/nav_about"
             android:checkable="false"
             android:icon="@drawable/ic_info_black_24dp"
-            android:title="About"/>
+            android:title="@string/about_nav"/>
         <item
             android:id="@+id/menu_none_footer"
             android:title=""

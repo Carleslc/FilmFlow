@@ -5,7 +5,7 @@
     <item
         android:id="@+id/search_action"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="Search"
+        android:title="@string/search_action_title"
         com.and119_idi.myfilmdatabase:actionViewClass="android.support.v7.widget.SearchView"
         com.and119_idi.myfilmdatabase:showAsAction="ifRoom|collapseActionView"/>
 

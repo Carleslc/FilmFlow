@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout android:layout_height="wrap_content"
-    android:layout_width="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
     >
 
     <TextView
@@ -15,9 +15,9 @@
 
     <View
         android:id="@+id/add_film_title_divider"
-        android:layout_below="@id/add_film_title"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@id/add_film_title"
         android:background="?android:attr/listDivider"/>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -81,12 +81,13 @@
                 android:inputType="text"/>
 
             <ImageButton
-                android:id="@+id/next"
+                android:id="@+id/confirm_film"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@id/actor"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/add_film_next_icon_description"
                 android:onClick="continueAdding"
                 android:src="@drawable/ic_arrow"/>
 
@@ -97,6 +98,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/actor"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/cancel_button_description"
                 android:paddingTop="10dp"
                 android:src="@drawable/ic_cancel"/>
 

@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/view_margin"
             android:layout_weight="10"
-            android:text="Details"/>
+            android:text="@string/details_title_text"/>
 
         <ImageButton
             android:id="@+id/details_delete_button"
@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="90"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/delete_film_button_description"
             android:src="@android:drawable/ic_menu_delete"
             android:tint="@android:color/holo_red_dark"/>
 
@@ -58,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/view_margin"
-                android:text="Film Title"
+                android:text="@string/film_title_placeholder"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
@@ -68,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/details_film_title"
                 android:layout_marginBottom="@dimen/view_margin"
-                android:text="Film Director"
+                android:text="@string/film_director_placeholder"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textStyle="italic"/>
 
@@ -78,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/details_film_director"
                 android:layout_marginBottom="@dimen/view_margin"
-                android:text="Film Actor"
+                android:text="@string/film_actor_placeholder"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
 
             <TextView
@@ -88,7 +89,7 @@
                 android:layout_below="@+id/details_film_actor"
                 android:layout_marginBottom="@dimen/view_margin"
                 android:layout_marginEnd="@dimen/view_margin"
-                android:text="Year:"/>
+                android:text="@string/year_label"/>
 
             <TextView
                 android:id="@+id/details_film_year"
@@ -96,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/details_film_year_label"
                 android:layout_toEndOf="@+id/details_film_year_label"
-                android:text="2000"
+                android:text="@string/year_placeholder"
                 android:textAlignment="viewStart"
                 android:textStyle="bold"/>
 
@@ -107,7 +108,7 @@
                 android:layout_below="@+id/details_film_year_label"
                 android:layout_marginBottom="@dimen/view_margin"
                 android:layout_marginEnd="@dimen/view_margin"
-                android:text="Country:"/>
+                android:text="@string/country_label"/>
 
             <TextView
                 android:id="@+id/details_film_country"
@@ -115,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/details_film_country_label"
                 android:layout_toEndOf="@+id/details_film_country_label"
-                android:text="Spain"
+                android:text="@string/country_placeholder"
                 android:textAlignment="viewStart"
                 android:textStyle="bold"/>
 
@@ -126,7 +127,7 @@
                 android:layout_below="@+id/details_film_country_label"
                 android:layout_marginBottom="@dimen/view_margin"
                 android:lines="5"
-                android:text="Description"
+                android:text="@string/description_placeholder"
                 android:textStyle="italic"/>
 
             <RatingBar
@@ -148,7 +149,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="@dimen/view_margin"
                 android:layout_marginRight="@dimen/view_margin"
-                android:text="Change stars to change the film rating"
+                android:text="@string/details_rating_hint"
                 android:textAlignment="center"
                 android:textStyle="italic"/>
 
@@ -159,6 +160,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/details_rating_bar"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/details_back_button_description"
                 android:src="@drawable/ic_done"/>
 
         </RelativeLayout>

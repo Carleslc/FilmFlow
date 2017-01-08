@@ -48,6 +48,7 @@ public class FilmData implements Closeable {
         dbHelper.close();
     }
 
+    // FIXME Change with a method inserting default films when database is empty
     public Film createFilm(String title, String director) {
         ContentValues values = new ContentValues();
         Log.d(TAG, "Creating " + title + " " + director);

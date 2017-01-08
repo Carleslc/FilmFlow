@@ -5,7 +5,7 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    cardview:cardBackgroundColor="@color/cardview_background_color"
+    cardview:cardBackgroundColor="@color/card_view_background_color"
     cardview:cardCornerRadius="@dimen/corner_radius_cards"
     cardview:cardElevation="@dimen/cardview_elevation"
     cardview:cardUseCompatPadding="true"
@@ -21,7 +21,7 @@
         android:ellipsize="end"
         android:maxEms="12"
         android:padding="8dp"
-        android:text="ssssssssssssssssssssssssssssssss"
+        android:text="@string/film_title_placeholder"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textSize="20sp"
         android:textStyle="bold"/>

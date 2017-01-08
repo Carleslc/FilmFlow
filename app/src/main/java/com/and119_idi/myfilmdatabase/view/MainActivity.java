@@ -1,7 +1,6 @@
 package com.and119_idi.myfilmdatabase.view;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity
     private MenuItem mSearchMenuItem;
     private DrawerLayout mDrawerLayout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawerLayout.setDrawerListener(toggle);
+        mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         MenuItem currentSelectedItem;
@@ -125,8 +124,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
@@ -148,7 +145,7 @@ public class MainActivity extends AppCompatActivity
             setFragment(new HelpFragment());
             drawerActions(item);
         } else if (currentItemId == R.id.nav_about) {
-            uncheckItems();
+            unCheckItems();
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
         }
 
@@ -157,7 +154,8 @@ public class MainActivity extends AppCompatActivity
 
     private void updateToolbar(MenuItem item) {
         currentItemId = item.getItemId();
-        getSupportActionBar().setTitle(item.getTitle());
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) actionBar.setTitle(item.getTitle());
     }
 
     private void drawerActions(MenuItem item) {
@@ -166,14 +164,14 @@ public class MainActivity extends AppCompatActivity
         mDrawerLayout.closeDrawer(GravityCompat.START);
     }
 
-    private void uncheckItems() {
+    private void unCheckItems() {
         mNavigationView.setCheckedItem(R.id.menu_none);
         mFooterNavigationView.setCheckedItem(R.id.menu_none_footer);
     }
 
     private void checkItem(MenuItem item) {
         int itemId = item.getItemId();
-        uncheckItems();
+        unCheckItems();
         mNavigationView.setCheckedItem(itemId);
         mFooterNavigationView.setCheckedItem(itemId);
     }

@@ -1,7 +1,6 @@
 <resources>
 
     <string-array name="countries_array">
-
         <item>Afghanistan</item>
         <item>Albania</item>
         <item>Algeria</item>
@@ -278,12 +277,36 @@
     <string name="change_rating_help">In order to change a film rating you need to go to \"Films\" (ordered by title or by date) and select a film. In the detailed view, you will be able to change the selectable stars to change the rating of that film. After that a popup will appear to confirm your change.</string>
 
     <string name="search_film_by_actor_section">Search film by actor</string>
-    <string name="search_film_by_actor_help">Not written yet.</string>
+    <string name="search_film_by_actor_help">In order to search all films with an actor you need to go to \"Films\" (ordered by title or by date) and click on the search icon at the top right corner.\nAfterwards, introduce the actor you want to search for and confirm on your keyboard.\nThen the filter applies showing you all films having an actor containing the text you have searched.\n\nThe search does not take care of text case.\n\nNote that if you add a film with the filter activated this film only will appear on the list if matches with the search.\n\nYou can remove the search filter to show all films again closing the search bar or moving to another view via the navigation menu.\n</string>
 
     <string name="add_film_layout_title">Add a new Film</string>
     <string name="and_your_rate_is">And your rate is&#8230;</string>
     <string name="films_by_title_nav">Films (by title)</string>
     <string name="films_by_year_nav">Films (by year)</string>
     <string name="slogan">Manage your films easily</string>
+    <string name="details_title_text">Details</string>
+    <string name="delete_film_button_description">Delete film button</string>
+    <string name="film_title_placeholder">Film Title</string>
+    <string name="film_director_placeholder">Film Director</string>
+    <string name="film_actor_placeholder">Film Actor</string>
+    <string name="year_label">Year:</string>
+    <string name="year_placeholder">2000</string>
+    <string name="country_label">Country:</string>
+    <string name="country_placeholder">Spain</string>
+    <string name="description_placeholder">Description</string>
+    <string name="details_rating_hint">Change stars to change the film rating</string>
+    <string name="details_back_button_description">Button to return back</string>
+    <string name="mark_placeholder">8</string>
+    <string name="star_icon_description">Mark icon</string>
+    <string name="film_icon_description">Film Icon</string>
+    <string name="contact_button_description">Contact Button</string>
+    <string name="add_film_next_icon_description">Button to go to next view to commit adding the film.</string>
+    <string name="cancel_button_description">Button to return back and cancel changes on the current view.</string>
+    <string name="confirm_film_button_description">Commit adding the film.</string>
+    <string name="help_section_placeholder">Help Section</string>
+    <string name="header_icon_description">Navigation Bar Header Icon</string>
+    <string name="search_action_title">Search</string>
+    <string name="help_nav">Help</string>
+    <string name="about_nav">About</string>
 
 </resources>
