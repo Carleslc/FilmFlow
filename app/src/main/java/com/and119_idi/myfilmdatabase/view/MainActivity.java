@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
-
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment mCurrentFragment;
     private int mCurrentItemId;
@@ -63,7 +62,6 @@ public class MainActivity extends AppCompatActivity
             mCurrentItemId = R.id.nav_movies_main;
             currentSelectedItem = mNavigationView.getMenu().findItem(mCurrentItemId);
             setFragment(new MainFilmsFragment());
-            drawerActions(currentSelectedItem);
         }
         else {
             mCurrentItemId = savedInstanceState.getInt(getString(R.string.bundle_current_item_id));
@@ -76,11 +74,11 @@ public class MainActivity extends AppCompatActivity
 
             setFragment(mCurrentFragment);
 
-            if (currentSelectedItem.getItemId() != R.id.nav_about)drawerActions(currentSelectedItem);
-            else updateToolbar(currentSelectedItem);
+
         }
 
-
+        if (currentSelectedItem.getItemId() != R.id.nav_about)drawerActions(currentSelectedItem);
+        else updateToolbar(currentSelectedItem);
     }
 
     @Override
@@ -140,27 +138,28 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        mCurrentItemId = item.getItemId();
 
-        if (mCurrentItemId == R.id.nav_movies_main) {
+        if (item.getItemId() == R.id.nav_movies_main) {
             mSearchMenuItem.setVisible(true);
             mSearchMenuItem.collapseActionView();
             setFragment(new MainFilmsFragment());
             drawerActions(item);
-        } else if (mCurrentItemId == R.id.nav_movies_year) {
+        } else if (item.getItemId() == R.id.nav_movies_year) {
             mSearchMenuItem.setVisible(true);
             mSearchMenuItem.collapseActionView();
             setFragment(new DetailedFilmsFragment());
             drawerActions(item);
-        } else if (mCurrentItemId == R.id.nav_help) {
+        } else if (item.getItemId() == R.id.nav_help) {
             mSearchMenuItem.setVisible(false);
             mSearchMenuItem.collapseActionView();
             setFragment(new HelpFragment());
             drawerActions(item);
-        } else if (mCurrentItemId == R.id.nav_about) {
-            unCheckItems();
+        } else if (item.getItemId() == R.id.nav_about) {
+            //unCheckItems();
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
         }
+
+        if (item.getItemId() != R.id.nav_about) mCurrentItemId = item.getItemId();
 
         return true;
     }
