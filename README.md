@@ -1,4 +1,4 @@
-# MyFilmDatabase :D
+# FilmFlow
 Pràctica IDI 2016-2017. Administració de pel·lícules.
 
 ## Enunciat Pràctica ProjecteLab
