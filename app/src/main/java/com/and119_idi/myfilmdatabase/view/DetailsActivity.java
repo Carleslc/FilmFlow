@@ -26,7 +26,7 @@ public class DetailsActivity extends DialogActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.details_layout);
 
-        mFilm = (Film) getIntent().getExtras().getSerializable("film");
+        mFilm = (Film) getIntent().getExtras().getSerializable(getString(R.string.bundle_film_id));
 
         initDeleteDialog();
         initRatingDialog();
@@ -45,11 +45,11 @@ public class DetailsActivity extends DialogActivity {
      */
     private void initDeleteDialog() {
         ConfirmDialog deleteDialog = new ConfirmDialog(DetailsActivity.this,
-                "Are you sure you want to delete the film?\nDeleted films can't be recovered.",
+                getString(R.string.delete_warning),
                 (dialog, which) -> {
                     deleteFilm();
                     dialog.dismiss();
-                    Toast.makeText(DetailsActivity.this, "Film deleted!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailsActivity.this, R.string.film_deleted, Toast.LENGTH_LONG).show();
                     fi();
                 },
                 (dialog, which) -> dialog.dismiss());
@@ -69,8 +69,8 @@ public class DetailsActivity extends DialogActivity {
                 int newRating = Math.round(stars * 2);
                 ratingBar.setRating(stars);
                 ConfirmDialog ratingDialog = new ConfirmDialog(DetailsActivity.this,
-                        "Do you want to change the film rating from " +
-                                mFilm.getCriticsRate() + " to " + newRating + "?",
+                        getString(R.string.change_rating_from) +
+                                mFilm.getCriticsRate() + getString(R.string.to_separator) + newRating + "?",
                         (dialog, which) -> {
                             Log.d(TAG, "Changing " + mFilm.getTitle() + " ID-" + mFilm.getId()
                                     + " rating to " + newRating);

@@ -61,10 +61,13 @@ public class MainActivity extends AppCompatActivity
             setFragment(new MainFilmsFragment());
         }
         else {
-            currentSelectedItem = mNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
+            currentSelectedItem = mNavigationView.getMenu().findItem(
+                    savedInstanceState.getInt(getString(R.string.bundle_current_item_id)));
             if (currentSelectedItem == null)
-                currentSelectedItem = mFooterNavigationView.getMenu().findItem(savedInstanceState.getInt("currentItemId"));
-            setFragment(getSupportFragmentManager().getFragment(savedInstanceState,"currentFragment"));
+                currentSelectedItem = mFooterNavigationView.getMenu().findItem(
+                        savedInstanceState.getInt(getString(R.string.bundle_current_item_id)));
+            setFragment(getSupportFragmentManager().getFragment(savedInstanceState,
+                    getString(R.string.bundle_current_fragment_id)));
         }
 
         drawerActions(currentSelectedItem);
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity
 
         mSearchMenuItem = menu.findItem(R.id.search_action);
         SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
-        searchView.setQueryHint("Search for an actor...");
+        searchView.setQueryHint(getString(R.string.search_hint));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -101,12 +104,12 @@ public class MainActivity extends AppCompatActivity
             onRefreshListener = (filmsFound) -> {
                 String filmsMessage;
                 if (filmsFound == 0) {
-                    filmsMessage = "No film was found";
+                    filmsMessage = getString(R.string.no_film_found);
                 } else {
-                    filmsMessage = "Found " + filmsFound + " films";
+                    filmsMessage = getString(R.string.found) + filmsFound + getString(R.string.films);
                 }
                 Toast.makeText(MainActivity.this,
-                        filmsMessage + " with actor " + actor.trim() + ".",
+                        filmsMessage + getString(R.string.with_actor) + actor.trim() + ".",
                         Toast.LENGTH_SHORT)
                         .show();
             };
@@ -186,8 +189,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt("currentItemId",currentItemId);
-        getSupportFragmentManager().putFragment(outState, "currentFragment", currentFragment);
+        outState.putInt(getString(R.string.bundle_current_item_id), currentItemId);
+        getSupportFragmentManager().putFragment(
+                outState, getString(R.string.bundle_current_fragment_id), currentFragment);
         super.onSaveInstanceState(outState);
     }
 

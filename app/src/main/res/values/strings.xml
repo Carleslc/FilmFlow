@@ -244,15 +244,15 @@
         <item>Zimbabwe</item>
     </string-array>
 
-    <string name="abouttext">"Aplicació amb motiu de l'assignatura Interacció i Disseny d'Interficies (IDI)\n\nDesenvolupada per:\n\n"
+    <string name="about_text">"App for Interaction and Interface Design (IDI)\n\nDeveloped by:\n\n"
         <b>Carlos Lázaro Costa</b> \n
         <l>carlos.lazaro.costa@est.fib.upc.edu</l> \n\n
         <b>Albert López Alcácer</b>\n
         <l>albert.lopez.alcacer@est.fib.upc.edu</l>
     </string>
 
-    <string name="mail_carlos">carlos.lazaro.costa@est.fib.upc.edu</string>
-    <string name="mail_albert">albert.lopez.alcacer@est.fib.upc.edu</string>
+    <string name="mail_carlos" translatable="false">carlos.lazaro.costa@est.fib.upc.edu</string>
+    <string name="mail_albert" translatable="false">albert.lopez.alcacer@est.fib.upc.edu</string>
     <string name="app_name">FilmFlow</string>
     <string name="country_hint">Country</string>
     <string name="title_hint">Title</string>
@@ -285,28 +285,49 @@
     <string name="films_by_year_nav">Films (by year)</string>
     <string name="slogan">Manage your films easily</string>
     <string name="details_title_text">Details</string>
-    <string name="delete_film_button_description">Delete film button</string>
+    <string name="delete_film_button_description">Delete film button.</string>
     <string name="film_title_placeholder">Film Title</string>
     <string name="film_director_placeholder">Film Director</string>
     <string name="film_actor_placeholder">Film Actor</string>
     <string name="year_label">Year:</string>
-    <string name="year_placeholder">2000</string>
+    <string name="year_placeholder" translatable="false">2000</string>
     <string name="country_label">Country:</string>
     <string name="country_placeholder">Spain</string>
-    <string name="description_placeholder">Description</string>
     <string name="details_rating_hint">Change stars to change the film rating</string>
-    <string name="details_back_button_description">Button to return back</string>
-    <string name="mark_placeholder">8</string>
-    <string name="star_icon_description">Mark icon</string>
-    <string name="film_icon_description">Film Icon</string>
-    <string name="contact_button_description">Contact Button</string>
+    <string name="details_back_button_description">Button to return back.</string>
+    <string name="mark_placeholder" translatable="false">8</string>
+    <string name="star_icon_description">Mark icon.</string>
+    <string name="film_icon_description">Film Icon.</string>
+    <string name="contact_button_description">Contact Button.</string>
     <string name="add_film_next_icon_description">Button to go to next view to commit adding the film.</string>
     <string name="cancel_button_description">Button to return back and cancel changes on the current view.</string>
     <string name="confirm_film_button_description">Commit adding the film.</string>
     <string name="help_section_placeholder">Help Section</string>
-    <string name="header_icon_description">Navigation Bar Header Icon</string>
+    <string name="header_icon_description">Navigation Bar Header Icon.</string>
     <string name="search_action_title">Search</string>
     <string name="help_nav">Help</string>
     <string name="about_nav">About</string>
+    <string name="enter_title">Enter a title</string>
+    <string name="enter_country">Enter a country</string>
+    <string name="enter_year">Enter a release year</string>
+    <string name="enter_director">Enter a director</string>
+    <string name="enter_actor">Enter an actor</string>
+    <string name="enter_description">Enter a description</string>
+    <string name="bundle_film_id" translatable="false">film</string>
+    <string name="film_added">Film added!</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel_warning">"Are you sure you want to cancel?\nIntroduced information will be lost."</string>
+    <string name="film_deleted">Film deleted!</string>
+    <string name="delete_warning">"Are you sure you want to delete the film?\nDeleted films can't be recovered."</string>
+    <string name="to_separator">" to "</string>
+    <string name="change_rating_from">"Do you want to change the film rating from "</string>
+    <string name="bundle_current_item_id" translatable="false">currentItemId</string>
+    <string name="bundle_current_fragment_id" translatable="false">currentFragment</string>
+    <string name="search_hint">Search for an actor&#8230;</string>
+    <string name="no_film_found">No film was found</string>
+    <string name="found">Found </string>
+    <string name="films">" films"</string>
+    <string name="with_actor">" with actor "</string>
+    <string name="failed_fetching_data">Failed to fetch data.</string>
 
 </resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FilmFlow</string>
+    <string name="about_nav">Acerca de</string>
+    <string name="about_text">"Aplicación con motivo de la asignatura Interacción y Diseño de Interfícies (IDI)\n\nDesarrollada por:\n\n"
+        <b>Carlos Lázaro Costa</b> \n
+        <l>carlos.lazaro.costa@est.fib.upc.edu</l> \n\n
+        <b>Albert López Alcácer</b>\n
+        <l>albert.lopez.alcacer@est.fib.upc.edu</l>
+    </string>
+    <string name="actor_hint">Actor</string>
+    <string name="add_film_layout_title">Añadir nueva película</string>
+    <string name="add_film_section">Añadir película</string>
+    <string name="and_your_rate_is">Y tu puntuación es&#8230;</string>
+    <string name="change_rating_section">Cambiar la puntuación de una película</string>
+    <string name="contact_button_description">Botón de contacto.</string>
+    <string name="country_hint">País</string>
+    <string name="country_label">País:</string>
+    <string name="confirm_film_button_description">Confirmar añadir película.</string>
+    <string name="country_placeholder">España</string>
+    <string name="delete_film_button_description">Botón para borrar película.</string>
+    <string name="delete_film_section">Eliminar una película</string>
+    <string name="description_hint">Descripción</string>
+    <string name="details_back_button_description">Botón para volver atrás.</string>
+    <string name="details_title_text">Detalles</string>
+    <string name="director_hint">Director</string>
+    <string name="details_rating_hint">Modifica las estrellas para cambiar la puntuación</string>
+    <string name="film_icon_description">Icono de película.</string>
+    <string name="film_title_placeholder">Título</string>
+    <string name="help_section_placeholder">Sección de ayuda</string>
+    <string name="help_nav">Ayuda</string>
+    <string name="films_by_title_nav">Películas (por título)</string>
+    <string name="films_by_year_nav">Películas (por año)</string>
+    <string name="header_icon_description">Icono de la cabecera del menú de navegación.</string>
+    <string name="search_action_title">Buscar</string>
+    <string name="navigation_drawer_close">Cerrar menú de navegación</string>
+    <string name="navigation_drawer_open">Abrir menú de navegación</string>
+    <string name="search_film_by_actor_section">Buscar película por actor</string>
+    <string name="show_films_section">Mostrar películas</string>
+    <string name="slogan">Gestiona tus películas fácilmente</string>
+    <string name="star_icon_description">Icono de puntuación.</string>
+    <string name="title_hint">Título</string>
+    <string name="year_hint">Año</string>
+    <string name="year_label">Año:</string>
+    <string name="cancel_button_description">Botón para volver atrás y cancelar los cambios de la vista actual.</string>
+    <string name="add_film_next_icon_description">Botón para ir a la siguiente pantalla para finalizar la entrada de la nueva película.</string>
+    <string name="film_actor_placeholder">Actor</string>
+    <string name="film_director_placeholder">Director</string>
+    <string name="confirm">Confirmar</string>
+    <string name="failed_fetching_data">No se han podido obtener los datos.</string>
+    <string name="film_added">¡Película añadida!</string>
+    <string name="film_deleted">¡Película eliminada!</string>
+    <string name="films"> películas</string>
+    <string name="found">Se han encontrado </string>
+    <string name="enter_year">Introduce un año de estreno</string>
+    <string name="enter_title">Introduce un título</string>
+    <string name="enter_director">Introduce un director</string>
+    <string name="enter_description">Introduce una descripción</string>
+    <string name="enter_country">Introduce un país</string>
+    <string name="enter_actor">Introduce un actor</string>
+    <string name="no_film_found">No se ha encontrado ninguna película</string>
+    <string name="search_hint">Buscar por un actor&#8230;</string>
+    <string name="to_separator">" a "</string>
+    <string name="with_actor">" con el autor "</string>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FilmFlow</string>
+    <string name="about_nav">Sobre nosaltres</string>
+    <string name="about_text">"Aplicació amb motiu de l'assignatura Interacció i Disseny d'Interficies (IDI)\n\nDesenvolupada per:\n\n"
+        <b>Carlos Lázaro Costa</b> \n
+        <l>carlos.lazaro.costa@est.fib.upc.edu</l> \n\n
+        <b>Albert López Alcácer</b>\n
+        <l>albert.lopez.alcacer@est.fib.upc.edu</l>
+    </string>
+    <string name="actor_hint">Actor</string>
+    <string name="add_film_layout_title">"Afegir nova pel·lícula"</string>
+    <string name="add_film_section">"Afegir pel·lícula"</string>
+    <string name="and_your_rate_is">I la teva puntuació es&#8230;</string>
+    <string name="cancel_button_description">"Botó per tornar enrere i cancel·lar els canvis de la vista actual."</string>
+    <string name="change_rating_section">"Canviar la puntuació d'una pel·lícula"</string>
+    <string name="contact_button_description">Botó de contacte.</string>
+    <string name="country_hint">País</string>
+    <string name="country_label">País:</string>
+    <string name="confirm_film_button_description">"Confirmar afegir pel·lícula."</string>
+    <string name="country_placeholder">Espanya</string>
+    <string name="delete_film_button_description">"Botó d'esborrar pel·lícula."</string>
+    <string name="delete_film_section">"Eliminar una pel·lícula"</string>
+    <string name="description_hint">Descripció</string>
+    <string name="details_back_button_description">Botó per tornar enrere.</string>
+    <string name="details_rating_hint">Modifica les estrelles per canviar la puntuació</string>
+    <string name="details_title_text">Detalls</string>
+    <string name="director_hint">Director</string>
+    <string name="film_actor_placeholder">Actor</string>
+    <string name="film_director_placeholder">Director</string>
+    <string name="film_icon_description">"Icona de pel·lícula."</string>
+    <string name="film_title_placeholder">Títol</string>
+    <string name="help_nav">Ajuda</string>
+    <string name="help_section_placeholder">"Secció d'ajuda"</string>
+    <string name="films_by_title_nav">"Pel·lícules (per títol)"</string>
+    <string name="films_by_year_nav">"Pel·lícules (per any)"</string>
+    <string name="header_icon_description">"Icona de la capçalera del menú de navigació."</string>
+    <string name="search_action_title">Buscar</string>
+    <string name="navigation_drawer_close">Tancar menú de navegació</string>
+    <string name="navigation_drawer_open">Obrir menú de navegació</string>
+    <string name="search_film_by_actor_section">"Buscar pel·lícula per actor"</string>
+    <string name="show_films_section">"Mostrar pel·lícules"</string>
+    <string name="slogan">"Gestiona les teves pel·lícules fàcilment"</string>
+    <string name="star_icon_description">Icona de puntuació.</string>
+    <string name="title_hint">Títol</string>
+    <string name="year_hint">Any</string>
+    <string name="year_label">Any:</string>
+    <string name="add_film_next_icon_description">"Botó per anar a la següent pantalla per finalitzar l'entrada de la nova pel·lícula."</string>
+    <string name="confirm">Confirmar</string>
+    <string name="enter_actor">Introdueix un actor</string>
+    <string name="enter_country">Introdueix un país</string>
+    <string name="enter_description">Introdueix una descripció</string>
+    <string name="enter_director">Introdueix un director</string>
+    <string name="enter_title">Introdueix un títol</string>
+    <string name="enter_year">"Introdueix un any d'estrena"</string>
+    <string name="failed_fetching_data">"No s'han pogut obtenir les dades."</string>
+    <string name="film_added">"Pel·lícula afegida!"</string>
+    <string name="film_deleted">"Pel·lícula eliminada!"</string>
+    <string name="films">" pel·lícules"</string>
+    <string name="found">"S'han trobat "</string>
+    <string name="no_film_found">"No s'ha trobat cap pel·lícula"</string>
+    <string name="search_hint">Busca per un actor&#8230;</string>
+    <string name="to_separator">" a "</string>
+    <string name="with_actor">" amb l'actor "</string>
+</resources>

@@ -123,7 +123,7 @@ public class MainFilmsFragment extends Fragment {
                 mFilmData.close();
                 return true;
             } catch (Exception e) {
-                Log.e(TAG, "Failed to fetch data", e);
+                Log.e(TAG, getString(R.string.failed_fetching_data), e);
                 return false;
             }
         }
@@ -131,7 +131,8 @@ public class MainFilmsFragment extends Fragment {
         @Override
         protected void onPostExecute(Boolean success) {
             if (!success) {
-                Toast.makeText(getContext(), "Failed to fetch data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),
+                        getString(R.string.failed_fetching_data), Toast.LENGTH_SHORT).show();
             } else {
                 if (mFilmsRecyclerViewAdapter == null) {
                     mFilmsRecyclerViewAdapter = getFilmsRecyclerViewAdapter();
@@ -140,7 +141,7 @@ public class MainFilmsFragment extends Fragment {
                                 + " with description: " + film.getDescription());
                             startActivityForResult(
                                     new Intent(getContext(), DetailsActivity.class)
-                                            .putExtra("film", film),
+                                            .putExtra(getString(R.string.bundle_film_id), film),
                                     DETAILS_ACTIVITY_RESULT_CODE
                             );
                         }

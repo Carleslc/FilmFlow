@@ -42,7 +42,7 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        newFilm = (Film) bundle.getSerializable("newFilm");
+        newFilm = (Film) bundle.getSerializable(getString(R.string.bundle_film_id));
 
         unsavedData = true;
     }
@@ -53,7 +53,7 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
             filmData.open();
             filmData.addFilm(newFilm);
             filmData.close();
-            Toast.makeText(AddFilmActivityNext.this, "Film added!", Toast.LENGTH_LONG).show();
+            Toast.makeText(AddFilmActivityNext.this, R.string.film_added, Toast.LENGTH_LONG).show();
             unsavedData = false;
             fi();
         }
@@ -71,7 +71,7 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
         boolean ret = true;
 
         if (isEmpty(descriptionEditText)) {
-            if (showErrors)descriptionEditText.setError("Enter a description");
+            if (showErrors) descriptionEditText.setError(getString(R.string.enter_description));
             ret = false;
         }
 

@@ -77,26 +77,26 @@ public class AddFilmActivity extends CheckableDialogActivity {
         boolean ret = true;
 
         if (isEmpty(titleEditText)) {
-            if (showErrors)titleEditText.setError("Enter a title");
+            if (showErrors) titleEditText.setError(getString(R.string.enter_title));
             ret = false;
         }
         if (isEmpty(autoCompleteTextView)) {
-            if (showErrors)autoCompleteTextView.setError("Enter a Country");
+            if (showErrors) autoCompleteTextView.setError(getString(R.string.enter_country));
             ret = false;
         }
         // validate yearEditText contains only numbers (at least 1)
         if (!yearEditText.getText().toString().matches("^[0-9]+$")) {
-            if (showErrors)yearEditText.setError("Enter a year");
+            if (showErrors) yearEditText.setError(getString(R.string.enter_year));
             ret = false;
         }
 
         if (isEmpty(directorEditText)) {
-            if (showErrors)directorEditText.setError("Enter a director");
+            if (showErrors) directorEditText.setError(getString(R.string.enter_director));
             ret = false;
         }
 
         if (isEmpty(actorEditText)) {
-            if (showErrors)actorEditText.setError("Enter a Actor");
+            if (showErrors) actorEditText.setError(getString(R.string.enter_actor));
             ret = false;
         }
 
@@ -117,7 +117,7 @@ public class AddFilmActivity extends CheckableDialogActivity {
         if (checkData(true)) {
             createFilm();
             Bundle bundle = new Bundle();
-            bundle.putSerializable("newFilm", newFilm);
+            bundle.putSerializable(getString(R.string.bundle_film_id), newFilm);
             Intent intent = new Intent(this, AddFilmActivityNext.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtras(bundle);

@@ -1,15 +1,16 @@
 package com.and119_idi.myfilmdatabase.view;
 
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.widget.TextView;
+
+import com.and119_idi.myfilmdatabase.R;
 
 /**
  * Created by albert on 9/12/16.
  */
 public abstract class CheckableDialogActivity extends DialogActivity {
 
-    protected AlertDialog alertDialog;
+    protected ConfirmDialog alertDialog;
     protected boolean unsavedData;
 
     @Override
@@ -20,19 +21,15 @@ public abstract class CheckableDialogActivity extends DialogActivity {
     }
 
     protected void initAlertDialog() {
-        alertDialog = new AlertDialog.Builder(CheckableDialogActivity.this).create();
-        alertDialog.setTitle("Confirm");
-        alertDialog.setMessage("Are you sure you want to cancel? \nIntroduced information will be lost");
-        alertDialog.setCanceledOnTouchOutside(false);
-
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+        alertDialog = new ConfirmDialog(CheckableDialogActivity.this,
+                getString(R.string.cancel_warning),
                 (dialog, which) -> {
                     dialog.dismiss();
                     unsavedData = false;
                     fi();
-                }
-        );
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> dialog.dismiss());
+                },
+                (dialog, which) -> dialog.dismiss());
+        alertDialog.create();
     }
 
     protected abstract boolean checkData(boolean showErrors);
