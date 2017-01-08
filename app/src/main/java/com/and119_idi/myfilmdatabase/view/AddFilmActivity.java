@@ -26,21 +26,7 @@ public class AddFilmActivity extends CheckableDialogActivity {
     private Film newFilm;
 
     private AutoCompleteTextView autoCompleteTextView;
-    private TextWatcher filterTextWatcher = new TextWatcher() {
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            unsavedData = true;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-        }
-    };
+    private TextWatcher filterTextWatcher;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +44,7 @@ public class AddFilmActivity extends CheckableDialogActivity {
         ImageButton cancel = (ImageButton) findViewById(R.id.cancel);
         cancel.setOnClickListener((v) -> fi());
 
+        initTextWatcher();
         autoCompleteTextView.addTextChangedListener(filterTextWatcher);
         titleEditText.addTextChangedListener(filterTextWatcher);
         yearEditText.addTextChangedListener(filterTextWatcher);
@@ -71,6 +58,28 @@ public class AddFilmActivity extends CheckableDialogActivity {
 
         initAlertDialog();
     }
+
+    private void initTextWatcher() {
+
+        filterTextWatcher = new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (count > 0)
+                    unsavedData = true;
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+        };
+    }
+
 
     @Override
     protected boolean checkData(boolean showErrors) {
