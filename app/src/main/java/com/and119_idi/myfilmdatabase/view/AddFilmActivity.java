@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.myfilmdatabase.model.CountryList;
 import com.and119_idi.myfilmdatabase.model.Film;
 
 /**
@@ -19,14 +20,14 @@ import com.and119_idi.myfilmdatabase.model.Film;
  */
 public class AddFilmActivity extends CheckableDialogActivity {
 
-    private EditText titleEditText;
-    private EditText yearEditText;
-    private EditText directorEditText;
-    private EditText actorEditText;
-    private Film newFilm;
+    private EditText mTitleEditText;
+    private EditText mYearEditText;
+    private EditText mDirectorEditText;
+    private EditText mActorEditText;
+    private Film mNewFilm;
 
-    private AutoCompleteTextView autoCompleteTextView;
-    private TextWatcher filterTextWatcher = new TextWatcher() {
+    private AutoCompleteTextView mCountryAutoCompleteTextView;
+    private TextWatcher mFilterTextWatcher = new TextWatcher() {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -50,24 +51,23 @@ public class AddFilmActivity extends CheckableDialogActivity {
     }
 
     private void init() {
-        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.country);
-        titleEditText = (EditText) findViewById(R.id.title);
-        yearEditText = (EditText) findViewById(R.id.year);
-        directorEditText = (EditText) findViewById(R.id.director);
-        actorEditText = (EditText) findViewById(R.id.actor);
+        mCountryAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.country);
+        mTitleEditText = (EditText) findViewById(R.id.title);
+        mYearEditText = (EditText) findViewById(R.id.year);
+        mDirectorEditText = (EditText) findViewById(R.id.director);
+        mActorEditText = (EditText) findViewById(R.id.actor);
         ImageButton cancel = (ImageButton) findViewById(R.id.cancel);
         cancel.setOnClickListener((v) -> fi());
 
-        autoCompleteTextView.addTextChangedListener(filterTextWatcher);
-        titleEditText.addTextChangedListener(filterTextWatcher);
-        yearEditText.addTextChangedListener(filterTextWatcher);
-        directorEditText.addTextChangedListener(filterTextWatcher);
-        actorEditText.addTextChangedListener(filterTextWatcher);
+        mCountryAutoCompleteTextView.addTextChangedListener(mFilterTextWatcher);
+        mTitleEditText.addTextChangedListener(mFilterTextWatcher);
+        mYearEditText.addTextChangedListener(mFilterTextWatcher);
+        mDirectorEditText.addTextChangedListener(mFilterTextWatcher);
+        mActorEditText.addTextChangedListener(mFilterTextWatcher);
 
-        String[] countries = getResources().getStringArray(R.array.countries_array);
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, countries);
-        autoCompleteTextView.setAdapter(adapter);
+        ArrayAdapter<String> suggestionAdapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, CountryList.get());
+        mCountryAutoCompleteTextView.setAdapter(suggestionAdapter);
 
         initAlertDialog();
     }
@@ -76,27 +76,28 @@ public class AddFilmActivity extends CheckableDialogActivity {
     protected boolean checkData(boolean showErrors) {
         boolean ret = true;
 
-        if (isEmpty(titleEditText)) {
-            if (showErrors) titleEditText.setError(getString(R.string.enter_title));
+        if (isEmpty(mTitleEditText)) {
+            if (showErrors) mTitleEditText.setError(getString(R.string.enter_title));
             ret = false;
         }
-        if (isEmpty(autoCompleteTextView)) {
-            if (showErrors) autoCompleteTextView.setError(getString(R.string.enter_country));
+        if (isEmpty(mCountryAutoCompleteTextView)) {
+            if (showErrors)
+                mCountryAutoCompleteTextView.setError(getString(R.string.enter_country));
             ret = false;
         }
-        // validate yearEditText contains only numbers (at least 1)
-        if (!yearEditText.getText().toString().matches("^[0-9]+$")) {
-            if (showErrors) yearEditText.setError(getString(R.string.enter_year));
-            ret = false;
-        }
-
-        if (isEmpty(directorEditText)) {
-            if (showErrors) directorEditText.setError(getString(R.string.enter_director));
+        // validate mYearEditText contains only numbers (at least 1)
+        if (!mYearEditText.getText().toString().matches("^[0-9]+$")) {
+            if (showErrors) mYearEditText.setError(getString(R.string.enter_year));
             ret = false;
         }
 
-        if (isEmpty(actorEditText)) {
-            if (showErrors) actorEditText.setError(getString(R.string.enter_actor));
+        if (isEmpty(mDirectorEditText)) {
+            if (showErrors) mDirectorEditText.setError(getString(R.string.enter_director));
+            ret = false;
+        }
+
+        if (isEmpty(mActorEditText)) {
+            if (showErrors) mActorEditText.setError(getString(R.string.enter_actor));
             ret = false;
         }
 
@@ -104,12 +105,12 @@ public class AddFilmActivity extends CheckableDialogActivity {
     }
 
     private void createFilm() {
-        newFilm = new Film(
-                titleEditText.getText().toString(),
-                directorEditText.getText().toString(),
-                autoCompleteTextView.getText().toString(),
-                Integer.valueOf(yearEditText.getText().toString()),
-                actorEditText.getText().toString()
+        mNewFilm = new Film(
+                mTitleEditText.getText().toString(),
+                mDirectorEditText.getText().toString(),
+                mCountryAutoCompleteTextView.getText().toString(),
+                Integer.valueOf(mYearEditText.getText().toString()),
+                mActorEditText.getText().toString()
         );
     }
 
@@ -117,7 +118,7 @@ public class AddFilmActivity extends CheckableDialogActivity {
         if (checkData(true)) {
             createFilm();
             Bundle bundle = new Bundle();
-            bundle.putSerializable(getString(R.string.bundle_film_id), newFilm);
+            bundle.putSerializable(getString(R.string.bundle_film_id), mNewFilm);
             Intent intent = new Intent(this, AddFilmActivityNext.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.putExtras(bundle);
