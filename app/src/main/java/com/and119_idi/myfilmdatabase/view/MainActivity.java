@@ -27,6 +27,8 @@ import com.and119_idi.myfilmdatabase.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment mCurrentFragment;
     private int mCurrentItemId;
@@ -61,20 +63,24 @@ public class MainActivity extends AppCompatActivity
             mCurrentItemId = R.id.nav_movies_main;
             currentSelectedItem = mNavigationView.getMenu().findItem(mCurrentItemId);
             setFragment(new MainFilmsFragment());
+            drawerActions(currentSelectedItem);
         }
         else {
-            currentItemId = savedInstanceState.getInt(getString(R.string.bundle_current_item_id));
-            currentFragment = getSupportFragmentManager().getFragment(savedInstanceState,
+            mCurrentItemId = savedInstanceState.getInt(getString(R.string.bundle_current_item_id));
+            mCurrentFragment = getSupportFragmentManager().getFragment(savedInstanceState,
                     getString(R.string.bundle_current_fragment_id));
 
             currentSelectedItem = mNavigationView.getMenu().findItem(savedInstanceState.getInt(getString(R.string.bundle_current_item_id)));
             if (currentSelectedItem == null)
-                currentSelectedItem = mFooterNavigationView.getMenu().findItem(currentItemId);
+                currentSelectedItem = mFooterNavigationView.getMenu().findItem(mCurrentItemId);
 
-            setFragment(currentFragment);
+            setFragment(mCurrentFragment);
+
+            if (currentSelectedItem.getItemId() != R.id.nav_about)drawerActions(currentSelectedItem);
+            else updateToolbar(currentSelectedItem);
         }
 
-        if (currentSelectedItem.getItemId() != R.id.nav_about)drawerActions(currentSelectedItem);
+
     }
 
     @Override
@@ -161,13 +167,13 @@ public class MainActivity extends AppCompatActivity
 
     private void updateToolbar(MenuItem item) {
         mCurrentItemId = item.getItemId();
+        Log.d(TAG,item.getTitle().toString());
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setTitle(item.getTitle());
     }
 
     private void drawerActions(MenuItem item) {
         updateToolbar(item);
-        Log.d("id",item.getTitle().toString());
         checkItem(item);
         mDrawerLayout.closeDrawer(GravityCompat.START);
     }
