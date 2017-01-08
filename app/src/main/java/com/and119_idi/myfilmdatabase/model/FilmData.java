@@ -36,7 +36,7 @@ public class FilmData implements Closeable {
     };
 
     public FilmData(Context context) {
-        mDatabaseHelper = new MySQLiteHelper(context);
+        mDatabaseHelper = new MySQLiteHelper(context, this);
     }
 
     public void open() throws SQLException {
@@ -48,41 +48,29 @@ public class FilmData implements Closeable {
         mDatabaseHelper.close();
     }
 
-    // FIXME Change with a method inserting default films when mDatabase is empty
-    public Film createFilm(String title, String director) {
-        ContentValues values = new ContentValues();
-        Log.d(TAG, "Creating " + title + " " + director);
-
-        // Add data: Note that this method only provides title and director
-        // Must modify the method to add the full data
-        values.put(MySQLiteHelper.COLUMN_TITLE, title);
-        values.put(MySQLiteHelper.COLUMN_DIRECTOR, director);
-
-        // Invented data
-        values.put(MySQLiteHelper.COLUMN_COUNTRY, "Catalonia");
-        values.put(MySQLiteHelper.COLUMN_YEAR_RELEASE, 2014);
-        values.put(MySQLiteHelper.COLUMN_PROTAGONIST, "Do not know");
-        values.put(MySQLiteHelper.COLUMN_CRITICS_RATE, 5);
-
-        // Actual insertion of the data using the values variable
-        long insertId = mDatabase.insert(MySQLiteHelper.TABLE_FILMS, null, values);
-
-        // Main activity calls this procedure to create a new film
-        // and uses the result to update the listview.
-        // Therefore, we need to get the data from the mDatabase
-        // (you can use this as a query example)
-        // to feed the view.
-
-        Cursor cursor = mDatabase.query(MySQLiteHelper.TABLE_FILMS,
-                allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
-        cursor.moveToFirst();
-        Film newFilm = cursorToFilm(cursor);
-
-        // Do not forget to close the cursor
-        cursor.close();
-
-        // Return the book
-        return newFilm;
+    public void addDefaultFilms() {
+        addFilm(new Film("The Shawshank Redemption", "Frank Darabont", "Canada", 1994, "Tim Robbins",
+                "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", 9));
+        addFilm(new Film("The Godfather", "Francis Ford Coppola", "United States", 1972, "Marlon Brando",
+                "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", 9));
+        addFilm(new Film("Apocalypse Now", "Francis Ford Coppola", "United States", 1979, "Marlon Brando",
+                "During the Vietnam War, Captain Willard is sent on a dangerous mission into Cambodia to assassinate a renegade colonel who has set himself up as a god among a local tribe.", 8));
+        addFilm(new Film("Star Wars", "George Lucas", "United States", 1977, "Marlon Brando",
+                "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.", 9));
+        addFilm(new Film("Pan's Labyrinth", "Guillermo del Toro", "Spain", 2006, "Ariadna Gil",
+                "In the falangist Spain of 1944, the bookish young stepdaughter of a sadistic army officer escapes into an eerie but captivating fantasy world.", 8));
+        addFilm(new Film("The Matrix", "The Wachowski Brothers", "United States", 1999, "Keanu Reeves",
+                "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.", 9));
+        addFilm(new Film("Forrest Gump", "Robert Zemeckis", "United States", 1994, "Tom Hanks",
+                "Forrest Gump, while not intelligent, has accidentally been present at many historic moments, but his true love, Jenny Curran, eludes him.", 9));
+        addFilm(new Film("The Lord of the Rings: The Return of the King", "Peter Jackson", "New Zealand", 2003, "Elijah Wood",
+                "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.", 9));
+        addFilm(new Film("Pulp Fiction", "Quentin Tarantino", "United States", 1994, "John Travolta",
+                "The lives of two mob hit men, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.", 9));
+        addFilm(new Film("Sen to Chihiro no kamikakushi", "Hayao Miyazaki", "Japan", 2001, "Daveigh Chase",
+                "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.", 9));
+        addFilm(new Film("The Dark Knight", "Christopher Nolan", "United Kingdom", 2008, "Christian Bale",
+                "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.", 9));
     }
 
     public void deleteFilm(Film film) {

@@ -28,12 +28,20 @@ public class Film implements Serializable {
     public Film(@NonNull String title, @NonNull String director,
                 @NonNull String country, int year,
                 @NonNull String protagonist) {
+        this(title, director, country, year, protagonist, null, 10);
+    }
+
+    public Film(@NonNull String title, @NonNull String director,
+                @NonNull String country, int year,
+                @NonNull String protagonist,
+                @Nullable String description, int criticsRate) {
         mTitle = title;
         mDirector = director;
         mCountry = country;
         mYear = year;
         mProtagonist = protagonist;
-        mCriticsRate = 10;
+        mDescription = description;
+        mCriticsRate = criticsRate;
     }
 
     public long getId() {

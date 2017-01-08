@@ -1,7 +1,6 @@
 package com.and119_idi.myfilmdatabase.view;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment mCurrentFragment;
     private int mCurrentItemId;
@@ -73,8 +73,6 @@ public class MainActivity extends AppCompatActivity
                 currentSelectedItem = mFooterNavigationView.getMenu().findItem(mCurrentItemId);
 
             setFragment(mCurrentFragment);
-
-
         }
 
         if (currentSelectedItem.getItemId() != R.id.nav_about)drawerActions(currentSelectedItem);
