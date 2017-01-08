@@ -21,8 +21,8 @@ public class FilmData implements Closeable {
     private static final String TAG = FilmData.class.getSimpleName();
 
     // Database fields
-    private SQLiteDatabase database;
-    private MySQLiteHelper dbHelper;
+    private SQLiteDatabase mDatabase;
+    private MySQLiteHelper mDatabaseHelper;
 
     private String[] allColumns = {
             MySQLiteHelper.COLUMN_ID,
@@ -36,19 +36,19 @@ public class FilmData implements Closeable {
     };
 
     public FilmData(Context context) {
-        dbHelper = new MySQLiteHelper(context);
+        mDatabaseHelper = new MySQLiteHelper(context);
     }
 
     public void open() throws SQLException {
-        database = dbHelper.getWritableDatabase();
-        dbHelper.checkVersion(database);
+        mDatabase = mDatabaseHelper.getWritableDatabase();
+        mDatabaseHelper.checkVersion(mDatabase);
     }
 
     public void close() {
-        dbHelper.close();
+        mDatabaseHelper.close();
     }
 
-    // FIXME Change with a method inserting default films when database is empty
+    // FIXME Change with a method inserting default films when mDatabase is empty
     public Film createFilm(String title, String director) {
         ContentValues values = new ContentValues();
         Log.d(TAG, "Creating " + title + " " + director);
@@ -65,15 +65,15 @@ public class FilmData implements Closeable {
         values.put(MySQLiteHelper.COLUMN_CRITICS_RATE, 5);
 
         // Actual insertion of the data using the values variable
-        long insertId = database.insert(MySQLiteHelper.TABLE_FILMS, null, values);
+        long insertId = mDatabase.insert(MySQLiteHelper.TABLE_FILMS, null, values);
 
         // Main activity calls this procedure to create a new film
         // and uses the result to update the listview.
-        // Therefore, we need to get the data from the database
+        // Therefore, we need to get the data from the mDatabase
         // (you can use this as a query example)
         // to feed the view.
 
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS,
+        Cursor cursor = mDatabase.query(MySQLiteHelper.TABLE_FILMS,
                 allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null, null, null, null);
         cursor.moveToFirst();
         Film newFilm = cursorToFilm(cursor);
@@ -87,7 +87,7 @@ public class FilmData implements Closeable {
 
     public void deleteFilm(Film film) {
         long id = film.getId();
-        int rows = database.delete(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.COLUMN_ID
+        int rows = mDatabase.delete(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.COLUMN_ID
                 + " = " + id, null);
         Log.d(TAG, "Film deleted with id: " + id + ((rows > 0) ? " (SUCCESS)" : "(FAIL)"));
     }
@@ -107,7 +107,7 @@ public class FilmData implements Closeable {
     }
 
     private boolean exists(@NonNull Film film) {
-        return database.query(MySQLiteHelper.TABLE_FILMS, allColumns,
+        return mDatabase.query(MySQLiteHelper.TABLE_FILMS, allColumns,
                 MySQLiteHelper.COLUMN_ID + " = " + film.getId(), null, null, null, null)
                 .getCount() > 0;
     }
@@ -118,13 +118,13 @@ public class FilmData implements Closeable {
     }
 
     private void insertNewFilm(@NonNull Film film) {
-        database.insert(MySQLiteHelper.TABLE_FILMS, null, filmToValues(film));
+        mDatabase.insert(MySQLiteHelper.TABLE_FILMS, null, filmToValues(film));
         Log.d(TAG, "insertNewFilm " + film.getTitle() + " ID-AUTOINCREMENT"
                 + " with description " + film.getDescription());
     }
 
     private void updateFilm(@NonNull Film film) {
-        database.update(MySQLiteHelper.TABLE_FILMS, filmToValues(film),
+        mDatabase.update(MySQLiteHelper.TABLE_FILMS, filmToValues(film),
                 MySQLiteHelper.COLUMN_ID + " = " + film.getId(), null);
         Log.d(TAG, "updateFilm " + film.getTitle() + " ID-" + film.getId()
                 + " with description " + film.getDescription());
@@ -137,7 +137,7 @@ public class FilmData implements Closeable {
             actorFilter = MySQLiteHelper.COLUMN_PROTAGONIST + " LIKE '%" + actorFilter + "%'";
         }
 
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS,
+        Cursor cursor = mDatabase.query(MySQLiteHelper.TABLE_FILMS,
                 allColumns, actorFilter, null, null, null, null);
 
         cursor.moveToFirst();

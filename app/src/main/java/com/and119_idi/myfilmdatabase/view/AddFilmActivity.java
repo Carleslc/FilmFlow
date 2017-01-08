@@ -27,7 +27,7 @@ public class AddFilmActivity extends CheckableDialogActivity {
     private Film mNewFilm;
 
     private AutoCompleteTextView mCountryAutoCompleteTextView;
-    private TextWatcher filterTextWatcher;
+    private TextWatcher mFilterTextWatcher;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,11 +47,11 @@ public class AddFilmActivity extends CheckableDialogActivity {
 
 
         initTextWatcher();
-        mCountryAutoCompleteTextView.addTextChangedListener(filterTextWatcher);
-        mTitleEditText.addTextChangedListener(filterTextWatcher);
-        mYearEditText.addTextChangedListener(filterTextWatcher);
-        mDirectorEditText.addTextChangedListener(filterTextWatcher);
-        mActorEditText.addTextChangedListener(filterTextWatcher);
+        mCountryAutoCompleteTextView.addTextChangedListener(mFilterTextWatcher);
+        mTitleEditText.addTextChangedListener(mFilterTextWatcher);
+        mYearEditText.addTextChangedListener(mFilterTextWatcher);
+        mDirectorEditText.addTextChangedListener(mFilterTextWatcher);
+        mActorEditText.addTextChangedListener(mFilterTextWatcher);
 
 
         ArrayAdapter<String> suggestionAdapter =
@@ -62,13 +62,11 @@ public class AddFilmActivity extends CheckableDialogActivity {
     }
 
     private void initTextWatcher() {
-
-        filterTextWatcher = new TextWatcher() {
-
+        mFilterTextWatcher = new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (count > 0)
-                    unsavedData = true;
+                    mUnsavedData = true;
             }
 
             @Override
@@ -78,7 +76,6 @@ public class AddFilmActivity extends CheckableDialogActivity {
             @Override
             public void afterTextChanged(Editable s) {
             }
-
         };
     }
 

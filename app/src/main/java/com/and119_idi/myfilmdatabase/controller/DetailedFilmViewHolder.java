@@ -13,24 +13,24 @@ import com.and119_idi.myfilmdatabase.model.Film;
  */
 class DetailedFilmViewHolder extends FilmViewHolder {
 
-    private TextView director, actor, country, year, rate;
+    private TextView mDirector, mActor, mCountry, mYear, mRate;
 
     public DetailedFilmViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
         super(v, moviesList, onItemClickListener);
-        director = (TextView) v.findViewById(R.id.director);
-        actor = (TextView) v.findViewById(R.id.actor);
-        country = (TextView) v.findViewById(R.id.country);
-        rate = (TextView) v.findViewById(R.id.mark);
-        year = (TextView) v.findViewById(R.id.year);
+        mDirector = (TextView) v.findViewById(R.id.director);
+        mActor = (TextView) v.findViewById(R.id.actor);
+        mCountry = (TextView) v.findViewById(R.id.country);
+        mRate = (TextView) v.findViewById(R.id.mark);
+        mYear = (TextView) v.findViewById(R.id.year);
     }
 
     @Override
     void bindTo(Film film) {
         super.bindTo(film);
-        director.setText(film.getDirector());
-        actor.setText(film.getProtagonist());
-        country.setText(film.getCountry());
-        rate.setText(String.valueOf(film.getCriticsRate()));
-        year.setText(String.valueOf(film.getYear()));
+        mDirector.setText(film.getDirector());
+        mActor.setText(film.getProtagonist());
+        mCountry.setText(film.getCountry());
+        mRate.setText(String.valueOf(film.getCriticsRate()));
+        mYear.setText(String.valueOf(film.getYear()));
     }
 }

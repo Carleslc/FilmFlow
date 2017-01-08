@@ -6,5 +6,4 @@
     <color name="card_view_background_color">#E0E0E0</color>
     <color name="background_activity">@android:color/transparent</color>
     <color name="background_activity_contrast">#808080</color>
-    <color name="black">#000000</color>
 </resources>
