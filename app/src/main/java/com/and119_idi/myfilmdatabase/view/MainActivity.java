@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView mNavigationView, mFooterNavigationView;
-    private Fragment currentFragment;
-    private int currentItemId;
+    private Fragment mCurrentFragment;
+    private int mCurrentItemId;
     private MenuItem mSearchMenuItem;
     private DrawerLayout mDrawerLayout;
 
@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity
 
         MenuItem currentSelectedItem;
         if (savedInstanceState == null) {
-            currentItemId = R.id.nav_movies_main;
-            currentSelectedItem = mNavigationView.getMenu().findItem(currentItemId);
+            mCurrentItemId = R.id.nav_movies_main;
+            currentSelectedItem = mNavigationView.getMenu().findItem(mCurrentItemId);
             setFragment(new MainFilmsFragment());
         }
         else {
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setActorFilter(@Nullable String actor) {
-        MainFilmsFragment moviesFragment = (MainFilmsFragment) currentFragment;
+        MainFilmsFragment moviesFragment = (MainFilmsFragment) mCurrentFragment;
         MainFilmsFragment.OnRefreshFilmsListener onRefreshListener = null;
         if (actor != null) {
             onRefreshListener = (filmsFound) -> {
@@ -134,24 +134,24 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        currentItemId = item.getItemId();
+        mCurrentItemId = item.getItemId();
 
-        if (currentItemId == R.id.nav_movies_main) {
+        if (mCurrentItemId == R.id.nav_movies_main) {
             mSearchMenuItem.setVisible(true);
             mSearchMenuItem.collapseActionView();
             setFragment(new MainFilmsFragment());
             drawerActions(item);
-        } else if (currentItemId == R.id.nav_movies_year) {
+        } else if (mCurrentItemId == R.id.nav_movies_year) {
             mSearchMenuItem.setVisible(true);
             mSearchMenuItem.collapseActionView();
             setFragment(new DetailedFilmsFragment());
             drawerActions(item);
-        } else if (currentItemId == R.id.nav_help) {
+        } else if (mCurrentItemId == R.id.nav_help) {
             mSearchMenuItem.setVisible(false);
             mSearchMenuItem.collapseActionView();
             setFragment(new HelpFragment());
             drawerActions(item);
-        } else if (currentItemId == R.id.nav_about) {
+        } else if (mCurrentItemId == R.id.nav_about) {
             unCheckItems();
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
         }
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void updateToolbar(MenuItem item) {
-        currentItemId = item.getItemId();
+        mCurrentItemId = item.getItemId();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setTitle(item.getTitle());
     }
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setFragment(Fragment fragment) {
-        currentFragment = fragment;
+        mCurrentFragment = fragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_placeholder, fragment)
@@ -194,9 +194,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putInt(getString(R.string.bundle_current_item_id), currentItemId);
+        outState.putInt(getString(R.string.bundle_current_item_id), mCurrentItemId);
         getSupportFragmentManager().putFragment(
-                outState, getString(R.string.bundle_current_fragment_id), currentFragment);
+                outState, getString(R.string.bundle_current_fragment_id), mCurrentFragment);
         super.onSaveInstanceState(outState);
     }
 

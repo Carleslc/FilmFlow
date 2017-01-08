@@ -4,7 +4,7 @@ import java.util.Locale;
 
 public class CountryList {
 
-    private static final String[] ISOCountryCodes = Locale.getISOCountries();
+    private static final String[] ISO_COUNTRY_CODES = Locale.getISOCountries();
 
     private static CountryList sInstance;
 
@@ -13,10 +13,10 @@ public class CountryList {
 
     private CountryList(String languageCode) {
         mLanguageCode = languageCode;
-        mCountryList = new String[ISOCountryCodes.length];
+        mCountryList = new String[ISO_COUNTRY_CODES.length];
 
-        for (int i = 0; i < ISOCountryCodes.length; i++) {
-            mCountryList[i] = new Locale(languageCode, ISOCountryCodes[i]).getDisplayCountry();
+        for (int i = 0; i < ISO_COUNTRY_CODES.length; i++) {
+            mCountryList[i] = new Locale(languageCode, ISO_COUNTRY_CODES[i]).getDisplayCountry();
         }
     }
 

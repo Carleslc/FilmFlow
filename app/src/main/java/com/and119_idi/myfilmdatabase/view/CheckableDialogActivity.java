@@ -10,8 +10,8 @@ import com.and119_idi.myfilmdatabase.R;
  */
 public abstract class CheckableDialogActivity extends DialogActivity {
 
-    protected ConfirmDialog alertDialog;
-    protected boolean unsavedData;
+    protected ConfirmDialog mDialog;
+    protected boolean mUnsavedData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +21,15 @@ public abstract class CheckableDialogActivity extends DialogActivity {
     }
 
     protected void initAlertDialog() {
-        alertDialog = new ConfirmDialog(CheckableDialogActivity.this,
+        mDialog = new ConfirmDialog(CheckableDialogActivity.this,
                 getString(R.string.cancel_warning),
                 (dialog, which) -> {
                     dialog.dismiss();
-                    unsavedData = false;
+                    mUnsavedData = false;
                     fi();
                 },
                 (dialog, which) -> dialog.dismiss());
-        alertDialog.create();
+        mDialog.create();
     }
 
     protected abstract boolean checkData(boolean showErrors);
@@ -39,7 +39,7 @@ public abstract class CheckableDialogActivity extends DialogActivity {
     }
 
     protected void fi() {
-        if (unsavedData) alertDialog.show();
+        if (mUnsavedData) mDialog.show();
         else super.fi();
     }
 

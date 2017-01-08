@@ -19,10 +19,10 @@ import com.and119_idi.myfilmdatabase.model.FilmData;
  */
 public class AddFilmActivityNext extends CheckableDialogActivity {
 
-    private EditText descriptionEditText;
-    private RatingBar ratingBar;
-    private Film newFilm;
-    private FilmData filmData;
+    private EditText mDescriptionEditText;
+    private RatingBar mRatingBar;
+    private Film mNewFilm;
+    private FilmData mFilmData;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,46 +32,46 @@ public class AddFilmActivityNext extends CheckableDialogActivity {
     }
 
     private void init() {
-        descriptionEditText = (EditText) findViewById(R.id.description);
-        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        mDescriptionEditText = (EditText) findViewById(R.id.description);
+        mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
 
         ImageButton cancel = (ImageButton) findViewById(R.id.cancel);
         cancel.setOnClickListener(v -> fi());
 
-        filmData = new FilmData(this);
+        mFilmData = new FilmData(this);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        newFilm = (Film) bundle.getSerializable(getString(R.string.bundle_film_id));
+        mNewFilm = (Film) bundle.getSerializable(getString(R.string.bundle_film_id));
 
-        unsavedData = true;
+        mUnsavedData = true;
     }
 
     public void commitFilm(View view) {
         if (checkData(true)) {
             completeFilm();
-            filmData.open();
-            filmData.addFilm(newFilm);
-            filmData.close();
+            mFilmData.open();
+            mFilmData.addFilm(mNewFilm);
+            mFilmData.close();
             Toast.makeText(AddFilmActivityNext.this, R.string.film_added, Toast.LENGTH_LONG).show();
-            unsavedData = false;
+            mUnsavedData = false;
             fi();
         }
     }
 
     private void completeFilm() {
-        newFilm.setDescription(descriptionEditText.getText().toString());
-        newFilm.setCriticsRate(Math.round(ratingBar.getRating() * 2));
-        Log.d("AddFilmActivityNext", newFilm.getTitle() + " rate: "
-                + String.valueOf(newFilm.getCriticsRate()));
+        mNewFilm.setDescription(mDescriptionEditText.getText().toString());
+        mNewFilm.setCriticsRate(Math.round(mRatingBar.getRating() * 2));
+        Log.d("AddFilmActivityNext", mNewFilm.getTitle() + " rate: "
+                + String.valueOf(mNewFilm.getCriticsRate()));
     }
 
     @Override
     protected boolean checkData(boolean showErrors) {
         boolean ret = true;
 
-        if (isEmpty(descriptionEditText)) {
-            if (showErrors) descriptionEditText.setError(getString(R.string.enter_description));
+        if (isEmpty(mDescriptionEditText)) {
+            if (showErrors) mDescriptionEditText.setError(getString(R.string.enter_description));
             ret = false;
         }
 

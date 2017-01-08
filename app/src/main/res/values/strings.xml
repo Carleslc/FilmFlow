@@ -81,7 +81,7 @@
     <string name="bundle_current_fragment_id" translatable="false">currentFragment</string>
     <string name="search_hint">Search for an actor&#8230;</string>
     <string name="no_film_found">No film was found</string>
-    <string name="found">Found </string>
+    <string name="found">"Found "</string>
     <string name="films">" films"</string>
     <string name="with_actor">" with actor "</string>
     <string name="failed_fetching_data">Failed to fetch data.</string>

@@ -15,17 +15,17 @@ import com.and119_idi.myfilmdatabase.model.Film;
  */
 class FilmViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView title;
+    private TextView mTitle;
 
     /* IMPLEMENTATION NOTE: This constructor must be public (accessed with reflection) */
     public FilmViewHolder(View v, final @NonNull SortedList<Film> moviesList, final @NonNull OnItemClickListener onItemClickListener) {
         super(v);
         CardView card = (CardView) v.findViewById(R.id.card);
         card.setOnClickListener((view) -> onItemClickListener.onItemClick(moviesList.get(getAdapterPosition())));
-        title = (TextView) v.findViewById(R.id.title);
+        mTitle = (TextView) v.findViewById(R.id.title);
     }
 
     void bindTo(Film film) {
-        title.setText(film.getTitle());
+        mTitle.setText(film.getTitle());
     }
 }
