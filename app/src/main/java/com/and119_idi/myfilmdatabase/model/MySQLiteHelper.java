@@ -68,14 +68,17 @@ class MySQLiteHelper extends SQLiteOpenHelper {
     }
 
     private void addDefaultFilms(SQLiteDatabase database) {
-        insertNewFilm(database, new Film("The Shawshank Redemption", "Frank Darabont", "Canada", 1994, "Tim Robbins",
-                "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", 9));
+        insertNewFilm(database, new Film("The Dark Knight", "Christopher Nolan", "United Kingdom", 2008, "Christian Bale",
+                "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.", 9));
         insertNewFilm(database, new Film("The Godfather", "Francis Ford Coppola", "United States", 1972, "Marlon Brando",
                 "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", 9));
         insertNewFilm(database, new Film("Apocalypse Now", "Francis Ford Coppola", "United States", 1979, "Marlon Brando",
                 "During the Vietnam War, Captain Willard is sent on a dangerous mission into Cambodia to assassinate a renegade colonel who has set himself up as a god among a local tribe.", 8));
         insertNewFilm(database, new Film("Star Wars", "George Lucas", "United States", 1977, "Mark Hamill",
                 "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.", 9));
+        // Más películas añadidas en un inicio. Comentadas para dejar 4 películas según indica el enunciado de la práctica.
+        /*insertNewFilm(database, new Film("The Shawshank Redemption", "Frank Darabont", "Canada", 1994, "Tim Robbins",
+                "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", 9));
         insertNewFilm(database, new Film("Pan's Labyrinth", "Guillermo del Toro", "Spain", 2006, "Ariadna Gil",
                 "In the falangist Spain of 1944, the bookish young stepdaughter of a sadistic army officer escapes into an eerie but captivating fantasy world.", 8));
         insertNewFilm(database, new Film("The Matrix", "The Wachowski Brothers", "United States", 1999, "Keanu Reeves",
@@ -87,9 +90,7 @@ class MySQLiteHelper extends SQLiteOpenHelper {
         insertNewFilm(database, new Film("Pulp Fiction", "Quentin Tarantino", "United States", 1994, "John Travolta",
                 "The lives of two mob hit men, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.", 9));
         insertNewFilm(database, new Film("Sen to Chihiro no kamikakushi", "Hayao Miyazaki", "Japan", 2001, "Daveigh Chase",
-                "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.", 9));
-        insertNewFilm(database, new Film("The Dark Knight", "Christopher Nolan", "United Kingdom", 2008, "Christian Bale",
-                "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, the caped crusader must come to terms with one of the greatest psychological tests of his ability to fight injustice.", 9));
+                "During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches, and spirits, and where humans are changed into beasts.", 9));*/
     }
 
     @Override
