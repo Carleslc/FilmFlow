@@ -141,14 +141,16 @@ public class MainFilmsFragment extends Fragment {
                 if (mFilmsRecyclerViewAdapter == null) {
                     mFilmsRecyclerViewAdapter = getFilmsRecyclerViewAdapter();
                     mFilmsRecyclerViewAdapter.setOnItemClickListener((film) -> {
-                        Log.d(TAG, "Received film ID-" + film.getId() + ": " + film.getTitle()
-                                + " with description: " + film.getDescription());
-                            startActivityForResult(
-                                    new Intent(getContext(), DetailsActivity.class)
-                                            .putExtra(getString(R.string.bundle_film_id), film),
-                                    DETAILS_ACTIVITY_RESULT_CODE
-                            );
-                        }
+                                if (film != null) {
+                                    Log.d(TAG, "Received film ID-" + film.getId() + ": " + film.getTitle()
+                                            + " with description: " + film.getDescription());
+                                    startActivityForResult(
+                                            new Intent(getContext(), DetailsActivity.class)
+                                                    .putExtra(getString(R.string.bundle_film_id), film),
+                                            DETAILS_ACTIVITY_RESULT_CODE
+                                    );
+                                }
+                            }
                     );
                     mRecyclerView.setAdapter(mFilmsRecyclerViewAdapter);
                 }
