@@ -12,7 +12,7 @@ import com.and119_idi.myfilmdatabase.model.Film;
 import com.and119_idi.myfilmdatabase.model.FilmData;
 
 /**
- * Created by Carlos Lázaro Costa on 26/12/16.
+ * Created by Albert and Carlos on 26/12/16.
  */
 public class DetailsActivity extends DialogActivity {
 
@@ -41,7 +41,7 @@ public class DetailsActivity extends DialogActivity {
     }
 
     /**
-     * Created by albert on 3/7/17.
+     * Created by albert on 03/07/17.
      */
     private void initDeleteDialog() {
         ConfirmDialog deleteDialog = new ConfirmDialog(DetailsActivity.this,
@@ -58,6 +58,9 @@ public class DetailsActivity extends DialogActivity {
         (findViewById(R.id.details_delete_button)).setOnClickListener(v -> deleteDialog.show());
     }
 
+    /**
+     * Created by Carlos on 08/07/17.
+     */
     private void initRatingDialog() {
         RatingBar ratingBar = (RatingBar) findViewById(R.id.details_rating_bar);
         mShowingStars = mFilm.getCriticsRate() / 2f;
@@ -91,7 +94,7 @@ public class DetailsActivity extends DialogActivity {
     }
 
     /**
-     * Created by albert on 3/7/17.
+     * Created by albert on 03/07/17.
      */
     private void deleteFilm() {
         performOnFilmData((filmData) -> {

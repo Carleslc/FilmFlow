@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 import com.and119_idi.myfilmdatabase.R;
 
 /**
- * Created by Carlos Lázaro Costa on 5/1/17.
+ * Created by Carlos Lázaro Costa on 05/01/17.
  */
 class ConfirmDialog extends AlertDialog {
 

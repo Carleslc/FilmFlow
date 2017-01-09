@@ -99,6 +99,10 @@ public class MainFilmsFragment extends Fragment {
         void onRefreshFilms(int filmsSize);
     }
 
+    /**
+     * Created by albert on 29/11/16.
+     * Refactored by Carlos on 25/12/16.
+     */
     private class FetchFilmsTask extends AsyncTask<Void, Void, Boolean> {
 
         private FilmData mFilmData;

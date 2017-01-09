@@ -6,7 +6,8 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 
 /**
- * Created by albert on 9/12/16.
+ * Created by albert on 09/12/16.
+ * Refactored by Carlos on 05/01/17.
  */
 public class DialogActivity extends Activity {
 

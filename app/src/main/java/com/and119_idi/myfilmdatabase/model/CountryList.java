@@ -2,6 +2,10 @@ package com.and119_idi.myfilmdatabase.model;
 
 import java.util.Locale;
 
+/**
+ * Created by albert on 06/12/16.
+ * Refactored by Carlos on 07/01/17.
+ */
 public class CountryList {
 
     private static final String[] ISO_COUNTRY_CODES = Locale.getISOCountries();

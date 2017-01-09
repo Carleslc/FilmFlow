@@ -7,6 +7,7 @@ import com.and119_idi.myfilmdatabase.controller.FilmsRecyclerViewAdapter;
 
 /**
  * Created by albert on 29/11/16.
+ * Refactored by Carlos on 25/12/16.
  */
 public class DetailedFilmsFragment extends MainFilmsFragment {
 

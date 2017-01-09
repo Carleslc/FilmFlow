@@ -15,7 +15,8 @@ import java.lang.reflect.Constructor;
 import java.util.Collection;
 
 /**
- * Created by Carlos Lázaro Costa on 16/12/16.
+ * Created by albert on 16/12/16.
+ * Refactored by Carlos on 25/12/16.
  */
 public class FilmsRecyclerViewAdapter extends RecyclerView.Adapter<FilmViewHolder> {
 
@@ -40,6 +41,9 @@ public class FilmsRecyclerViewAdapter extends RecyclerView.Adapter<FilmViewHolde
         return LayoutInflater.from(viewGroup.getContext()).inflate(resource, null);
     }
 
+    /**
+     * Created by Carlos on 25/12/16.
+     */
     protected SortedList.Callback<Film> getSortCallback() {
         return new SortedListAdapterCallback<Film>(this) {
             @Override

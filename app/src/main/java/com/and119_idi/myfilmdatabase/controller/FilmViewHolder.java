@@ -11,7 +11,8 @@ import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.model.Film;
 
 /**
- * Created by Carlos Lázaro Costa on 16/12/16.
+ * Created by albert on 29/11/16.
+ * Refactored by Carlos on 16/12/16 and 25/12/16.
  */
 class FilmViewHolder extends RecyclerView.ViewHolder {
 

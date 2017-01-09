@@ -50,7 +50,7 @@
     <string name="failed_fetching_data">No se han podido obtener los datos.</string>
     <string name="film_added">¡Película añadida!</string>
     <string name="film_deleted">¡Película eliminada!</string>
-    <string name="films"> películas</string>
+    <string name="films">" películas"</string>
     <string name="found">"Se han encontrado "</string>
     <string name="enter_year">Introduce un año de estreno</string>
     <string name="enter_title">Introduce un título</string>

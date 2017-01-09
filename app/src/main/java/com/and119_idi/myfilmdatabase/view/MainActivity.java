@@ -153,7 +153,6 @@ public class MainActivity extends AppCompatActivity
             setFragment(new HelpFragment());
             drawerActions(item);
         } else if (item.getItemId() == R.id.nav_about) {
-            //unCheckItems();
             startActivity(new Intent(MainActivity.this, AboutActivity.class));
         }
 
