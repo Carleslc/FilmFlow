@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    private String searchOption;
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment mCurrentFragment;
     private int mCurrentItemId;
@@ -40,12 +42,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.main_layout);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mNavigationView = (NavigationView)
-                findViewById(R.id.navigation_drawer);
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_drawer);
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        mFooterNavigationView = (NavigationView)
-                findViewById(R.id.navigation_drawer_footer);
+        mFooterNavigationView = (NavigationView) findViewById(R.id.navigation_drawer_footer);
         mFooterNavigationView.setNavigationItemSelectedListener(this);
         mFooterNavigationView.setElevation(0);
 
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity
             mCurrentItemId = R.id.nav_movies_main;
             currentSelectedItem = mNavigationView.getMenu().findItem(mCurrentItemId);
             setFragment(new MainFilmsFragment());
+            searchOption = "actor";
         }
         else {
             mCurrentItemId = savedInstanceState.getInt(getString(R.string.bundle_current_item_id));
@@ -73,6 +74,9 @@ public class MainActivity extends AppCompatActivity
                 currentSelectedItem = mFooterNavigationView.getMenu().findItem(mCurrentItemId);
 
             setFragment(mCurrentFragment);
+
+            searchOption = savedInstanceState.getString("currentSearchOption");
+
         }
 
         if (currentSelectedItem.getItemId() != R.id.nav_about)drawerActions(currentSelectedItem);
@@ -82,20 +86,21 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_search, menu);
+        getMenuInflater().inflate(R.menu.menu_search_option, menu);
+
 
         mSearchMenuItem = menu.findItem(R.id.search_action);
         SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
-        searchView.setQueryHint(getString(R.string.search_hint));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                setActorFilter(query);
+                setFilter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                if (s.isEmpty()) setActorFilter(null);
+                if (s.isEmpty()) setFilter(null);
                 return false;
             }
         });
@@ -103,10 +108,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void setActorFilter(@Nullable String actor) {
+    private void setFilter(@Nullable String filter) {
         MainFilmsFragment moviesFragment = (MainFilmsFragment) mCurrentFragment;
         MainFilmsFragment.OnRefreshFilmsListener onRefreshListener = null;
-        if (actor != null) {
+        if (filter != null) {
             onRefreshListener = (filmsFound) -> {
                 String filmsMessage;
                 if (filmsFound == 0) {
@@ -115,12 +120,12 @@ public class MainActivity extends AppCompatActivity
                     filmsMessage = getString(R.string.found) + filmsFound + getString(R.string.films);
                 }
                 Toast.makeText(MainActivity.this,
-                        filmsMessage + getString(R.string.with_actor) + actor.trim() + ".",
+                        filmsMessage + getString((searchOption.equals("actor"))?(R.string.with_actor):(R.string.with_title)) + filter.trim() + ".",
                         Toast.LENGTH_SHORT)
                         .show();
             };
         }
-        moviesFragment.refreshFilmsWithActorFilter(actor, onRefreshListener);
+        moviesFragment.refreshFilmsWithActorFilter(filter, searchOption, onRefreshListener);
     }
 
     @Override
@@ -130,6 +135,44 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        mSearchMenuItem = menu.findItem(R.id.search_action);
+        SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
+
+        menu.findItem(R.id.by_actor).setChecked(searchOption.equals("actor"));
+        menu.findItem(R.id.by_title).setChecked(searchOption.equals("title"));
+
+        if (searchOption.equals("actor"))
+            searchView.setQueryHint(getString(R.string.search_by_actor_hint));
+        else
+            searchView.setQueryHint(getString(R.string.search_by_title_hint));
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
+
+        switch (item.getItemId()) {
+            case R.id.by_actor:
+                searchOption = "actor";
+                item.setChecked(true);
+                searchView.setQueryHint(getString(R.string.search_by_actor_hint));
+                return true;
+            case R.id.by_title:
+                item.setChecked(true);
+                searchView.setQueryHint(getString(R.string.search_by_title_hint));
+                searchOption = "title";
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -163,6 +206,7 @@ public class MainActivity extends AppCompatActivity
 
     private void updateToolbar(MenuItem item) {
         mCurrentItemId = item.getItemId();
+
         Log.d(TAG,item.getTitle().toString());
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.setTitle(item.getTitle());
@@ -197,6 +241,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(getString(R.string.bundle_current_item_id), mCurrentItemId);
+        outState.putString("currentSearchOption", searchOption);
         getSupportFragmentManager().putFragment(
                 outState, getString(R.string.bundle_current_fragment_id), mCurrentFragment);
         super.onSaveInstanceState(outState);

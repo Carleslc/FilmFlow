@@ -85,5 +85,10 @@
     <string name="films">" films"</string>
     <string name="with_actor">" with actor "</string>
     <string name="failed_fetching_data">Failed to fetch data.</string>
+    <string name="search_by_actor">Search by actor</string>
+    <string name="search_by_title">Search by title</string>
+    <string name="search_by_actor_hint">Search by actor...</string>
+    <string name="search_by_title_hint">Search by title...</string>
+    <string name="with_title">with title</string>
 
 </resources>

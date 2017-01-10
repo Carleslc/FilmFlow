@@ -61,6 +61,7 @@
     <string name="search_hint">Busca per un actor&#8230;</string>
     <string name="to_separator">" a "</string>
     <string name="with_actor">" amb l'actor "</string>
+    <string name="with_title">" amb titol "</string>
     <string name="cancel_warning">"Estàs segur de que vols cancel·lar?\n\nTots els canvis introduits es perdran."</string>
     <string name="delete_warning">"Estàs segur de que vols esborrar la pel·lícula?\n\nLes pel·lícules esborrades no es poden recuperar."</string>
     <string name="film_deleted">"Pel·lícula eliminada!"</string>

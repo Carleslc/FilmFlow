@@ -33,12 +33,13 @@ public class MainFilmsFragment extends Fragment {
     private static final int DETAILS_ACTIVITY_RESULT_CODE = 1;
     private static final int ADD_FILM_RESULT_CODE = 2;
 
+    private String searchOption;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private FilmsRecyclerViewAdapter mFilmsRecyclerViewAdapter;
     private FloatingActionButton mFloatingActionButton;
     private List<Film> mFilmList;
-    private String mActorFilter;
+    private String mFilter;
 
     @Nullable
     @Override
@@ -51,7 +52,8 @@ public class MainFilmsFragment extends Fragment {
         mSwipeRefreshLayout = (SwipeRefreshLayout) ret.findViewById(R.id.swipeRefreshLayout);
         mFloatingActionButton = (FloatingActionButton) ret.findViewById(R.id.add_films_button);
         initListeners();
-        mActorFilter = null;
+        mFilter = null;
+        searchOption = "actor";
         refreshFilms();
 
         return ret;
@@ -88,10 +90,11 @@ public class MainFilmsFragment extends Fragment {
         new FetchFilmsTask(onRefreshListener).execute();
     }
 
-    public void refreshFilmsWithActorFilter(@Nullable String actor,
+    public void refreshFilmsWithActorFilter(@Nullable String filter, String searchOption,
                                             @Nullable OnRefreshFilmsListener onRefreshListener) {
-        if (actor != null) actor = actor.trim();
-        mActorFilter = actor;
+        if (filter != null) filter = filter.trim();
+        this.searchOption = searchOption;
+        mFilter = filter;
         refreshFilmsWithListener(onRefreshListener);
     }
 
@@ -123,7 +126,7 @@ public class MainFilmsFragment extends Fragment {
             try {
                 mFilmData = new FilmData(getContext());
                 mFilmData.open();
-                mFilmList = mFilmData.getAllFilms(mActorFilter);
+                mFilmList = mFilmData.getAllFilms(mFilter,searchOption);
                 mFilmData.close();
                 return true;
             } catch (Exception e) {

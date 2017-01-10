@@ -62,6 +62,7 @@
     <string name="search_hint">Buscar por un actor&#8230;</string>
     <string name="to_separator">" a "</string>
     <string name="with_actor">" con el autor "</string>
+    <string name="with_title">" con el titulo "</string>
     <string name="cancel_warning">"¿Estás seguro de que quieres cancelar?\n\nTodos los cambios introducidos se perderán."</string>
     <string name="delete_warning">"¿Estás seguro de que quieres eliminar esta película?\n\nLas películas eliminadas no se pueden recuperar."</string>
     <string name="change_rating_from">"¿Quieres cambiar la puntuación de "</string>

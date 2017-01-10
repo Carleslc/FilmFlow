@@ -74,15 +74,20 @@ public class FilmData implements Closeable {
                 + " with description " + film.getDescription());
     }
 
-    public List<Film> getAllFilms(@Nullable String actorFilter) {
+    public List<Film> getAllFilms(@Nullable String filter,  String searchOption) {
         List<Film> films = new ArrayList<>();
 
-        if (actorFilter != null) {
-            actorFilter = MySQLiteHelper.COLUMN_PROTAGONIST + " LIKE '%" + actorFilter + "%'";
+        if (filter != null) {
+            if (searchOption.equals("actor")) {
+                filter = MySQLiteHelper.COLUMN_PROTAGONIST + " LIKE '%" + filter + "%'";
+            }
+            if (searchOption.equals("title")) {
+                filter = MySQLiteHelper.COLUMN_TITLE + " LIKE '%" + filter + "%'";
+            }
         }
 
         Cursor cursor = mDatabase.query(MySQLiteHelper.TABLE_FILMS,
-                allColumns, actorFilter, null, null, null, null);
+                allColumns, filter, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
