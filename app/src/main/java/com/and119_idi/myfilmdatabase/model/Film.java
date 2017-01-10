@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 /**
  * Created by pr_idi on 10/11/16.
+ * Modified by Carlos on 26/12/16.
  */
 public class Film implements Serializable {
 

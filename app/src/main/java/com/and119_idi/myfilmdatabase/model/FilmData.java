@@ -16,6 +16,7 @@ import static com.and119_idi.myfilmdatabase.model.MySQLiteHelper.filmToValues;
 
 /**
  * Created by pr_idi on 10/11/16.
+ * Modified by Carlos on 26/12/16 and 08/01/17.
  */
 public class FilmData implements Closeable {
 
