@@ -59,10 +59,9 @@
     <string name="enter_country">Introduce un país</string>
     <string name="enter_actor">Introduce un actor</string>
     <string name="no_film_found">No se ha encontrado ninguna película</string>
-    <string name="search_hint">Buscar por un actor&#8230;</string>
     <string name="to_separator">" a "</string>
-    <string name="with_actor">" con el autor "</string>
-    <string name="with_title">" con el titulo "</string>
+    <string name="with_actor">" con el actor "</string>
+    <string name="with_title">" con el título "</string>
     <string name="cancel_warning">"¿Estás seguro de que quieres cancelar?\n\nTodos los cambios introducidos se perderán."</string>
     <string name="delete_warning">"¿Estás seguro de que quieres eliminar esta película?\n\nLas películas eliminadas no se pueden recuperar."</string>
     <string name="change_rating_from">"¿Quieres cambiar la puntuación de "</string>
@@ -71,5 +70,9 @@
     <string name="add_film_help">Para añadir una nueva película tienes que utilizar el botón circular que se muestra en cualquiera de las dos pantallas de \"Películas\" (ordenadas por título o año).\n\nSe mostrará un formulario preguntándote por diferentes detalles de la película. Una vez que hayas introducido el \"Título\", \"País\" (con opción de autocompletar), \"Año\", \"Director\" y \"Actor\" podrás pulsar el botón para continuar.\n\nFinalmente, tendrás que introducir una descripción de la película y una puntuación (mediante estrellas), entonces podrás pulsar el botón para finalizar.</string>
     <string name="search_film_by_actor_help">Para buscar todas las películas con un actor determinado tienes que ir a \"Películas\" (ordenadas por título o año) y pulsar sobre la lupa en la esquina superior derecha.\nDespués, introduce el actor por el qual quieres buscar y confirma la búsqueda en tu teclado.\nEntonces se aplicará el filtro mostrándote todas las películas que contienen un actor con el texto que has buscado.\n\nLa búsqueda no tiene en cuenta las mayúsculas y minúsculas.\n\nTen en cuenta que si añades una nueva película con el filtro activado esta sólo saldrá en la llista si coincide con el criterio de búsqueda.\n\nPuedes borrar la búsqueda para mostrar otra vez todas las películas cerrando la barra de búsqueda o dirigiéndote a otra pantalla mediante el menú de navegación.\n</string>
     <string name="change_rating_help">Para cambiar la puntuación de una película tienes que ir a \"Películas\" (ordenadas por título o año) y seleccionar una película. En la pantalla de detalles podrás mover las estrellas para cambiar la puntuación de esta película. Después de esto una pantalla aparecerá para confirmar el cambio.</string>
+    <string name="search_by_actor">Buscar por actor</string>
+    <string name="search_by_actor_hint">Busca por un actor&#8230;</string>
+    <string name="search_by_title">Buscar por título</string>
+    <string name="search_by_title_hint">Busca por un título&#8230;</string>
 
 </resources>

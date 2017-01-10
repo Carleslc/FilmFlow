@@ -16,10 +16,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.myfilmdatabase.model.SearchByActorOption;
+import com.and119_idi.myfilmdatabase.model.SearchByTitleOption;
+import com.and119_idi.myfilmdatabase.model.SearchOptionStrategy;
 
 /**
  * Created by Carlos Lázaro Costa on 11/12/2016.
@@ -29,11 +31,16 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private String searchOption;
+    private static final SearchOptionStrategy
+            SEARCH_ACTOR_OPTION = new SearchByActorOption(),
+            SEARCH_TITLE_OPTION = new SearchByTitleOption();
+
+    private SearchOptionStrategy mSearchOption;
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment mCurrentFragment;
     private int mCurrentItemId;
     private MenuItem mSearchMenuItem;
+    private String mFilter;
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -62,7 +69,7 @@ public class MainActivity extends AppCompatActivity
             mCurrentItemId = R.id.nav_movies_main;
             currentSelectedItem = mNavigationView.getMenu().findItem(mCurrentItemId);
             setFragment(new MainFilmsFragment());
-            searchOption = "actor";
+            mSearchOption = SEARCH_ACTOR_OPTION;
         }
         else {
             mCurrentItemId = savedInstanceState.getInt(getString(R.string.bundle_current_item_id));
@@ -75,8 +82,7 @@ public class MainActivity extends AppCompatActivity
 
             setFragment(mCurrentFragment);
 
-            searchOption = savedInstanceState.getString("currentSearchOption");
-
+            mSearchOption = (SearchOptionStrategy) savedInstanceState.getSerializable(getString(R.string.bundle_current_search_option_id));
         }
 
         if (currentSelectedItem.getItemId() != R.id.nav_about)drawerActions(currentSelectedItem);
@@ -87,7 +93,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.actionbar_search, menu);
         getMenuInflater().inflate(R.menu.menu_search_option, menu);
-
 
         mSearchMenuItem = menu.findItem(R.id.search_action);
         SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
@@ -109,9 +114,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setFilter(@Nullable String filter) {
+        mFilter = filter;
         MainFilmsFragment moviesFragment = (MainFilmsFragment) mCurrentFragment;
         MainFilmsFragment.OnRefreshFilmsListener onRefreshListener = null;
-        if (filter != null) {
+        if (mFilter != null) {
             onRefreshListener = (filmsFound) -> {
                 String filmsMessage;
                 if (filmsFound == 0) {
@@ -120,12 +126,13 @@ public class MainActivity extends AppCompatActivity
                     filmsMessage = getString(R.string.found) + filmsFound + getString(R.string.films);
                 }
                 Toast.makeText(MainActivity.this,
-                        filmsMessage + getString((searchOption.equals("actor"))?(R.string.with_actor):(R.string.with_title)) + filter.trim() + ".",
+                        filmsMessage + getString(mSearchOption.getWithFilterSeparatorResource())
+                                + mFilter.trim() + ".",
                         Toast.LENGTH_SHORT)
                         .show();
             };
         }
-        moviesFragment.refreshFilmsWithActorFilter(filter, searchOption, onRefreshListener);
+        moviesFragment.refreshFilmsWithFilter(mFilter, mSearchOption, onRefreshListener);
     }
 
     @Override
@@ -140,36 +147,33 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
         mSearchMenuItem = menu.findItem(R.id.search_action);
         SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
 
-        menu.findItem(R.id.by_actor).setChecked(searchOption.equals("actor"));
-        menu.findItem(R.id.by_title).setChecked(searchOption.equals("title"));
+        menu.findItem(R.id.by_actor).setChecked(mSearchOption.equals(SEARCH_ACTOR_OPTION));
+        menu.findItem(R.id.by_title).setChecked(mSearchOption.equals(SEARCH_TITLE_OPTION));
 
-        if (searchOption.equals("actor"))
-            searchView.setQueryHint(getString(R.string.search_by_actor_hint));
-        else
-            searchView.setQueryHint(getString(R.string.search_by_title_hint));
+        searchView.setQueryHint(getString(mSearchOption.getHintResource()));
 
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
 
         switch (item.getItemId()) {
             case R.id.by_actor:
-                searchOption = "actor";
+                mSearchOption = SEARCH_ACTOR_OPTION;
                 item.setChecked(true);
-                searchView.setQueryHint(getString(R.string.search_by_actor_hint));
+                searchView.setQueryHint(getString(mSearchOption.getHintResource()));
+                setFilter(mFilter);
                 return true;
             case R.id.by_title:
+                mSearchOption = SEARCH_TITLE_OPTION;
                 item.setChecked(true);
-                searchView.setQueryHint(getString(R.string.search_by_title_hint));
-                searchOption = "title";
+                searchView.setQueryHint(getString(mSearchOption.getHintResource()));
+                setFilter(mFilter);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -241,7 +245,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(getString(R.string.bundle_current_item_id), mCurrentItemId);
-        outState.putString("currentSearchOption", searchOption);
+        outState.putSerializable(getString(R.string.bundle_current_search_option_id), mSearchOption);
         getSupportFragmentManager().putFragment(
                 outState, getString(R.string.bundle_current_fragment_id), mCurrentFragment);
         super.onSaveInstanceState(outState);

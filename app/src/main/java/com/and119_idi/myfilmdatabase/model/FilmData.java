@@ -12,8 +12,6 @@ import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.and119_idi.myfilmdatabase.model.MySQLiteHelper.filmToValues;
-
 /**
  * Created by pr_idi on 10/11/16.
  * Modified by Carlos on 26/12/16 and 08/01/17.
@@ -69,23 +67,17 @@ public class FilmData implements Closeable {
     }
 
     private void updateFilm(@NonNull Film film) {
-        mDatabase.update(MySQLiteHelper.TABLE_FILMS, filmToValues(film),
+        mDatabase.update(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.filmToValues(film),
                 MySQLiteHelper.COLUMN_ID + " = " + film.getId(), null);
         Log.d(TAG, "updateFilm " + film.getTitle() + " ID-" + film.getId()
                 + " with description " + film.getDescription());
     }
 
-    public List<Film> getAllFilms(@Nullable String filter,  String searchOption) {
+    public List<Film> getAllFilms(@Nullable String filter, @Nullable SearchOptionStrategy searchOption) {
         List<Film> films = new ArrayList<>();
 
-        if (filter != null) {
-            if (searchOption.equals("actor")) {
-                filter = MySQLiteHelper.COLUMN_PROTAGONIST + " LIKE '%" + filter + "%'";
-            }
-            if (searchOption.equals("title")) {
-                filter = MySQLiteHelper.COLUMN_TITLE + " LIKE '%" + filter + "%'";
-            }
-        }
+        filter = (filter != null && searchOption != null) ?
+                searchOption.getColumn() + " LIKE '%" + filter + "%'" : null;
 
         Cursor cursor = mDatabase.query(MySQLiteHelper.TABLE_FILMS,
                 allColumns, filter, null, null, null, null);

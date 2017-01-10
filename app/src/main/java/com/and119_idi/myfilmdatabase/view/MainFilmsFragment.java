@@ -20,6 +20,7 @@ import com.and119_idi.myfilmdatabase.R;
 import com.and119_idi.myfilmdatabase.controller.FilmsRecyclerViewAdapter;
 import com.and119_idi.myfilmdatabase.model.Film;
 import com.and119_idi.myfilmdatabase.model.FilmData;
+import com.and119_idi.myfilmdatabase.model.SearchOptionStrategy;
 
 import java.util.List;
 
@@ -33,13 +34,13 @@ public class MainFilmsFragment extends Fragment {
     private static final int DETAILS_ACTIVITY_RESULT_CODE = 1;
     private static final int ADD_FILM_RESULT_CODE = 2;
 
-    private String searchOption;
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private FilmsRecyclerViewAdapter mFilmsRecyclerViewAdapter;
     private FloatingActionButton mFloatingActionButton;
     private List<Film> mFilmList;
     private String mFilter;
+    private SearchOptionStrategy mSearchOption;
 
     @Nullable
     @Override
@@ -53,7 +54,7 @@ public class MainFilmsFragment extends Fragment {
         mFloatingActionButton = (FloatingActionButton) ret.findViewById(R.id.add_films_button);
         initListeners();
         mFilter = null;
-        searchOption = "actor";
+        mSearchOption = null;
         refreshFilms();
 
         return ret;
@@ -90,10 +91,10 @@ public class MainFilmsFragment extends Fragment {
         new FetchFilmsTask(onRefreshListener).execute();
     }
 
-    public void refreshFilmsWithActorFilter(@Nullable String filter, String searchOption,
-                                            @Nullable OnRefreshFilmsListener onRefreshListener) {
+    public void refreshFilmsWithFilter(@Nullable String filter, @Nullable SearchOptionStrategy searchOption,
+                                       @Nullable OnRefreshFilmsListener onRefreshListener) {
         if (filter != null) filter = filter.trim();
-        this.searchOption = searchOption;
+        mSearchOption = searchOption;
         mFilter = filter;
         refreshFilmsWithListener(onRefreshListener);
     }
@@ -126,7 +127,7 @@ public class MainFilmsFragment extends Fragment {
             try {
                 mFilmData = new FilmData(getContext());
                 mFilmData.open();
-                mFilmList = mFilmData.getAllFilms(mFilter,searchOption);
+                mFilmList = mFilmData.getAllFilms(mFilter, mSearchOption);
                 mFilmData.close();
                 return true;
             } catch (Exception e) {

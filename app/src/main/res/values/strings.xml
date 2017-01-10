@@ -69,7 +69,6 @@
     <string name="enter_director">Enter a director</string>
     <string name="enter_actor">Enter an actor</string>
     <string name="enter_description">Enter a description</string>
-    <string name="bundle_film_id" translatable="false">film</string>
     <string name="film_added">Film added!</string>
     <string name="confirm">Confirm</string>
     <string name="cancel_warning">"Are you sure you want to cancel?\n\nIntroduced information will be lost."</string>
@@ -77,9 +76,10 @@
     <string name="delete_warning">"Are you sure you want to delete the film?\n\nDeleted films can't be recovered."</string>
     <string name="to_separator">" to "</string>
     <string name="change_rating_from">"Do you want to change the film rating from "</string>
+    <string name="bundle_film_id" translatable="false">filmId</string>
     <string name="bundle_current_item_id" translatable="false">currentItemId</string>
-    <string name="bundle_current_fragment_id" translatable="false">currentFragment</string>
-    <string name="search_hint">Search for an actor&#8230;</string>
+    <string name="bundle_current_fragment_id" translatable="false">currentFragmentId</string>
+    <string name="bundle_current_search_option_id" translatable="false">currentSearchOptionId</string>
     <string name="no_film_found">No film was found</string>
     <string name="found">"Found "</string>
     <string name="films">" films"</string>
@@ -87,8 +87,8 @@
     <string name="failed_fetching_data">Failed to fetch data.</string>
     <string name="search_by_actor">Search by actor</string>
     <string name="search_by_title">Search by title</string>
-    <string name="search_by_actor_hint">Search by actor...</string>
-    <string name="search_by_title_hint">Search by title...</string>
-    <string name="with_title">with title</string>
+    <string name="search_by_actor_hint">Search for an actor&#8230;</string>
+    <string name="search_by_title_hint">Search for a title&#8230;</string>
+    <string name="with_title">" with title "</string>
 
 </resources>
