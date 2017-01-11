@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
                 android:maxLines="2"
-                android:maxLength="30"
+                android:maxLength="40"
                 android:layout_marginBottom="@dimen/view_margin"
                 android:ems="8"
                 android:gravity="start"
@@ -71,7 +71,7 @@
                 android:layout_below="@+id/year"
                 android:layout_marginBottom="@dimen/view_margin"
                 android:maxLines="2"
-                android:maxLength="25"
+                android:maxLength="40"
                 android:hint="@string/director_hint"
                 android:inputType="text"/>
 
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/director"
                 android:maxLines="2"
-                android:maxLength="25"
+                android:maxLength="40"
                 android:layout_marginBottom="@dimen/view_margin"
                 android:hint="@string/actor_hint"
                 android:inputType="text"/>
