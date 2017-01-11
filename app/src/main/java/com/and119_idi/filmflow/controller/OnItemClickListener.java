@@ -1,6 +1,6 @@
-package com.and119_idi.myfilmdatabase.controller;
+package com.and119_idi.filmflow.controller;
 
-import com.and119_idi.myfilmdatabase.model.Film;
+import com.and119_idi.filmflow.model.Film;
 
 /**
  * Created by albert on 2/11/16.

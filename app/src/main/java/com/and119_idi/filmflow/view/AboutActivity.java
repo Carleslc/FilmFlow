@@ -1,10 +1,10 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.filmflow.R;
 
 /**
  * Created by albert on 23/12/16.

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
-    tools:context="com.and119_idi.myfilmdatabase.view.MainActivity">
+    tools:context="com.and119_idi.filmflow.view.MainActivity">
 
     <!-- App Toolbar -->
     <android.support.design.widget.AppBarLayout

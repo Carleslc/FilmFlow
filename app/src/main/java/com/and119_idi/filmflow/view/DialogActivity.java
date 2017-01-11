@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.app.Activity;
 import android.os.Bundle;

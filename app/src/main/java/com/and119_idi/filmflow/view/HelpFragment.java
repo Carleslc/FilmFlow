@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
-import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.controller.MyHelpListAdapter;
+import com.and119_idi.filmflow.R;
+import com.and119_idi.filmflow.controller.MyHelpListAdapter;
 
 /**
  * Created by Albert and Carlos on 24/12/16.

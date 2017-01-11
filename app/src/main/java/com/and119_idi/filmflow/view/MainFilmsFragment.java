@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,11 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.controller.FilmsRecyclerViewAdapter;
-import com.and119_idi.myfilmdatabase.model.Film;
-import com.and119_idi.myfilmdatabase.model.FilmData;
-import com.and119_idi.myfilmdatabase.model.SearchOptionStrategy;
+import com.and119_idi.filmflow.R;
+import com.and119_idi.filmflow.controller.FilmsRecyclerViewAdapter;
+import com.and119_idi.filmflow.model.Film;
+import com.and119_idi.filmflow.model.FilmData;
+import com.and119_idi.filmflow.model.SearchOptionStrategy;
 
 import java.util.List;
 

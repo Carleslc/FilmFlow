@@ -1,9 +1,9 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.filmflow.R;
 
 /**
  * Created by albert on 9/12/16.

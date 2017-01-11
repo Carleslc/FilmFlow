@@ -121,3 +121,8 @@ minimitzant el nombre de *clicks* per a la realització de les interaccions.
 
 **Per a la realització de les tasques que cadascú té assignades no és necessari modificar el disseny de la base
 de dades de l'esquelet.**
+
+## KeystoreIDI.jks
+Keystore Password: *And119*
+Key Alias: *FilmFlow*
+Key Password: *And119*

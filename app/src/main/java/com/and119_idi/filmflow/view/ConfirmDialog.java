@@ -1,10 +1,10 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.filmflow.R;
 
 /**
  * Created by Carlos Lázaro Costa on 05/01/17.

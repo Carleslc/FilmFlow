@@ -1,10 +1,10 @@
-package com.and119_idi.myfilmdatabase.controller;
+package com.and119_idi.filmflow.controller;
 
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.util.SortedListAdapterCallback;
 
-import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.model.Film;
+import com.and119_idi.filmflow.R;
+import com.and119_idi.filmflow.model.Film;
 
 /**
  * Created by albert on 29/11/16.

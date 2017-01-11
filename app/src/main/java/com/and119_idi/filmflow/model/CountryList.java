@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.model;
+package com.and119_idi.filmflow.model;
 
 import java.util.Locale;
 

@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,9 +7,9 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.model.Film;
-import com.and119_idi.myfilmdatabase.model.FilmData;
+import com.and119_idi.filmflow.R;
+import com.and119_idi.filmflow.model.Film;
+import com.and119_idi.filmflow.model.FilmData;
 
 /**
  * Created by Albert and Carlos on 26/12/16.

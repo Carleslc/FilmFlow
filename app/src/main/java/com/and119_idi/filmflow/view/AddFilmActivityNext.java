@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.model.Film;
-import com.and119_idi.myfilmdatabase.model.FilmData;
+import com.and119_idi.filmflow.R;
+import com.and119_idi.filmflow.model.Film;
+import com.and119_idi.filmflow.model.FilmData;
 
 /**
  * Created by albert on 8/12/16.

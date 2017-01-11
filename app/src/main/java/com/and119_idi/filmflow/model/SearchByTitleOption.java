@@ -1,6 +1,6 @@
-package com.and119_idi.myfilmdatabase.model;
+package com.and119_idi.filmflow.model;
 
-import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.filmflow.R;
 
 public class SearchByTitleOption implements SearchOptionStrategy {
 

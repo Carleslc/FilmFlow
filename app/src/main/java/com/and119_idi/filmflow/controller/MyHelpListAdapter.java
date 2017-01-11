@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.controller;
+package com.and119_idi.filmflow.controller;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.and119_idi.myfilmdatabase.R;
+import com.and119_idi.filmflow.R;
 
 /**
  * Created by Carlos Lázaro Costa on 25/12/16.
@@ -25,7 +25,7 @@ public class MyHelpListAdapter extends BaseExpandableListAdapter {
     public MyHelpListAdapter(Activity context) {
         mContext = context;
         mGroups = new String[]{
-                mContext.getString(com.and119_idi.myfilmdatabase.R.string.show_films_section),
+                mContext.getString(com.and119_idi.filmflow.R.string.show_films_section),
                 mContext.getString(R.string.add_film_section),
                 mContext.getString(R.string.delete_film_section),
                 mContext.getString(R.string.change_rating_section),

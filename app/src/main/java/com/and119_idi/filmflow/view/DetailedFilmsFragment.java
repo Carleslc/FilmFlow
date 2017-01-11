@@ -1,9 +1,9 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.support.annotation.NonNull;
 
-import com.and119_idi.myfilmdatabase.controller.FilmsDetailedRecyclerViewAdapter;
-import com.and119_idi.myfilmdatabase.controller.FilmsRecyclerViewAdapter;
+import com.and119_idi.filmflow.controller.FilmsDetailedRecyclerViewAdapter;
+import com.and119_idi.filmflow.controller.FilmsRecyclerViewAdapter;
 
 /**
  * Created by albert on 29/11/16.

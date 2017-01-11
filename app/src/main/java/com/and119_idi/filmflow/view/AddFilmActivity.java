@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.model.CountryList;
-import com.and119_idi.myfilmdatabase.model.Film;
+import com.and119_idi.filmflow.R;
+import com.and119_idi.filmflow.model.CountryList;
+import com.and119_idi.filmflow.model.Film;
 
 /**
  * Created by albert on 6/12/16.

@@ -1,4 +1,4 @@
-package com.and119_idi.myfilmdatabase.view;
+package com.and119_idi.filmflow.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,10 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.and119_idi.myfilmdatabase.R;
-import com.and119_idi.myfilmdatabase.model.SearchByActorOption;
-import com.and119_idi.myfilmdatabase.model.SearchByTitleOption;
-import com.and119_idi.myfilmdatabase.model.SearchOptionStrategy;
+import com.and119_idi.filmflow.R;
+import com.and119_idi.filmflow.model.SearchByActorOption;
+import com.and119_idi.filmflow.model.SearchByTitleOption;
+import com.and119_idi.filmflow.model.SearchOptionStrategy;
 
 /**
  * Created by Carlos Lázaro Costa on 11/12/2016.
