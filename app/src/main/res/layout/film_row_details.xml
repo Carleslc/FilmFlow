@@ -12,91 +12,72 @@
     cardview:cardUseCompatPadding="true"
     cardview:paddingEnd="@dimen/cardview_padding"
     cardview:paddingStart="@dimen/cardview_padding">
+
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:ellipsize="end"
             android:maxEms="12"
+            android:maxLines="1"
             android:padding="8dp"
             android:text="@string/film_title_placeholder"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textSize="20sp"
             android:textStyle="bold"/>
 
-        <GridLayout
+        <TextView
+            android:id="@+id/year"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
-            android:columnCount="2"
+            android:layout_marginStart="12dp"
+            android:padding="8dp"
+            android:text="@string/year_placeholder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="15sp"
+            android:textStyle="italic|bold"/>
+
+        <TextView
+            android:id="@+id/director"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/year"
+            android:layout_marginStart="12dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:text="@string/director_hint"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="15sp"
+            android:textStyle="italic|bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/director"
+            android:baselineAligned="false"
             android:orientation="horizontal"
-            android:rowCount="1">
+            android:weightSum="100">
 
-            <RelativeLayout
-                android:layout_column="1"
-                android:layout_gravity="end|bottom"
-                android:layout_row="0">
-
-                <ImageView
-                    android:id="@+id/starIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/mark"
-                    android:adjustViewBounds="false"
-                    android:contentDescription="@string/star_icon_description"
-                    android:src="@drawable/ic_star_grande"/>
-
-                <TextView
-                    android:id="@+id/mark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:text="@string/mark_placeholder"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    tools:text="8" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_column="0"
-                android:layout_gravity="start"
-                android:layout_row="0">
-
-                <TextView
-                    android:id="@+id/year"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:padding="8dp"
-                    android:text="@string/year_placeholder"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textSize="15sp"
-                    android:textStyle="italic|bold"/>
-
-                <TextView
-                    android:id="@+id/director"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/year"
-                    android:layout_marginStart="12dp"
-                    android:padding="8dp"
-                    android:text="@string/director_hint"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                    android:textSize="15sp"
-                    android:textStyle="italic|bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="25"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/actor"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/director"
                     android:layout_marginStart="12dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:padding="10dp"
                     android:text="@string/actor_hint"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
@@ -105,19 +86,51 @@
 
                 <TextView
                     android:id="@+id/country"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/actor"
                     android:layout_marginStart="12dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:padding="10dp"
                     android:text="@string/country_placeholder"
                     android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                     android:textSize="15sp"
                     android:textStyle="italic|bold"/>
 
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="75">
+
+                <ImageView
+                    android:id="@+id/starIcon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/star_icon_description"
+                    android:src="@drawable/ic_star_grande"/>
+
+                <TextView
+                    android:id="@+id/mark"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toStartOf="@+id/starIcon"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/mark_placeholder"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    tools:text="8"/>
+
             </RelativeLayout>
 
-        </GridLayout>
+        </LinearLayout>
 
     </RelativeLayout>
 
