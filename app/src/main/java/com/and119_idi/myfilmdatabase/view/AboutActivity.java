@@ -15,10 +15,10 @@ public class AboutActivity extends DialogActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_layout);
-        initCoolStuff();
+        initStuff();
     }
 
-    private void initCoolStuff() {
+    private void initStuff() {
         ImageButton mailButton = (ImageButton) findViewById(R.id.contact);
         mailButton.setOnClickListener((v) -> {
             Intent intent = new Intent(Intent.ACTION_SEND);
