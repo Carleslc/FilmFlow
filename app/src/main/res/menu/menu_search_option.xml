@@ -1,14 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/search_options"
+        android:checkableBehavior="single">
         <item android:id="@+id/by_actor"
-            android:title="@string/search_by_actor"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:checkable="true">
+              android:checkable="true"
+              android:icon="@android:drawable/ic_menu_preferences"
+              android:title="@string/search_by_actor">
         </item>
         <item android:id="@+id/by_title"
-            android:title="@string/search_by_title"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:checkable="true">
+              android:checkable="true"
+              android:icon="@android:drawable/ic_menu_preferences"
+              android:title="@string/search_by_title">
         </item>
     </group>
 </menu>

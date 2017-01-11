@@ -29,14 +29,14 @@ public class MyHelpListAdapter extends BaseExpandableListAdapter {
                 mContext.getString(R.string.add_film_section),
                 mContext.getString(R.string.delete_film_section),
                 mContext.getString(R.string.change_rating_section),
-                mContext.getString(R.string.search_film_by_actor_section),
+                mContext.getString(R.string.search_film_section),
         };
         mChildren = new CharSequence[]{
                 mContext.getText(R.string.show_films_help),
                 mContext.getText(R.string.add_film_help),
                 mContext.getText(R.string.delete_film_help),
                 mContext.getText(R.string.change_rating_help),
-                mContext.getText(R.string.search_film_by_actor_help)
+                mContext.getText(R.string.search_film_help)
         };
     }
 

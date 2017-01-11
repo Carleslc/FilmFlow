@@ -33,6 +33,7 @@
             android:layout_gravity="bottom"
             android:fitsSystemWindows="true"
             android:overScrollMode="never"
+            app:elevation="0dp"
             app:menu="@menu/activity_main_drawer_footer"/>
 
     </android.support.design.widget.NavigationView>

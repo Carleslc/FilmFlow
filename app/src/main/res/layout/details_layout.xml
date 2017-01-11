@@ -148,7 +148,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/details_rating_hint"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/view_margin"
                 android:numStars="5"
                 android:rating="10.0"
                 android:stepSize="0.5"/>

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     private NavigationView mNavigationView, mFooterNavigationView;
     private Fragment mCurrentFragment;
     private int mCurrentItemId;
+    private Menu mSearchMenu;
     private MenuItem mSearchMenuItem;
     private String mFilter;
     private DrawerLayout mDrawerLayout;
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity
 
         mFooterNavigationView = (NavigationView) findViewById(R.id.navigation_drawer_footer);
         mFooterNavigationView.setNavigationItemSelectedListener(this);
-        mFooterNavigationView.setElevation(0);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -94,7 +94,10 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.actionbar_search, menu);
         getMenuInflater().inflate(R.menu.menu_search_option, menu);
 
+        mSearchMenu = menu;
+
         mSearchMenuItem = menu.findItem(R.id.search_action);
+
         SearchView searchView = (SearchView) mSearchMenuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -185,16 +188,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
 
         if (item.getItemId() == R.id.nav_movies_main) {
+            mSearchMenu.setGroupVisible(R.id.search_options, true);
             mSearchMenuItem.setVisible(true);
             mSearchMenuItem.collapseActionView();
             setFragment(new MainFilmsFragment());
             drawerActions(item);
         } else if (item.getItemId() == R.id.nav_movies_year) {
+            mSearchMenu.setGroupVisible(R.id.search_options, true);
             mSearchMenuItem.setVisible(true);
             mSearchMenuItem.collapseActionView();
             setFragment(new DetailedFilmsFragment());
             drawerActions(item);
         } else if (item.getItemId() == R.id.nav_help) {
+            mSearchMenu.setGroupVisible(R.id.search_options, false);
             mSearchMenuItem.setVisible(false);
             mSearchMenuItem.collapseActionView();
             setFragment(new HelpFragment());

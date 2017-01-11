@@ -93,8 +93,8 @@ public class AddFilmActivity extends CheckableDialogActivity {
                 mCountryAutoCompleteTextView.setError(getString(R.string.enter_country));
             ret = false;
         }
-        // validate mYearEditText contains only numbers (at least 1)
-        if (!mYearEditText.getText().toString().matches("^[0-9]+$")) {
+        // validate mYearEditText contains 4 numbers that does not start with 0
+        if (!mYearEditText.getText().toString().matches("^[1-9][0-9]{3}$")) {
             if (showErrors) mYearEditText.setError(getString(R.string.enter_year));
             ret = false;
         }
